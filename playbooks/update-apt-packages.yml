@@ -17,7 +17,7 @@
     # Send Discord message when reboot is required
     - name: Send Discord message
       uri:
-        url: "{{ discord_webhook_url }}"
+        url: "https://discord.com/api/webhooks/1243256966210650226/80S36GY8FOYDJKpQ9EdIfd6O9q3KX-JFQYllQV5RXdXeHZr5vAWs7IifhUupj1pBjwjU"
         method: POST
         body_format: json
         body: '{"content": "Reboot required on {{ inventory_hostname }}"}'
@@ -25,3 +25,15 @@
           Content-Type: application/json
         status_code: 204
       when: reboot_required.stat.exists
+
+    # Send Discord message on completion
+    - name: Send Discord message
+      uri:
+        #url: "{{ discord_webhook_url }}"
+        url: "https://discord.com/api/webhooks/1243256966210650226/80S36GY8FOYDJKpQ9EdIfd6O9q3KX-JFQYllQV5RXdXeHZr5vAWs7IifhUupj1pBjwjU"
+        method: POST
+        body_format: json
+        body: '{"content": "update-apt-packages completed"}'
+        headers:
+          Content-Type: application/json
+        status_code: 204
