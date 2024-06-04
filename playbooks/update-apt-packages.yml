@@ -17,7 +17,7 @@
     # Send Discord message when reboot is required
     - name: Send Discord message
       uri:
-        url: "${discord_webhook_url}"
+        url: "{{ discord_webhook_url }}"
         method: POST
         body_format: json
         body: '{"content": "Reboot required on {{ inventory_hostname }}"}'
