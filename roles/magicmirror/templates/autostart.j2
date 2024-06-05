@@ -1,7 +1,0 @@
-unclutter -noevents -grab -idle 0 &
-xrandr --output {{ _mirror_display }} --rotate {{ mirror_orientation }} &
-xset s noblank &
-xset s off &
-xset -dpms &
-hsetroot -extend {{ _mirror_install_dir }}/{% if mirror_background|length > 0 %}background{% else %}splashscreen/splash_halt.png{% endif %} &
-cd {{ _mirror_install_dir }} && npm run start &
