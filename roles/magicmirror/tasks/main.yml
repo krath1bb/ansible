@@ -4,7 +4,7 @@
 - ansible.builtin.include_tasks: packages.yml
 - ansible.builtin.include_tasks: github_download.yml
 - ansible.builtin.include_tasks: unpack.yml
-- ansible.builtin.include_tasks: grub.yml
+#- ansible.builtin.include_tasks: grub.yml
 - ansible.builtin.include_tasks: npm.yml
 - ansible.builtin.include_tasks: modules.yml
 - ansible.builtin.include_tasks: openbox.yml
