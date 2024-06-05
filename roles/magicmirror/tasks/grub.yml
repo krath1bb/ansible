@@ -1,0 +1,40 @@
+---
+###############################################################################
+# Grub Boot Options
+###############################################################################
+# Disable wifi blocking and hardware disable on boot via rfkill. Mirrors
+# generally will not have a ethernet connection and therefore must ensure that
+# the network stay operational.
+#
+# Rfkill disables radio devices (persisting across reboots) if accessed by
+# multiple services at once. Installing X11 packages or specific network
+# packages will trigger these conditions while they are installed/uninstalled.
+# Disable to ensure network remains functional.
+#
+# Reference:
+# * https://unix.stackexchange.com/questions/597292/how-to-disable-rfkill-after-it-has-been-uninstalled-from-raspbian
+# * https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+
+- name: 'grub | set rfkill to unblock radio devices on boot'
+  ansible.builtin.replace:
+    path:    '/etc/default/grub'
+    regexp:  '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
+    replace: '\1 {{ option }}={{ value }}\2'
+  vars:
+    option:  'rfkill.default_state'
+    value:   1
+  notify:
+    - 'update grub'
+    - 'reboot mirror'
+
+- name: 'grub | set rfkill to disable airplane mode (hardware disable) on boot'
+  ansible.builtin.replace:
+    path:    '/etc/default/grub'
+    regexp:  '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
+    replace: '\1 {{ option }}={{ value }}\2'
+  vars:
+    option:  'rfkill.master_switch_mode'
+    value:   0
+  notify:
+    - 'update grub'
+    - 'reboot mirror'

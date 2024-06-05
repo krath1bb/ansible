@@ -1,0 +1,223 @@
+---
+###############################################################################
+# MagicMirror Role Configuration
+###############################################################################
+# MagicMirror opensource modular smart mirror platform. Mirror will be rebooted
+# after successful role application.
+#
+# Reference:
+# * https://magicmirror.builders/
+# * https://github.com/MichMich/MagicMirror/releases
+# * https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+# * https://en.wikipedia.org/wiki/ISO_3166-2
+
+# User that mirror will run under. Assumes externally managed.
+mirror_user:  'pi'
+mirror_group: 'pi'
+
+# Create 'mirror' user if not detected? See: vars/main.yml.
+mirror_create_user: false
+
+# Version. Use specific tagged release (v2.18.0) or 'latest'.
+# Default: 'latest'.
+mirror_version: 'latest'
+
+# Should old mirror installs be removed automatically on upgrade success?
+mirror_delete_old_versions: true
+
+# Orientation of the mirror display. Applied to the first connected display.
+# Default: 'normal'.
+# Values:
+#   normal:  normal display orientation.
+#   left:    rotate 90 counter-clockwise (left).
+#   right    rotate 90 clockwise (right).
+#   inverted inverted (180 rotation).
+mirror_orientation: 'normal'
+
+# Background startup/shutdown image. Source from ansible host. Empty uses
+# default background. Default: ''.
+mirror_background: ''
+
+###############################################################################
+# MagicMirror config.js Settings
+###############################################################################
+
+# Webserver listen address. Do not expose to network unless you are running a
+# headless server. '0.0.0.0' or '::' listens on all interfaces.
+# Default: 'localhost'.
+mirror_address: 'localhost'
+
+# Webserver listen port. Default: 8080
+mirror_port: 8080
+
+# Base application web path; must set if using a reverse proxy. Default: '/'.
+mirror_base_path: '/'
+
+# Whitelisted IP's for accessing webserver. May be IPv4,IPv6,CIDR or empty list
+# to allow all conections.
+# Default: ['127.0.0.1', ':ffff:127.0.0.1', '::1'].
+mirror_whitelist:
+  - '127.0.0.1'
+  - '::ffff:127.0.0.1'
+  - '::1'
+
+# Use https. Default: false.
+mirror_use_https: false
+
+# Private key file for https. Default: ''.
+mirror_https_private_key: ''
+
+# Public key file for https. Default: ''.
+mirror_https_public_key: ''
+
+# Scale mirror presentation by X. Default: 1.0.
+mirror_zoom: 1.0
+
+# Default language. ISO 639-1 Two-digit code. Default: 'en'.
+mirror_language: 'en'
+
+# Default locale. ISO 639-1 Two-digit code plus ISO 3166-2. Default: 'en-US'.
+mirror_locale: 'en-US'
+
+# Log levels to display.
+# Values:
+#   INFO
+#   LOG
+#   WARN
+#   ERROR
+#   DEBUG
+# Default: ['INFO', 'LOG', 'WARN', 'ERROR'].
+mirror_log_level:
+  - 'INFO'
+  - 'LOG'
+  - 'WARN'
+  - 'ERROR'
+
+  # Use a 12 or 24 hour clock.
+  # Values:
+  #   12
+  #   24
+  # Default: 24
+mirror_time_format: 24
+
+# Weather display units.
+# Values:
+#   metric
+#   imperial
+# Default: 'metric'.
+mirror_weather_units: 'imperial'
+
+# Browser (screen) electron options. Only set if there is a specific need.
+# Default: ''.
+#
+#   mirror_electron_options:
+#     fullscreen: false
+#     width: 800
+#     height: 600
+#
+# Reference:
+# * https://github.com/electron/electron/blob/main/docs/api/browser-window.md#new-browserwindowoptions
+mirror_electron_options: ''
+
+# Electron command-line switches. Configures electron itself. Only set if there
+# is a specific need. Default: ''.
+#
+# Reference:
+# * https://www.electronjs.org/docs/latest/api/command-line-switches
+mirror_electron_switches: ''
+
+# Custom CSS file location on ansible host to use in place of the default
+# custom.css. If defined this will replace the original custom.css file.
+# Default: ''.
+mirror_custom_css: ''
+
+###############################################################################
+# MagicMirror Module config.js Settings
+###############################################################################
+# Module configuration. Configuration is automatically converted to JSON. If
+# github source is specified, that repository is cloned and install commands
+# run if command is defined. These are executed in the magicmirror environment
+# in the module directory.
+#
+# Default: vanilla MagicMirror module configuration.
+#
+# mirror_modules:
+#   - source: github module repo to clone or ''. Empty assumes builtin module.
+#     install: str install command to use after the module is downloaded from
+#         source (e.g. 'npm install'). Empty disables.
+#     setting: Module settings spec per MagicMirror documentation.
+#       module: The name of the module. This can also contain the subfolder.
+#           Valid examples include clock, default/calendar and
+#           custommodules/mymodule, or the name of the github repo.
+#       position: The location of the module in which the module will be
+#           loaded. Possible values are top_bar, top_left, top_center,
+#           top_right, upper_third, middle_center, lower_third, bottom_left,
+#           bottom_center, bottom_right, bottom_bar, fullscreen_above, and
+#           fullscreen_below. This field is optional but most modules require
+#           this field to set. Check the documentation of the module for more
+#           information. Multiple modules with the same position will be
+#           ordered based on the order in the configuration file.
+#       classes: A list of additional CSS classes which will be set on the
+#           module. This field is optional.
+#       header: To display a header text above the module, add the header
+#           property. This field is optional.
+#       hiddenOnStartup: Set module as being hidden on startup. This field is
+#           optional.
+#       disabled: Set disabled to true to skip creating the module. This field
+#           is optional.
+#       config: An object with the module configuration properties. Check the
+#           documentation of the module for more information. This field is
+#           optional, unless the module requires extra configuration.
+#   - source: 'https://github.com/nigel-daniels/MMM-AirNow'
+#     install: 'npm install'
+#     setting:
+#       module:	'MMM-AirNow'
+#       position:	'top_left'
+#       config:
+#         api_key:	'your-api-key'
+#         zip_code:	'20500'
+#
+# Reference:
+# * https://docs.magicmirror.builders/modules/configuration.html
+
+mirror_modules:
+  - {setting: {module: 'alert'}}
+  - {setting: {module: 'updatenotification', position: 'top_bar'}}
+  - {setting: {module: 'clock', position: 'top_left'}}
+  - setting:
+      module: 'calendar'
+      header: 'US Holidays'
+      position: 'top_left'
+      config:
+        calendars:
+          - {symbol: 'calendar-check', url: 'webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics'}
+  - {setting: {module: 'compliments', position: 'lower_third'}}
+  - setting:
+      module: 'weather'
+      position: 'top_right'
+      config:
+        weatherProvider: 'openweathermap'
+        type: 'current'
+        location: 'New York'
+        locationID: '5128581' # ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+        apiKey: 'YOUR_OPENWEATHER_API_KEY'
+  - setting:
+      module: 'weather'
+      position: 'top_right'
+      header: 'Weather Forecast'
+      config:
+        weatherProvider: 'openweathermap'
+        type: 'forecast'
+        location: 'New York'
+        locationID: '5128581' #ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+        apiKey: 'YOUR_OPENWEATHER_API_KEY'
+  - setting:
+      module: 'newsfeed'
+      position: 'bottom_bar'
+      config:
+        feeds:
+          - {title: 'New York Times', url: 'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml'}
+      showSourceTitle: true
+      showPublishDate: true
+      broadcastNewsFeeds: true
+      broadcastNewsUpdates: true

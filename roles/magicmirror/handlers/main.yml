@@ -1,0 +1,12 @@
+---
+###############################################################################
+# Mirror Handlers
+###############################################################################
+
+- name: 'update grub'
+  ansible.builtin.command: 'update-grub'
+  become: true
+  changed_when: false
+
+- name: 'reboot mirror'
+  ansible.builtin.reboot:

@@ -1,0 +1,6 @@
+---
+- name:   'mirror'
+  hosts:  'mm-bk'
+  become: true
+  roles:
+    - 'magicmirror'

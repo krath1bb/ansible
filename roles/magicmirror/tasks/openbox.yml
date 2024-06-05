@@ -1,0 +1,88 @@
+---
+###############################################################################
+# MagicMirror Openbox Configuration
+###############################################################################
+# Openbox is a lightweight window manager used to run MagicMirror.
+#
+# Args:
+#   _mirror_install_dir: str versioned install location.
+#
+# Generates:
+#   _mirror_display: str first connected display.
+#
+# Referece:
+# * https://wiki.archlinux.org/title/LightDM#Enabling_autologin
+# * http://openbox.org/wiki/Help:Autostart
+
+- name: 'openbox | detect mirror home directory' # noqa no-changed-when always execute
+  ansible.builtin.command: 'echo ~{{ mirror_user }}'
+  register: _mirror_user_home_command
+
+- name: 'openbox | detect primary monitor'
+  ansible.builtin.shell: |
+    set -o pipefail && xrandr --display :0 --query | grep -m 1 ' connected ' | awk 'BEGIN {FS=" connected "}; { print $1 }'
+  args:
+    executable: '/bin/bash'
+  changed_when: false
+  register: _mirror_display_shell
+  become: true
+  become_user: '{{ mirror_user }}'
+  # Reference: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: 'openbox | parse detected settings'
+  ansible.builtin.set_fact:
+    _mirror_openbox_dir: '{{ _mirror_user_home_command.stdout }}/.config/openbox'
+    _mirror_display: '{{ _mirror_display_shell.stdout }}'
+
+- name: 'openbox | create openbox user settings'
+  ansible.builtin.file:
+    dest:    '{{ _mirror_openbox_dir }}'
+    owner:   '{{ mirror_user }}'
+    group:   '{{ mirror_group }}'
+    mode:    0750
+    recurse: true
+    state:   'directory'
+
+- name: 'openbox | set openbox environment'
+  ansible.builtin.copy:
+    dest:    '{{ _mirror_openbox_dir }}/environment'
+    owner:   '{{ mirror_user }}'
+    group:   '{{ mirror_group }}'
+    mode:    0640
+    content: 'export DISPLAY=:0'
+  notify: 'reboot mirror'
+
+- name: 'openbox | set openbox autostart'
+  ansible.builtin.template:
+    src:   'autostart.j2'
+    dest:  '{{ _mirror_openbox_dir }}/autostart'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
+    mode:  0640
+  notify: 'reboot mirror'
+
+- name: 'openbox | set lightdm autostart'
+  community.general.ini_file:
+    path:    '/etc/lightdm/lightdm.conf'
+    section: 'Seat:*'
+    option:  '{{ item.key }}'
+    value:   '{{ item.value }}'
+    owner:   '{{ mirror_user }}'
+    group:   '{{ mirror_group }}'
+    mode:    0640
+  loop:
+    - {key: 'autologin-user',         value: '{{ mirror_user }}'}
+    - {key: 'autologin-session',      value: 'openbox'}
+    - {key: 'autologin-user-timeout', value: '0'}
+  notify: 'reboot mirror'
+
+- name: 'openbox | set custom background'
+  ansible.builtin.copy:
+    src:   '{{ mirror_background }}'
+    dest:  '{{ _mirror_install_dir }}/background'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
+    mode:  0440
+  when: mirror_background|length > 0

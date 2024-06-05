@@ -1,0 +1,56 @@
+---
+###############################################################################
+# MagicMirror Unpack Github Archive
+###############################################################################
+# Create versioned mirror directory and unpack 'complete' archive. Remove
+# Uncessary files.
+#
+# Args:
+#   _mirror_install_dir: str versioned install location.
+#   _mirror_archive: str local versioned archive location.
+#   _mirror_install_stat: stat object for the versioned install location.
+
+- name: 'unpack | create mirror directory'
+  ansible.builtin.file:
+    path:  '{{ _mirror_install_dir }}'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
+    mode:  0750
+    state: 'directory'
+
+- name: 'unpack | unpack archive'
+  ansible.builtin.unarchive:
+    src:        '{{ _mirror_archive }}'
+    remote_src: true
+    dest:       '{{ _mirror_install_dir }}'
+    creates:    '{{ _mirror_install_dir }}/modules/default/defaultmodules.js'
+    owner:      '{{ mirror_user }}'
+    group:      '{{ mirror_group }}'
+    mode:       'a-st,o-rwx'
+    # Remove the leading 'MichMich-MagicMirror-{HASH}/' directory in archive
+    extra_opts: '--strip-components=1'
+  register: _mirror_unpacked
+  when: not _mirror_install_stat.stat.exists
+  notify: 'reboot mirror'
+
+- name: 'unpack | cleanup unused archive files'
+  ansible.builtin.file:
+    path:  '{{ item }}'
+    state: 'absent'
+  loop:
+    - '{{ _mirror_install_dir }}/CHANGELOG.MD'
+    - '{{ _mirror_install_dir }}/.editorconfig'
+    - '{{ _mirror_install_dir }}/.eslintignore'
+    - '{{ _mirror_install_dir }}/.eslintrc.json'
+    - '{{ _mirror_install_dir }}/.git/'
+    - '{{ _mirror_install_dir }}/.github/'
+    - '{{ _mirror_install_dir }}/.gitignore'
+    - '{{ _mirror_install_dir }}/.husky/'
+    - '{{ _mirror_install_dir }}/.prettierignore'
+    - '{{ _mirror_install_dir }}/.prettierrc.json'
+    - '{{ _mirror_install_dir }}/.stylelintrc.json'
+    - '{{ _mirror_install_dir }}/LICSENSE.md'
+    - '{{ _mirror_install_dir }}/README.md'
+    - '{{ _mirror_install_dir }}/tests/'
+    - '{{ _mirror_install_dir }}/installers/'
+  when: not _mirror_install_stat.stat.exists
