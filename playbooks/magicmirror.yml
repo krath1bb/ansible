@@ -1,6 +1,6 @@
 ---
 - name:   'mirror'
-  hosts:  'mm-bk'
+  hosts:  "{{ hosts }}"
   become: true
   roles:
     - 'magicmirror'
