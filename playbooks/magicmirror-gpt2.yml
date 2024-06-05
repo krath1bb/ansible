@@ -1,0 +1,70 @@
+---
+- name: Install MagicMirror on Raspberry Pi
+  hosts: "{{ hosts }}"
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install necessary packages
+      apt:
+        name:
+          - git
+          - curl
+          - build-essential
+          - npm
+        state: present
+
+    - name: Clone MagicMirror repository
+      git:
+        repo: 'https://github.com/MichMich/MagicMirror'
+        dest: /home/pi/MagicMirror
+        version: master
+        update: yes
+      become: no
+
+    # - name: Change directory owner to pi
+    #   file:
+    #     path: /home/pi/MagicMirror
+    #     owner: pi
+    #     group: pi
+    #     state: directory
+
+    # - name: Install MagicMirror dependencies
+    #   command: npm install
+    #   args:
+    #     chdir: /home/pi/MagicMirror
+    #   become: no
+
+    # - name: Create configuration file from sample
+    #   copy:
+    #     src: /home/pi/MagicMirror/config/config.js.sample
+    #     dest: /home/pi/MagicMirror/config/config.js
+    #     remote_src: yes
+    #   become: no
+
+    # - name: Install PM2 globally
+    #   npm:
+    #     name: pm2
+    #     global: yes
+
+    # - name: Configure PM2 to start MagicMirror on boot
+    #   command: pm2 startup systemd -u pi --hp /home/pi
+    #   become: yes
+
+    # - name: Start MagicMirror with PM2
+    #   command: pm2 start /home/pi/MagicMirror/installers/mm.sh
+    #   become: no
+
+    # - name: Save PM2 process list
+    #   command: pm2 save
+    #   become: no
+
+    # - name: Ensure PM2 restarts MagicMirror on reboot
+    #   systemd:
+    #     name: pm2-pi
+    #     enabled: yes
+    #     state: started
+    #   become: yes
