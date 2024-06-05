@@ -18,22 +18,19 @@
   register: magic_mirror_docker
 
 - name: Install Magic Mirror
-  ansible.builtin.script:
-    cmd: raspberry.sh --yes
+  ansible.builtin.shell: |
     # From https://github.com/sdetweil/MagicMirror_scripts.
     #bash -c  "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh) --yes"
   when: not magic_mirror_normal.stat.exists and not magic_mirror_docker.stat.exists
 
 - name: Turn off screen saver
-  ansible.builtin.script:
-    cmd: screensaveroff.sh
-    #bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/screensaveroff.sh)"
+  ansible.builtin.shell: |
+    bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/screensaveroff.sh)"
 
 - name: Boot with pm2
-  ansible.builtin.script:
-    fixuppm2.sh
+  ansible.builtin.shell: |
     # Use pm2 to autostart MagicMirror at bootup.
-    #bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/fixuppm2.sh)"
+    bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/fixuppm2.sh)"
 
 # From https://docs.magicmirror.builders/getting-started/upgrade-guide.html
 - name: Upgrade normal Magic Mirror install
