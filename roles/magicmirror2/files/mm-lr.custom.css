@@ -1,0 +1,41 @@
+/* Remove MM Padding */
+body {
+    margin: 0px; 
+    height: 100%;
+    width: 100%;
+  }
+
+
+/* Adjust font sizes */
+.clock .date{
+    font-size: 1rem;
+}
+.clock .time{
+    font-size: 2rem;
+  }
+
+.weather .medium{
+    font-size: 1rem;
+}
+
+.weather .large {
+    font-size: 2rem;
+}
+
+.weather .feelslike {
+    font-size: 1rem;
+}
+
+/* Clock and weather inline */
+
+.clock {
+    float: left;
+    padding-left: 140px;
+    padding-top: 50px;
+}
+
+.weather {
+    float: left;
+    padding-left: 50px;
+    padding-top: 50px;
+}
