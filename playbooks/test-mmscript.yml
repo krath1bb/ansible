@@ -14,7 +14,7 @@
     - name: Install Magic Mirror
       ansible.builtin.shell: |
         # From https://github.com/sdetweil/MagicMirror_scripts.
-        #bash -c  "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh) --yes"
+        bash -c  "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh) --yes"
       when: not magic_mirror_normal.stat.exists and not magic_mirror_docker.stat.exists
 
     - name: Turn off screen saver
