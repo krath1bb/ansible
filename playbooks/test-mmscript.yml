@@ -1,6 +1,15 @@
 ---
 - hosts: "{{ hosts }}"
   tasks:
+    - name: Magic Mirror installed
+      ansible.builtin.stat:
+        path: /home/pi/MagicMirror
+      register: magic_mirror_normal
+
+    - name: Magic Mirror docker installed
+      ansible.builtin.stat:
+        path: /home/pi/magicmirror
+      register: magic_mirror_docker
 
     - name: Install Magic Mirror
       ansible.builtin.shell: |
