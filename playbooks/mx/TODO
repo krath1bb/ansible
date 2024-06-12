@@ -12,7 +12,6 @@ set ansible defaultshell
 https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html
 
 
-w11 debloat
 delete all desktop icons
 default browser
 windows 11 expanded context menu
