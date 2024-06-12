@@ -5,44 +5,53 @@
   vars_files: "{{ hostvar | default('host_vars/default.win.yml') }}"
 
   tasks:
-    - name: Include chocolatey configuration
-      ansible.builtin.import_tasks:
-        file: windows/chocolatey.yml
-      when: install_chocolatey_packages
-      tags: ["choco"]
+ ##################
+ ### Chocolatey ###
+ ##################
+    - name: Install Chocolatey packages
+      chocolatey.chocolatey.win_chocolatey:
+        name: "{{ item.name | default(item) }}"
+        state: "{{ item.state | default('present') }}"
+        version: "{{ item.version | default(omit) }}"
+        choco_args: "{{ item.choco_args | default(--ignore-checksum) }}"
+      loop: 
+        - "{{ choco_additional_packages }}"
+        - cpu-z
+        - everything
+        - firefox
+        - git
+        - googlechrome
+        - googledrive
+        - hwinfo
+        - lghub
+        - microsoft-windows-terminal
+        - obs-studio
+        - revo-uninstaller
+        - spotify
+        - tightvnc
+        - vscode
+        - vlc
+        - winscp
+        - wiztree
+        - winrar
 
-    # - name: Include debloat configuration
-    #   ansible.builtin.import_tasks:
-    #     file: windows/debloat.yml
-    #   when: remove_bloatware
-    #   tags: ["debloat"]
+    - name: Clean chocolatey and nuget cache
+      block:
+        - name: Clean up the chocolatey and NuGet cache
+          ansible.windows.win_file:
+            path: "{{ item }}"
+            state: absent
+          loop:
+            - '%UserProfile%\AppData\Local\Temp\chocolatey\'
+            - '%UserProfile%\AppData\Local\Temp\nuget\'
+            - '%UserProfile%\AppData\Local\NuGet\Cache\'
+          register: cleanup_task
+      rescue:
+        - name: "{{ cleanup_task.msg }}"
+          ansible.builtin.debug:
+            msg: >
+              "Some chocolatey cache files are still in use. You may need to reboot your machine to resolve the error."
 
-    # - name: Include explorer configuration
-    #   ansible.builtin.import_tasks:
-    #     file: windows/explorer.yml
-    #   when: configure_explorer
-    #   tags: ["explorer"]
-
-    # - name: Include region configuration
-    #   ansible.builtin.import_tasks:
-    #     file: windows/region.yml
-    #   when: install_region
-    #   tags: ["region"]
-
-    # - name: Include start menu configuration
-    #   ansible.builtin.import_tasks:
-    #     file: windows/startmenu.yml
-    #   when: configure_startmenu
-    #   tags: ["startmenu"]
-
-    - name: Include taskbar configuration
-      ansible.builtin.import_tasks:
-        file: windows/taskbar.yml
-      when: configure_taskbar
-      tags: ["taskbar"]
-
-    # - name: Include desktop cleanup configuration
-    #   ansible.builtin.import_tasks:
-    #     file: windows/desktopcleanup.yml
-    #   when: desktopcleanup
-    #   tags: ["desktopcleanup"]
+ ##################
+ #### Taskbar ####
+ ##################
