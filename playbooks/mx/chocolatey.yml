@@ -22,7 +22,7 @@
         - lghub
         - microsoft-windows-terminal
         - obs-studio
-        - powertoys
+        #- powertoys
         - revo-uninstaller
         - spotify
         - vscode
