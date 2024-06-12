@@ -3,17 +3,10 @@
   become: true
   become_user: "{{ becomeuser }}"
   vars_files: 
-    - "./bkrathwohl-pc.yml"
+    - "{{ hostvar }}"
   gather_facts: no
 
   tasks:
-    - name: Print variables for debugging
-      ansible.builtin.debug:
-        msg: 
-          - "hosts: {{ hosts }}"
-          - "become_user: {{ becomeuser }}"
-          - "choco_additional_packages: {{ choco_additional_packages }}"
-
  ##################
  ### Chocolatey ###
  ##################
