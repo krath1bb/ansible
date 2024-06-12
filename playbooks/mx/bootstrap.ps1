@@ -87,12 +87,9 @@ Write-Output "The administrators_authorized_keys file has been created and confi
 
 
 
-
-### CHANGE ANSIBLE SHELL TYPE
-
-#ansible-galaxy install -r requirements.yml
-
-#ansible-playbook .\playbooks\mx\chocolatey.yml -i inventory.ini -e "hosts=bkrathwohl-pc"
+##################
+### HOW TO RUN ###
+##################
 
 # # Set execution policy
 # Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
