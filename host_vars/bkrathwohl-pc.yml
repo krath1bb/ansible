@@ -3,6 +3,7 @@ ansible_host: bkrathwohl-pc
 ansible_ssh_user: bkrathwohl
 
 choco_installed_packages:
+  name:
   - cpu-z
   - duck
   - everything
