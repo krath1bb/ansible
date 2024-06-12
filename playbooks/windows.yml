@@ -4,6 +4,7 @@
   become_user: "{{ becomeuser }}"
   vars_files: 
     - "{{ hostvar }}"
+  gather_facts: no
 
   tasks:
 
