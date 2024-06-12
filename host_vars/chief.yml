@@ -3,39 +3,38 @@ ansible_host: chief
 ansible_ssh_user: bkrathwohl
 
 choco_additional_packages:
-  name:
-  - adobereader
-  - aida64-extreme
-  - autodesk-fusion360
-  - brave
-  - cpu-z
-  - discord
-  - epicgameslauncher
-  - everything
-  - firefox
-  - git
-  - googlechrome
-  - googledrive
-  - gpu-z
-  - hwinfo
-  - icue
-  - imgburn
-  - lghub
-  - microsoft-windows-terminal
-  - msiafterburner
-  - obs-studio
-  - orcaslicer
-  - revo-uninstaller
-  - rpi-imager
-  - spotify
-  - steam
-  - tailscale
-  - tightvnc
-  - vscode
-  - vlc
-  - winscp
-  - wiztree
-  - winrar
+  name: adobereader
+  # - aida64-extreme
+  # - autodesk-fusion360
+  # - brave
+  # - cpu-z
+  # - discord
+  # - epicgameslauncher
+  # - everything
+  # - firefox
+  # - git
+  # - googlechrome
+  # - googledrive
+  # - gpu-z
+  # - hwinfo
+  # - icue
+  # - imgburn
+  # - lghub
+  # - microsoft-windows-terminal
+  # - msiafterburner
+  # - obs-studio
+  # - orcaslicer
+  # - revo-uninstaller
+  # - rpi-imager
+  # - spotify
+  # - steam
+  # - tailscale
+  # - tightvnc
+  # - vscode
+  # - vlc
+  # - winscp
+  # - wiztree
+  # - winrar
 
 # BATTLENET
 # AMD ADRENALIN
