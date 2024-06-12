@@ -2,6 +2,7 @@
 ansible_ssh_user: bkrathwohl
 
 choco_additional_packages:
+  name:
   - cpu-z
   - everything
   - firefox

@@ -3,6 +3,7 @@ ansible_host: bkrathwohl-pc
 ansible_ssh_user: bkrathwohl
 
 choco_additional_packages:
+  name:
   - duck
   - filezilla
   - powertoys    

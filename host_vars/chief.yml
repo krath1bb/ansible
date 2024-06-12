@@ -3,6 +3,7 @@ ansible_host: chief
 ansible_ssh_user: bkrathwohl
 
 choco_additional_packages:
+  name:
   - adobereader
   - aida64-extreme
   - autodesk-fusion360
