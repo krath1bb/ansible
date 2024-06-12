@@ -93,3 +93,18 @@ Write-Output "The administrators_authorized_keys file has been created and confi
 #ansible-galaxy install -r requirements.yml
 
 #ansible-playbook .\playbooks\mx\chocolatey.yml -i inventory.ini -e "hosts=bkrathwohl-pc"
+
+# # Set execution policy
+# Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# # Define the URL of the script
+# $scriptUrl = "https://raw.githubusercontent.com/krath1bb/ansible/main/playbooks/mx/bootstrap.ps1"
+
+# # Define the local path where the script will be saved in the temp folder
+# $localScriptPath = Join-Path $env:TEMP "bootstrap.ps1"
+
+# # Download the script to the temp folder
+# Invoke-WebRequest -Uri $scriptUrl -OutFile $localScriptPath
+
+# # Execute the script
+# & $localScriptPath
