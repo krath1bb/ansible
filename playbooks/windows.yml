@@ -5,43 +5,43 @@
   vars_files: "{{ hostvar | default('default.win.yml') }}"
 
   tasks:
-    - name: Include chocolatey configuration.
+    - name: Include chocolatey configuration
       ansible.builtin.import_tasks:
-        file: windows/chocolatey.yml
+        file: playbooks/windows/chocolatey.yml
       when: install_chocolatey_packages
       tags: ["choco"]
 
-    # - name: Include debloat configuration.
+    # - name: Include debloat configuration
     #   ansible.builtin.import_tasks:
     #     file: windows/debloat.yml
     #   when: remove_bloatware
     #   tags: ["debloat"]
 
-    # - name: Include explorer configuration.
+    # - name: Include explorer configuration
     #   ansible.builtin.import_tasks:
     #     file: windows/explorer.yml
     #   when: configure_explorer
     #   tags: ["explorer"]
 
-    # - name: Include region configuration.
+    # - name: Include region configuration
     #   ansible.builtin.import_tasks:
     #     file: windows/region.yml
     #   when: install_region
     #   tags: ["region"]
 
-    # - name: Include start menu configuration.
+    # - name: Include start menu configuration
     #   ansible.builtin.import_tasks:
     #     file: windows/startmenu.yml
     #   when: configure_startmenu
     #   tags: ["startmenu"]
 
-    - name: Include taskbar configuration.
+    - name: Include taskbar configuration
       ansible.builtin.import_tasks:
-        file: windows/taskbar.yml
+        file: playbooks/windows/taskbar.yml
       when: configure_taskbar
       tags: ["taskbar"]
 
-    # - name: Include desktop cleanup configuration.
+    # - name: Include desktop cleanup configuration
     #   ansible.builtin.import_tasks:
     #     file: windows/desktopcleanup.yml
     #   when: desktopcleanup
