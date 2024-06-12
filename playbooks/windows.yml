@@ -12,7 +12,6 @@
         msg: 
           - "hosts: {{ hosts }}"
           - "become_user: {{ becomeuser }}"
-          - "hostvar: {{ hostvar }}"
           - "choco_additional_packages: {{ choco_additional_packages }}"
 
  ##################
