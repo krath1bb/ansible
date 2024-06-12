@@ -1,0 +1,12 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  become_user: "{{ becomeuser }}"
+  tasks:
+    - import_playbook "./playbooks/mx/chocolatey.yml"
+    - import_playbook "./playbooks/mx/debloat.yml"
+    - import_playbook "./playbooks/mx/explorer.yml"
+    - import_playbook "./playbooks/mx/region.yml"
+    - import_playbook "./playbooks/mx/startmenu.yml"
+    - import_playbook "./playbooks/mx/taskbar.yml"
+    - import_playbook "./playbooks/mx/desktopcleanup.yml"
