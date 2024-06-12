@@ -3,28 +3,28 @@ ansible_host: bkrathwohl-pc
 ansible_ssh_user: bkrathwohl
 
 choco_additional_packages:
-- duck
-- filezilla
-- powertoys    
-- vmrc
-- zoom
-- cpu-z
-- everything
-- firefox
-- git
-- googlechrome
-- googledrive
-- hwinfo
-- lghub
-- microsoft-windows-terminal
-- obs-studio
-- revo-uninstaller
-- spotify
-- tightvnc
-- vscode
-- vlc
-- winscp
-- wiztree
-- winrar
+  - duck
+  - filezilla
+  - powertoys    
+  - vmrc
+  - zoom
+  - cpu-z
+  - everything
+  - firefox
+  - git
+  - googlechrome
+  - googledrive
+  - hwinfo
+  - lghub
+  - microsoft-windows-terminal
+  - obs-studio
+  - revo-uninstaller
+  - spotify
+  - tightvnc
+  - vscode
+  - vlc
+  - winscp
+  - wiztree
+  - winrar
 
 # ELGATO CAMERA HUB

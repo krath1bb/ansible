@@ -18,6 +18,13 @@
         choco_args: "{{ item.choco_args | default(--ignore-checksum) }}"
       loop: "{{ choco_additional_packages }}"
 
+    - name: Install Chocolatey packages
+      chocolatey.chocolatey.win_chocolatey:
+        name: "{{ item }}"
+        state: present
+        choco_args: --ignore-checksum
+      loop: "{{ choco_additional_packages }}"
+
     - name: Clean chocolatey and nuget cache
       block:
         - name: Clean up the chocolatey and NuGet cache
