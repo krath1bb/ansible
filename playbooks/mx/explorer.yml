@@ -52,19 +52,43 @@
         data: 0
         type: dword
 
-    - name: Set Explorer to the Computer view.
+    - name: Set Explorer to the Computer view, use Compact mode
       ansible.windows.win_regedit:
         path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
-        name: LaunchTo
+        name: "{{ item }}"
+        data: 1
+        type: dword
+        loop:
+          - LaunchTo
+          - UseCompactMode
+
+      - name: Default Control Panel view
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel
+        name: "{{ item }}"
+        data: 1
+        type: dword
+        loop:
+          - AllItemsIconView
+          - StartupPage
+
+    - name: Enable expanded stats for file transfers
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager
+        name: EnthusiastMode
         data: 1
         type: dword
 
-    - name: Disable Ribbon menu in Windows Explorer.
+    - name: Disable recently accessed file history
       ansible.windows.win_regedit:
-        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ribbon
-        name: MinimizedStateTabletModeOff
-        data: 1
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
+        name: "{{ item }}"
+        data: 0
         type: dword
+        loop:
+          - ShowCloudFilesInQuickAccess
+          - ShowFrequent
+          - ShowRecent
 
     - name: Enable Right-click Context Menu.
       ansible.windows.win_regedit:
