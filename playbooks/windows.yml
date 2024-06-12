@@ -3,11 +3,10 @@
   become: true
   become_user: "{{ becomeuser }}"
   vars_files: 
-    - "{{ hostvar }}"
+    - "./bkrathwohl-pc.yml"
   gather_facts: no
 
   tasks:
-
     - name: Print variables for debugging
       ansible.builtin.debug:
         msg: 
