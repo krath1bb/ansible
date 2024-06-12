@@ -5,25 +5,7 @@
     state: "{{ item.state | default('present') }}"
     version: "{{ item.version | default(omit) }}"
     choco_args: "{{ item.choco_args | default('--ignore-checksum') }}"
-  loop:
-    - cpu-z
-    - everything
-    - firefox
-    - git
-    - googlechrome
-    - googledrive
-    - hwinfo
-    - lghub
-    - microsoft-windows-terminal
-    - obs-studio
-    - revo-uninstaller
-    - spotify
-    - tightvnc
-    - vscode
-    - vlc
-    - winscp
-    - wiztree
-    - winrar
+  loop: "{{ choco_installed_packages }}"
 
 - name: Clean chocolatey and nuget cache
   block:

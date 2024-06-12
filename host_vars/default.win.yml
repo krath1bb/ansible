@@ -1,12 +1,9 @@
 ---
-ansible_host: bkrathwohl-pc
 ansible_ssh_user: bkrathwohl
 
 choco_installed_packages:
   - cpu-z
-  - duck
   - everything
-  - filezilla
   - firefox
   - git
   - googlechrome
@@ -15,16 +12,11 @@ choco_installed_packages:
   - lghub
   - microsoft-windows-terminal
   - obs-studio
-  - powertoys    
   - revo-uninstaller
   - spotify
   - tightvnc
-  - vlc
-  - vmrc
   - vscode
+  - vlc
   - winscp
   - wiztree
   - winrar
-  - zoom
-
-# ELGATO CAMERA HUB
