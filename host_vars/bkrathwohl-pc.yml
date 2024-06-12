@@ -4,29 +4,29 @@ ansible_ssh_user: bkrathwohl
 
 install_chocolatey_packages: true
 choco_installed_packages:
-  - cpu-z
-  - duck
-  - everything
-  - filezilla
-  - firefox
-  - git
-  - googlechrome
-  - googledrive
-  - hwinfo
-  - lghub
-  - microsoft-windows-terminal
-  - obs-studio
-  - powertoys    
-  - revo-uninstaller
-  - spotify
-  - tightvnc
-  - vlc
-  - vmrc
-  - vscode
-  - winscp
-  - wiztree
-  - winrar
-  - zoom
+  - name: cpu-z
+  - name: duck
+  - name: everything
+  - name: filezilla
+  - name: firefox
+  - name: git
+  - name: googlechrome
+  - name: googledrive
+  - name: hwinfo
+  - name: lghub
+  - name: microsoft-windows-terminal
+  - name: obs-studio
+  - name: powertoys    
+  - name: revo-uninstaller
+  - name: spotify
+  - name: tightvnc
+  - name: vlc
+  - name: vmrc
+  - name: vscode
+  - name: winscp
+  - name: wiztree
+  - name: winrar
+  - name: zoom
 configure_taskbar: true
 
 # ELGATO CAMERA HUB
