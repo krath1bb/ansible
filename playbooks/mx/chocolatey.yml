@@ -1,6 +1,7 @@
 ---
-- hosts: bkrathwohl-pc
+- hosts: "{{ hosts }}}"
   become: true
+  become_user: "{{ becomeuser }}"
   tasks:
     - name: Install Chocolatey packages.
       chocolatey.chocolatey.win_chocolatey:
