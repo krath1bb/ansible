@@ -3,7 +3,7 @@
   become: true
   become_user: "{{ becomeuser }}"
   vars_files: 
-    - "{{ hostvar }}"
+    - "{{ hosts }}"
   gather_facts: no
 
   tasks:
