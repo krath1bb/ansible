@@ -1,0 +1,8 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  become_user: "{{ becomeuser }}"
+  tasks:
+    - name: Set 'Eastern Standard Time' timezone
+      community.windows.win_timezone:
+        timezone: Eastern Standard Time
