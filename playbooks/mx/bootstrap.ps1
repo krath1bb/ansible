@@ -31,15 +31,12 @@ else {
 }
 
 
-### SSH Config
-#C:\ProgramData\ssh\sshd_config
-    #PubkeyAuthentication yes
-
+### SSH Config PubKeyAuthentication
 # Define the path to your file
-$filePath = $env:PROGRAMDATA\ssh\sshd_config
+$sshdConfigPath = "$env:PROGRAMDATA\ssh\sshd_config"
 
 # Read the file content into an array
-$fileContent = Get-Content -Path $filePath
+$fileContent = Get-Content -Path $sshdConfigPath
 
 # Loop through each line in the file
 for ($i = 0; $i -lt $fileContent.Length; $i++) {
@@ -52,9 +49,9 @@ for ($i = 0; $i -lt $fileContent.Length; $i++) {
 }
 
 # Write the modified content back to the file
-$fileContent | Set-Content -Path $filePath
+$fileContent | Set-Content -Path $sshdConfigPath
 
-
+### Add SSH public key
 
 
     ###Doesnt work if its an admin user
