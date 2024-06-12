@@ -6,3 +6,17 @@
     - name: Set 'Eastern Standard Time' timezone
       community.windows.win_timezone:
         timezone: Eastern Standard Time
+
+    - name: Set Time Format
+      ansible.windows.win_regedit:
+        path: HKCU:\Control Panel\International
+        name: sTimeFormat
+        data: HH:mm:ss
+        type: string
+
+    - name: Set Short Time
+      ansible.windows.win_regedit:
+        path: HKCU:\Control Panel\International
+        name: sShortTime
+        data: HH:mm
+        type: string
