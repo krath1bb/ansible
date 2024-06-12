@@ -6,10 +6,8 @@
     version: "{{ item.version | default(omit) }}"
     choco_args: "{{ item.choco_args | default('--ignore-checksum') }}"
   loop:
-    - 7zip
-    - duck
+    - cpu-z
     - everything
-    - filezilla
     - firefox
     - git
     - googlechrome
@@ -18,15 +16,14 @@
     - lghub
     - microsoft-windows-terminal
     - obs-studio
-    #- powertoys
     - revo-uninstaller
     - spotify
+    - tightvnc
     - vscode
     - vlc
-    - vmrc
     - winscp
     - wiztree
-    - zoom
+    - winrar
 
 - name: Clean chocolatey and nuget cache
   block:

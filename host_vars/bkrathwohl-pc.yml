@@ -1,0 +1,12 @@
+---
+ansible_host: bkrathwohl-pc
+ansible_ssh_user: bkrathwohl
+
+choco_installed_packages:
+  - duck
+  - filezilla
+  - powertoys    
+  - vmrc
+  - zoom
+
+# ELGATO CAMERA HUB

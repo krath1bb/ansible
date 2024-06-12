@@ -14,7 +14,7 @@
         dest: C:\cygwin64\cygwin_setup.exe
 
     - name: Run Cygwin installer
-      win_command: C:\cygwin64\cygwin_setup.exe -q -P ansible,ansible-doc,curl,nano,tree,vim,wget
+      win_command: C:\cygwin64\cygwin_setup.exe -q -P ansible,ansible-doc,curl,nano,rsync,tree,vim,wget -s http://mirrors.kernel.org/sourceware/cygwin,http://mirror.steadfast.net/cygwin,http://mirror.cs.vt.edu/pub.cygwin/cygwin,http://cygwin.osuosl.org
       args:
         creates: C:\cygwin64\bin\bash.exe
 

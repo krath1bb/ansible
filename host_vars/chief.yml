@@ -1,0 +1,27 @@
+---
+ansible_host: chief
+ansible_ssh_user: bkrathwohl
+
+choco_installed_packages:
+  - adobereader
+  - aida64-extreme
+  - autodesk-fusion360
+  - brave
+  - discord
+  - epicgameslauncher
+  - gpu-z
+  - icue
+  - imgburn
+  - msiafterburner
+  - orcaslicer
+  - rpi-imager
+  - steam
+  - tailscale
+
+
+
+# BATTLENET
+# AMD ADRENALIN
+# ELGATO CAMERA HUB
+# ASETEK RACEHUB
+# RAVEN CORE
