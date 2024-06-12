@@ -10,9 +10,9 @@
           balanced: "381b4222-f694-41f0-9685-ff5bb260df2e"
           power_saver: "a1841308-3541-4fab-bc81-f71556f20b4a"
       community.windows.win_power_plan:
-        guid: "{{ plans[power_plan] | default(balanced) }}"
+        guid: "{{ plans[power_plan] | default(high_performance) }}"
 
-    - name: Set Storage Sense configuration.
+    - name: Set Storage Sense configuration
       ansible.windows.win_regedit:
         path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy
         name: "{{ item.name }}"
