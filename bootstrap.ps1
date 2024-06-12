@@ -95,7 +95,7 @@ Write-Output "The administrators_authorized_keys file has been created and confi
 # Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # # Define the URL of the script
-# $scriptUrl = "https://raw.githubusercontent.com/krath1bb/ansible/main/playbooks/mx/bootstrap.ps1"
+# $scriptUrl = "https://raw.githubusercontent.com/krath1bb/ansible/main/bootstrap.ps1"
 
 # # Define the local path where the script will be saved in the temp folder
 # $localScriptPath = Join-Path $env:TEMP "bootstrap.ps1"
