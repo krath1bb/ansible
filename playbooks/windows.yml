@@ -1,5 +1,6 @@
 ---
-- hosts: "{{ hosts }}"
+- name: Windows Playbook 
+  hosts: "{{ hosts }}"
   become: true
   become_user: "{{ becomeuser }}"
   vars_files: 
