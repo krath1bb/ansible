@@ -34,3 +34,13 @@
         name: PATH
         value: C:\cygwin64\bin
         level: machine
+
+    - name: Set Cygwin theme
+      win_copy:
+        dest: C:\cygwin64\home\{{ ansible_user }}\.mintty
+        content:
+          ThemeFile=dracula
+          Font=Consolas
+          FontHeight=11
+          Columns=115
+          Rows=30
