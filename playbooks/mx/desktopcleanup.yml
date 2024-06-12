@@ -3,13 +3,13 @@
   become: true
   become_user: "{{ becomeuser }}"
   tasks:
-    - name: Get user profile path.
+    - name: Get user profile path
       ansible.windows.win_command: powershell.exe -
       args:
         stdin: echo $HOME
       register: user_home_path
 
-    - name: Get shortcuts.
+    - name: Get shortcuts
       ansible.windows.win_find:
         paths:
           - C:\Users\Public\Desktop
@@ -18,7 +18,7 @@
         patterns: "*.lnk"
       register: shortcuts
 
-    - name: Remove shortcuts from the Desktop.
+    - name: Remove shortcuts from the Desktop
       ansible.windows.win_file:
         path: "{{ item.path }}"
         state: absent
