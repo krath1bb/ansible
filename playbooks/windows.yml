@@ -17,7 +17,7 @@
         version: "{{ item.version | default(omit) }}"
         choco_args: "{{ item.choco_args | default(--ignore-checksum) }}"
       loop: 
-        - name: "{{ choco_additional_packages }}"
+        - "{{ choco_additional_packages }}"
 
     - name: Clean chocolatey and nuget cache
       block:
