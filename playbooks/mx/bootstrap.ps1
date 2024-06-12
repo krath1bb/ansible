@@ -7,6 +7,8 @@ else {
     Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
+
+
 ### Install OpenSSH Server
 Write-Verbose "Installing OpenSSH..." -Verbose
 $openSSHpackages = Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server*' | Select-Object -ExpandProperty Name
@@ -31,6 +33,7 @@ else {
 }
 
 
+
 ### SSH Config PubKeyAuthentication
 # Define the path to your file
 $sshdConfigPath = "$env:PROGRAMDATA\ssh\sshd_config"
@@ -51,28 +54,42 @@ for ($i = 0; $i -lt $fileContent.Length; $i++) {
 # Write the modified content back to the file
 $fileContent | Set-Content -Path $sshdConfigPath
 
+
+
 ### Add SSH public key
+# Define the path to the ssh folder and the authorized keys file
+$sshFolderPath = "$env:PROGRAMDATA\ssh"
+$authorizedKeysFilePath = Join-Path $sshFolderPath "administrators_authorized_keys"
 
+# Create the administrators_authorized_keys file and add the public key
+New-Item -ItemType File -Path $authorizedKeysFilePath -Force
+"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb9RNnRbyNZbTGGcX2wm0qvURoOKh80FBmipmUah433 ansible@krathwohl.io" | Set-Content $authorizedKeysFilePath
 
-    ###Doesnt work if its an admin user
-#C:\Users\bkrathwohl\.ssh\authorized_keys
-#    cd $env:USERPROFILE; mkdir .ssh; cd .ssh; New-Item authorized-keys; "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb9RNnRbyNZbTGGcX2wm0qvURoOKh80FBmipmUah433 ansible@krathwohl.io" | Set-Content authorized_keys
-cd $env:PROGRAMDATA\ssh; New-Item administrators_authorized_keys;"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb9RNnRbyNZbTGGcX2wm0qvURoOKh80FBmipmUah433 ansible@krathwohl.io" | Set-Content administrators_authorized_keys
-$acl = Get-Acl $env:PROGRAMDATA\ssh\administrators_authorized_keys
+# Get the ACL of the file
+$acl = Get-Acl $authorizedKeysFilePath
+
+# Enable access rule protection
 $acl.SetAccessRuleProtection($true, $false)
-$administratorsRule = New-Object system.security.accesscontrol.filesystemaccessrule("Administrators","FullControl","Allow")
-$systemRule = New-Object system.security.accesscontrol.filesystemaccessrule("SYSTEM","FullControl","Allow")
+
+# Define access rules
+$administratorsRule = New-Object System.Security.AccessControl.FileSystemAccessRule("Administrators", "FullControl", "Allow")
+$systemRule = New-Object System.Security.AccessControl.FileSystemAccessRule("SYSTEM", "FullControl", "Allow")
+
+# Add the access rules to the ACL
 $acl.SetAccessRule($administratorsRule)
 $acl.SetAccessRule($systemRule)
-$acl | Set-Acl
+
+# Apply the modified ACL to the file
+Set-Acl -Path $authorizedKeysFilePath -AclObject $acl
+
+Write-Output "The administrators_authorized_keys file has been created and configured successfully."
+
+
+
+
 
 ### CHANGE ANSIBLE SHELL TYPE
-### AUTOMATE PubKeyAuthentication ADJUST
 
+#ansible-galaxy install -r requirements.yml
 
-pip3 install --upgrade pip
-pip3 install ansible
-
-ansible-galaxy install -r requirements.yml
-
-ansible-playbook .\playbooks\mx\chocolatey.yml -i inventory.ini -e "hosts=bkrathwohl-pc"
+#ansible-playbook .\playbooks\mx\chocolatey.yml -i inventory.ini -e "hosts=bkrathwohl-pc"
