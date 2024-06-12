@@ -8,5 +8,23 @@ choco_additional_packages:
   - powertoys    
   - vmrc
   - zoom
+  - cpu-z
+  - everything
+  - firefox
+  - git
+  - googlechrome
+  - googledrive
+  - hwinfo
+  - lghub
+  - microsoft-windows-terminal
+  - obs-studio
+  - revo-uninstaller
+  - spotify
+  - tightvnc
+  - vscode
+  - vlc
+  - winscp
+  - wiztree
+  - winrar
 
 # ELGATO CAMERA HUB
