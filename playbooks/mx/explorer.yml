@@ -16,9 +16,9 @@
         name: "{{ item }}"
         data: 1
         type: dword
-        loop:
-          - LaunchTo
-          - UseCompactMode
+      loop:
+        - LaunchTo
+        - UseCompactMode
 
     - name: Default Control Panel view
       ansible.windows.win_regedit:
@@ -26,9 +26,9 @@
         name: "{{ item }}"
         data: 1
         type: dword
-        loop:
-          - AllItemsIconView
-          - StartupPage
+      loop:
+        - AllItemsIconView
+        - StartupPage
 
     - name: Enable expanded stats for file transfers
       ansible.windows.win_regedit:
@@ -43,10 +43,10 @@
         name: "{{ item }}"
         data: 0
         type: dword
-        loop:
-          - ShowCloudFilesInQuickAccess
-          - ShowFrequent
-          - ShowRecent
+      loop:
+        - ShowCloudFilesInQuickAccess
+        - ShowFrequent
+        - ShowRecent
 
     - name: Enable Right-click Context Menu.
       ansible.windows.win_regedit:
