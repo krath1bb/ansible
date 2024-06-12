@@ -7,7 +7,7 @@
   tasks:
     - name: Include chocolatey configuration
       ansible.builtin.import_tasks:
-        file: playbooks/windows/chocolatey.yml
+        file: windows/chocolatey.yml
       when: install_chocolatey_packages
       tags: ["choco"]
 
@@ -37,7 +37,7 @@
 
     - name: Include taskbar configuration
       ansible.builtin.import_tasks:
-        file: playbooks/windows/taskbar.yml
+        file: windows/taskbar.yml
       when: configure_taskbar
       tags: ["taskbar"]
 
