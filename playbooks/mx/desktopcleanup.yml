@@ -1,5 +1,7 @@
 ---
 - hosts: "{{ hosts }}"
+  become: true
+  become_user: "{{ becomeuser }}"
   tasks:
     - name: Get user profile path.
       ansible.windows.win_command: powershell.exe -
