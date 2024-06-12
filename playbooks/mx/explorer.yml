@@ -20,7 +20,7 @@
           - LaunchTo
           - UseCompactMode
 
-      - name: Default Control Panel view
+    - name: Default Control Panel view
       ansible.windows.win_regedit:
         path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel
         name: "{{ item }}"
