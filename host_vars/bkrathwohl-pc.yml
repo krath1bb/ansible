@@ -9,6 +9,5 @@ choco_additional_packages:
   - powertoys    
   - vmrc
   - zoom
-configure_taskbar: true
 
 # ELGATO CAMERA HUB
