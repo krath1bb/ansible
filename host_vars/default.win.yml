@@ -1,8 +1,7 @@
 ---
 ansible_ssh_user: bkrathwohl
 
-install_chocolatey_packages: true
-choco_installed_packages:
+choco_additional_packages:
   - cpu-z
   - everything
   - firefox

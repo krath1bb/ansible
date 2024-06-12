@@ -2,8 +2,7 @@
 ansible_host: chief
 ansible_ssh_user: bkrathwohl
 
-install_chocolatey_packages: true
-choco_installed_packages:
+choco_additional_packages:
   - adobereader
   - aida64-extreme
   - autodesk-fusion360
@@ -36,8 +35,6 @@ choco_installed_packages:
   - winscp
   - wiztree
   - winrar
-
-configure_taskbar: true
 
 # BATTLENET
 # AMD ADRENALIN

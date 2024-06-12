@@ -2,7 +2,7 @@
 - hosts: "{{ hosts }}"
   become: true
   become_user: "{{ becomeuser }}"
-  vars_files: "{{ hostvar | default('default.win.yml') }}"
+  vars_files: "{{ hostvar }}"
 
   tasks:
  ##################
