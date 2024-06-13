@@ -128,8 +128,8 @@
       when: defrag_volumes
       tags: ["defrag"]
 
-    - name: Install RSAT
+    - name: Configure MX
       ansible.builtin.import_tasks:
-        file: tasks/rsat.yml
-      when: install_rsat
-      tags: ["rsat"]
+        file: tasks/mx-configuration.yml
+      when: mx-configuration
+      tags: ["mx"]

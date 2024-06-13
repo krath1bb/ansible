@@ -1,5 +1,6 @@
 ---
 install_rsat: true
+mx-configuration: true
 install_chocolately_packages: true
 choco_installed_packages:
   - duck
@@ -26,6 +27,14 @@ choco_installed_packages:
   - winscp
   - wiztree
   - winrar
+
+taskbar_pinned_icons:
+  - $env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk
+  - $env:USERPROFILE\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\File Explorer.lnk
+  - $env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Outlook.lnk
+  - $env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Active Directory Users and Computers.lnk  - $env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Everything.lnk
+  - $env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Group Policy Management.lnk
+  - $env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Cygwin\Cygwin64 Terminal.lnk
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
