@@ -2,7 +2,29 @@
 ansible_host: bkrathwohl-pc
 ansible_ssh_user: bkrathwohl
 
-choco_additional_packages:
+
+configure_hostname: false
+custom_hostname: bkrathwohl-pc
+install_windows_updates: false
+remove_bloatware: false
+install_winget_packages: false
+install_windows_features: false
+install_wsl2: false
+install_fonts: false
+install_ohmyposh: false
+configure_explorer: false
+configure_taskbar: false
+configure_start_menu: false
+set_sound_scheme: false
+disable_mouse_acceleration: false
+change_power_plan: false
+remote_desktop_enabled: false
+remove_desktop_icons: false
+configure_storage_sense: false
+defrag_volumes: false
+
+install_chocolately_packages: true
+choco_installed_packages:
   - duck
   - filezilla
   - powertoys    
@@ -26,5 +48,3 @@ choco_additional_packages:
   - winscp
   - wiztree
   - winrar
-
-# ELGATO CAMERA HUB
