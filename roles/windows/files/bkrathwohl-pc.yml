@@ -5,28 +5,9 @@ install_chocolately_packages: true
 choco_installed_packages:
   - duck
   - filezilla
-  - powertoys    
+  #- powertoys    
   - vmrc
   - zoom
-  - cpu-z
-  - everything
-  - firefox
-  - git
-  - googlechrome
-  - googledrive
-  - hwinfo
-  - lghub
-  - microsoft-windows-terminal
-  - obs-studio
-  - revo-uninstaller
-  - spotify
-  - tightvnc
-  - vscode
-  - vlc
-  - winscp
-  - wiztree
-  - winrar
-  - putty
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
