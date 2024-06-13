@@ -47,7 +47,7 @@ windows_features:
 install_wsl2: false
 wsl2_distribution: wsl-ubuntu-2004
 
-change_power_plan: true
+change_power_plan: false
 # high_performance
 # balanced
 # power_saver

@@ -54,11 +54,10 @@ choco_installed_packages:
   - wiztree
   - winrar
 
-install_winget_packages: false
+install_winget_packages: true
 winget_packages:
-  # - name: "Auto Dark Mode"
-  #   source: winget
-  - name: WinDynamicDesktop
+  # Classic Context Menu
+  - name: DanTheMan827.ClassicContext
     source: winget
 
 install_fonts: false
