@@ -127,3 +127,9 @@
         file: tasks/defrag.yml
       when: defrag_volumes
       tags: ["defrag"]
+
+    - name: Install RSAT
+      ansible.builtin.import_tasks:
+        file: tasks/rsat.yml
+      when: install_rsat
+      tags: ["rsat"]
