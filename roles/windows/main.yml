@@ -5,6 +5,7 @@
   gather_facts: no
   vars_files:
     - default.config.yml
+    - bkrathwohl-pc.yml
 
   # pre_tasks:
   #   - name: Include playbook user configuration.
@@ -13,13 +14,13 @@
   #       - "{{ playbook_dir }}/config.yml"
   #     tags: ["always"]
 
-  pre_tasks:
-    - name: Include playbook user configuration.
-      ansible.builtin.include_vars: "{{ item }}"
-      with_fileglob:
-        #- "{{ playbook_dir }}/{{ hosts }}.config.yml"
-        - "../../host_vars/bkrathwohl.config.yml"
-      tags: ["always"]
+  # pre_tasks:
+  #   - name: Include playbook user configuration.
+  #     ansible.builtin.include_vars: "{{ item }}"
+  #     with_fileglob:
+  #       #- "{{ playbook_dir }}/{{ hosts }}.config.yml"
+  #       - "../../host_vars/bkrathwohl.config.yml"
+  #     tags: ["always"]
 
   tasks:
     - name: Include hostname configuration.
