@@ -4,9 +4,6 @@
 # AMD ADRENALIN
 # ASETEK RACEHUB
 
-ansible_host: chief
-ansible_ssh_user: bkrathwohl
-
 choco_additional_packages:
   - adobereader
   - aida64-extreme
@@ -22,6 +19,25 @@ choco_additional_packages:
   - rpi-imager
   - steam
   - tailscale
+  ### Default Apps
+  - cpu-z    
+  - everything
+  - firefox
+  - git
+  - googlechrome
+  - googledrive
+  - hwinfo
+  - lghub
+  - microsoft-windows-terminal
+  - obs-studio
+  - revo-uninstaller
+  - spotify
+  - tightvnc
+  - vscode
+  - vlc
+  - winscp
+  - wiztree
+  - winrar
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false

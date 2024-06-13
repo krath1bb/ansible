@@ -6,6 +6,25 @@ choco_installed_packages:
   #- powertoys    
   - vmrc
   - zoom
+  ### Default Apps
+  - cpu-z    
+  - everything
+  - firefox
+  - git
+  - googlechrome
+  - googledrive
+  - hwinfo
+  - lghub
+  - microsoft-windows-terminal
+  - obs-studio
+  - revo-uninstaller
+  - spotify
+  - tightvnc
+  - vscode
+  - vlc
+  - winscp
+  - wiztree
+  - winrar
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
