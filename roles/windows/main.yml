@@ -4,8 +4,8 @@
   become_user: "{{ becomeuser }}"
   gather_facts: no
   vars_files:
-    - default.config.yml
-    #- "{{ hosts }}.config.yml"
+    #- default.config.yml
+    - "{{ hosts }}.config.yml"
 
   pre_tasks:
     - name: Include playbook user configuration.
