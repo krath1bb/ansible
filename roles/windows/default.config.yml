@@ -56,9 +56,6 @@ choco_installed_packages:
 
 install_winget_packages: true
 winget_packages:
-  # Classic Context Menu
-  - name: DanTheMan827.ClassicContext
-    source: winget
   - name: Elgato.CameraHub
     source: winget
 
