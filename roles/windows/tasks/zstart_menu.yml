@@ -1,26 +1,26 @@
 ---
-- name: Disable Automatic Install of Suggested Apps
+- name: Disable Automatic Install of Suggested Apps.
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
     name: SilentInstalledAppsEnabled
     data: 0
     type: dword
 
-- name: Disable App Suggestions in Start menu
+- name: Disable App Suggestions in Start menu.
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
     name: SystemPaneSuggestionsEnabled
     data: 0
     type: dword
 
-- name: Disable popup "tips" about Windows
+- name: Disable popup "tips" about Windows.
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
     name: SoftLandingEnabled
     data: 0
     type: dword
 
-- name: Disable 'Windows Welcome Experience'
+- name: Disable 'Windows Welcome Experience'.
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
     name: "{{ item }}"

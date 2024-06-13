@@ -1,12 +1,16 @@
 ---
-configure_explorer: false
+configure_explorer: true
+configure_taskbar: true
+configure_start_menu: true
+remove_desktop_icons: true
+
+
 configure_hostname: false
-configure_start_menu: false
-configure_taskbar: false
 disable_mouse_acceleration: false
 remote_desktop_enabled: false
-remove_desktop_icons: false
 set_sound_scheme: false
+install_ohmyposh: false
+
 
 install_windows_updates: false
 windows_updates_reboot: false
@@ -63,8 +67,6 @@ install_fonts: false
 installed_nerdfonts:
   - FiraCode
   - FantasqueSansMono
-
-install_ohmyposh: true
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
