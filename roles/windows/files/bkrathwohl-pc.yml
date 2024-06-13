@@ -1,4 +1,5 @@
 ---
+install_rsat: true
 install_chocolately_packages: true
 choco_installed_packages:
   - duck
@@ -50,10 +51,3 @@ change_power_plan: false
 # balanced
 # power_saver
 power_plan: "high_performance"
-
-# List of features: "Get-WindowsOptionalFeature -Online"
-install_windows_features: false
-windows_features:
-  Microsoft-Hyper-V: true
-
-install_rsat: true
