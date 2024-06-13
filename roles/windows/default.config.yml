@@ -58,7 +58,7 @@ install_winget_packages: true
 winget_packages:
   - name: Elgato.CameraHub
     source: winget
-    
+
 
 install_fonts: false
 installed_nerdfonts:
@@ -84,7 +84,7 @@ windows_features:
 install_wsl2: false
 wsl2_distribution: wsl-ubuntu-2004
 
-remove_bloatware: false
+remove_bloatware: true
 bloatware:
   - Microsoft.BingNews
   - Microsoft.BingWeather
