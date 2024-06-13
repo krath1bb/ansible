@@ -17,7 +17,8 @@
     - name: Include playbook user configuration.
       ansible.builtin.include_vars: "{{ item }}"
       with_fileglob:
-        - "{{ playbook_dir }}/{{ hosts}}.config.yml"
+        #- "{{ playbook_dir }}/{{ hosts }}.config.yml"
+        - "host_vars/{{ hosts }}.config.yml"
       tags: ["always"]
 
   tasks:
