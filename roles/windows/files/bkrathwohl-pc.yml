@@ -1,6 +1,6 @@
 ---
 install_rsat: true
-mx-configuration: true
+mx_configuration: true
 install_chocolately_packages: true
 choco_installed_packages:
   - duck

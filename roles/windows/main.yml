@@ -131,5 +131,5 @@
     - name: Configure MX
       ansible.builtin.import_tasks:
         file: tasks/mx-configuration.yml
-      when: mx-configuration
+      when: mx_configuration
       tags: ["mx"]
