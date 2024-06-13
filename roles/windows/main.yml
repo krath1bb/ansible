@@ -62,12 +62,6 @@
       when: install_fonts
       tags: ["fonts"]
 
-    - name: Include ohmyposh configuration.
-      ansible.builtin.import_tasks:
-        file: tasks/ohmyposh.yml
-      when: install_ohmyposh
-      tags: ["ohmyposh"]
-
     - name: Include explorer configuration.
       ansible.builtin.import_tasks:
         file: tasks/explorer.yml

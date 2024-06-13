@@ -3,13 +3,12 @@ configure_explorer: true
 configure_taskbar: true
 configure_start_menu: true
 configure_region: true
+remove_desktop_icons: true
 
 configure_hostname: false
 disable_mouse_acceleration: false
 remote_desktop_enabled: false
 set_sound_scheme: false
-install_ohmyposh: false
-
 
 install_windows_updates: false
 windows_updates_reboot: false
@@ -140,5 +139,3 @@ storage_sense:
 defrag_volumes: false
 include_volumes:
   - C
-
-remove_desktop_icons: true
