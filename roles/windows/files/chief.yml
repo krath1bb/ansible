@@ -2,9 +2,7 @@
 
 # BATTLENET
 # AMD ADRENALIN
-# ELGATO CAMERA HUB
 # ASETEK RACEHUB
-# RAVEN CORE
 
 ansible_host: chief
 ansible_ssh_user: bkrathwohl
