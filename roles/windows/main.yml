@@ -86,6 +86,12 @@
       when: configure_start_menu
       tags: ["start_menu"]
 
+    - name: Include region configuration.
+      ansible.builtin.import_tasks:
+        file: tasks/region.yml
+      when: configure_region
+      tags: ["region"]
+
     - name: Include sounds configuration.
       ansible.builtin.import_tasks:
         file: tasks/sounds.yml
