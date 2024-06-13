@@ -49,3 +49,10 @@
     path: HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32
     data: "-"
     type: string
+
+- name: Disable Edge first run experience
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Edge
+    name: HideFirstRunExperience
+    data: 1
+    type: dword
