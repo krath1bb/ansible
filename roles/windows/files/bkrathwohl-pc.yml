@@ -34,7 +34,7 @@ taskbar_pinned_icons:
   - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk'
   - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Active Directory Users and Computers.lnk  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Everything.lnk'
   - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Group Policy Management.lnk'
-  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Cygwin\Cygwin64 Terminal.lnk"
+  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Cygwin\Cygwin64 Terminal.lnk'
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
