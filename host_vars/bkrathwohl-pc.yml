@@ -89,3 +89,4 @@ choco_installed_packages:
   - winscp
   - wiztree
   - winrar
+  - putty
