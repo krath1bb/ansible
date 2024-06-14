@@ -3,37 +3,37 @@ install_rsat: true
 mx_configuration: true
 install_chocolately_packages: true
 choco_installed_packages:
-  - duck
-  - filezilla
   #- powertoys    
-  - vmrc
-  - zoom
+  # - duck
+  # - filezilla
+  # - vmrc
+  # - zoom
   ### Default Apps
-  - cpu-z
-  - everything
-  - firefox
+  # - cpu-z
+  # - everything
+  # - firefox
   - name: git
     choco_args:
     - '--params /NoShellIntegration'
-  - googlechrome
-  - googledrive
-  - hwinfo
-  - lghub
-  - microsoft-windows-terminal
+  # - googlechrome
+  # - googledrive
+  # - hwinfo
+  # - lghub
+  # - microsoft-windows-terminal
   - name: microsoft-office-deployment
     choco_args:
     - '--params /64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher'
-  - obs-studio
-  - revo-uninstaller
-  - spotify
+  # - obs-studio
+  # - revo-uninstaller
+  # - spotify
   - name: tightvnc
     choco_args: 
     - '--installArguments ADDLOCAL=Viewer'
-  - vscode
-  - vlc
-  - winscp
-  - wiztree
-  - winrar
+  # - vscode
+  # - vlc
+  # - winscp
+  # - wiztree
+  # - winrar
 
 custom_taskbar: true
 taskbar_pinned_icons:
