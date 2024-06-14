@@ -134,7 +134,7 @@
       when: rsat
       tags: ["install_rsat"]
     
-      - name: Install Cygwin
+    - name: Install Cygwin
       ansible.builtin.import_tasks:
         file: tasks/cygwin.yml
       when: install_cygwin
