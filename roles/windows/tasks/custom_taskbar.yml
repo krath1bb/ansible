@@ -18,7 +18,7 @@
 
 - name: Copy registry file to Windows host
   win_copy:
-    src: 'files/"{{ custom_taskbar_reg }}"''
+    src: 'files/"{{ custom_taskbar_reg }}"'
     dest: 'C:\Windows\Temp\"{{ custom_taskbar_reg }}"'
 
 - name: Import the registry file
