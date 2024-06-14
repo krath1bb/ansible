@@ -40,7 +40,8 @@ choco_installed_packages:
   - cpu-z    
   - everything
   - firefox
-  - git
+  - name: git
+    choco_args: --params "/NoShellIntegration"
   - googlechrome
   - googledrive
   - hwinfo
@@ -50,7 +51,7 @@ choco_installed_packages:
   - revo-uninstaller
   - spotify
   - name: tightvnc
-    choco_args: -ia "ADDLOCAL=Viewer"
+    choco_args: --installArguments "ADDLOCAL=Viewer"
   - vscode
   - vlc
   - winscp
