@@ -13,8 +13,8 @@ disable_mouse_acceleration: false
 remote_desktop_enabled: false
 set_sound_scheme: false
 
-install_windows_updates: false
-windows_updates_reboot: false
+install_windows_updates: true
+windows_updates_reboot: true
 update_categories:
   # You can install only specific updates by uncommenting it
   # * - installs all updates
