@@ -4,6 +4,7 @@ configure_taskbar: true
 configure_start_menu: true
 configure_region: true
 remove_desktop_icons: true
+install_cygwin: true
 
 install_rsat: false
 custom_taskbar: false
@@ -37,7 +38,7 @@ power_plan: "high_performance"
 
 install_chocolatey_packages: true
 choco_installed_packages:
-  - cpu-z    
+  - cpu-z
   - everything
   - firefox
   - name: git

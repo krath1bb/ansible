@@ -134,6 +134,12 @@
       when: rsat
       tags: ["install_rsat"]
     
+      - name: Install Cygwin
+      ansible.builtin.import_tasks:
+        file: tasks/cygwin.yml
+      when: install_cygwin
+      tags: ["cygwin"]
+
     - name: Customize Taskbar Pins
       ansible.builtin.import_tasks:
         file: tasks/custom_taskbar.yml
