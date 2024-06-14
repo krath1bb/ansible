@@ -32,6 +32,13 @@ choco_installed_packages:
   # - wiztree
   # - winrar
 
+install_winget_packages: true
+winget_packages:
+  - name: Elgato.CameraHub
+    source: winget
+  - name: Git.Git --override /NoShellIntegration
+    source: winget
+
 custom_taskbar: true
 taskbar_pinned_icons:
   - '$env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk'
