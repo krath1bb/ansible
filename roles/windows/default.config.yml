@@ -5,6 +5,8 @@ configure_start_menu: true
 configure_region: true
 remove_desktop_icons: true
 
+install_rsat: false
+custom_taskbar: false
 configure_hostname: false
 disable_mouse_acceleration: false
 remote_desktop_enabled: false

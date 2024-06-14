@@ -128,8 +128,14 @@
       when: defrag_volumes
       tags: ["defrag"]
 
-    - name: Configure MX
+    - name: Install RSAT
       ansible.builtin.import_tasks:
-        file: tasks/mx-configuration.yml
-      when: mx_configuration
-      tags: ["mx"]
+        file: tasks/rsat.yml
+      when: rsat
+      tags: ["install_rsat"]
+    
+    - name: Customize Taskbar Pins
+      ansible.builtin.import_tasks:
+        file: tasks/custom_taskbar.yml
+      when: custom_taskbar
+      tags: ["custom_taskbar"]
