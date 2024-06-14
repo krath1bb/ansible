@@ -31,6 +31,11 @@
       $sourceFile = "{{ item }}"
       $destinationPath = "$env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar"
 
+      # Check if the destination folder exists, if not, create it
+      if (-Not (Test-Path -Path $destinationFolder)) {
+          New-Item -ItemType Directory -Path $destinationFolder
+      }
+
       # Get the file name from the source file path
       $fileName = Split-Path -Path $sourceFile -Leaf
 
