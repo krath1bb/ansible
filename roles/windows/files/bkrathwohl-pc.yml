@@ -13,19 +13,25 @@ choco_installed_packages:
   - everything
   - firefox
   - name: git
-    choco_args: --params "/NoShellIntegration"
+    choco_args:
+    - /NoShellIntegration
   - googlechrome
   - googledrive
   - hwinfo
   - lghub
   - microsoft-windows-terminal
   - name: microsoft-office-deployment
-    choco_args: --params "/64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher /RemoveMSI"
+    choco_args:
+    - /64bit
+    - /Product:O365ProPlusRetail,VisioProRetail
+    - /Exclude:Groove,Lync,Publisher
+    - /RemoveMSI"
   - obs-studio
   - revo-uninstaller
   - spotify
   - name: tightvnc
-    choco_args: --installArguments "ADDLOCAL=Viewer"
+    choco_args: 
+    - ADDLOCAL=Viewer
   - vscode
   - vlc
   - winscp
