@@ -1,3 +1,4 @@
+---
 - name: Copy Shortcut links to Start Menu folder
   ansible.windows.win_powershell:
     script: |
