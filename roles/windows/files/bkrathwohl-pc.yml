@@ -13,7 +13,7 @@ choco_installed_packages:
   - everything
   - firefox
   - name: git
-    choco_args:
+    package_args:
     - /NoShellIntegration
   - googlechrome
   - googledrive
@@ -21,7 +21,7 @@ choco_installed_packages:
   - lghub
   - microsoft-windows-terminal
   - name: microsoft-office-deployment
-    choco_args:
+    package_args:
     - /64bit
     - /Product:O365ProPlusRetail,VisioProRetail
     - /Exclude:Groove,Lync,Publisher
@@ -30,7 +30,7 @@ choco_installed_packages:
   - revo-uninstaller
   - spotify
   - name: tightvnc
-    choco_args: 
+    package_args: 
     - ADDLOCAL=Viewer
   - vscode
   - vlc
