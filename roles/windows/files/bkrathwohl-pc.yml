@@ -4,40 +4,31 @@ mx_configuration: true
 install_chocolately_packages: true
 choco_installed_packages:
   #- powertoys    
-  # - duck
-  # - filezilla
-  # - vmrc
-  # - zoom
+  - duck
+  - filezilla
+  - vmrc
+  - zoom
   ### Default Apps
-  # - cpu-z
-  # - everything
-  # - firefox
-  - name: git
-    choco_args: --params /NoShellIntegration
-  # - googlechrome
-  # - googledrive
-  # - hwinfo
-  # - lghub
-  # - microsoft-windows-terminal
+  - cpu-z
+  - everything
+  - firefox
+  - git
+  - googlechrome
+  - googledrive
+  - hwinfo
+  - lghub
+  - microsoft-windows-terminal
   - name: microsoft-office-deployment
     choco_args: --params /64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher
-  # - obs-studio
-  # - revo-uninstaller
-  # - spotify
-  - name: tightvnc
-    choco_args: --installArguments ADDLOCAL=Viewer
-  # - vscode
-  # - vlc
-  # - winscp
-  # - wiztree
-  # - winrar
-
-install_winget_packages: true
-winget_packages:
-  - name: Elgato.CameraHub
-    source: winget
-  - name: Git.Git --override /NoShellIntegration
-    source: winget
+  - obs-studio
+  - revo-uninstaller
+  - spotify
+  - vnc-viewer
+  - vscode
+  - vlc
+  - winscp
+  - wiztree
+  - winrar
 
 custom_taskbar: true
 taskbar_pinned_icons:
