@@ -29,12 +29,12 @@ choco_installed_packages:
   - winrar
 
 taskbar_pinned_icons:
-  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk'
-  - 'C:\Users\bkrathwohl\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\File Explorer.lnk'
-  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk'
-  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Active Directory Users and Computers.lnk  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Everything.lnk'
-  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Group Policy Management.lnk'
-  - 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Cygwin\Cygwin64 Terminal.lnk'
+  - '$env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk'
+  - '$env:USERPROFILE\Users\bkrathwohl\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\File Explorer.lnk'
+  - '$env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Outlook.lnk'
+  - '$env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Windows Tools\Active Directory Users and Computers.lnk  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Everything.lnk'
+  - '$env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Windows Tools\Group Policy Management.lnk'
+  - '$env:PROGRAMDATA\Microsoft\Windows\Start Menu\Programs\Cygwin\Cygwin64 Terminal.lnk'
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
