@@ -1,5 +1,5 @@
 ---
-- name: Remove bloatware.
+- name: Remove bloatware
   ansible.windows.win_package:
     product_id: "{{ item.name | default(item) }}"
     state: absent

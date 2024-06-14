@@ -1,5 +1,5 @@
 ---
-- name: Install winget packages.
+- name: Install winget packages
   ansible.windows.win_powershell:
     script: |
       $app = "{{ item.name | default(item) }}"

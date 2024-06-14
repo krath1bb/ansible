@@ -1,5 +1,5 @@
 ---
-- name: Enable Windows optional features.
+- name: Enable Windows optional features
   ansible.windows.win_optional_feature:
     name: "{{ windows_feature.key }}"
     state: "{{ 'present' if windows_feature.value else 'absent' }}"
@@ -9,7 +9,7 @@
     loop_var: windows_feature
   register: feature_status
 
-- name: Reboot if Windows optional feature requires it.
+- name: Reboot if Windows optional feature requires it
   ansible.windows.win_reboot:
   when: item.reboot_required
   loop: "{{ feature_status.results }}"

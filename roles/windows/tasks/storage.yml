@@ -1,5 +1,5 @@
 ---
-- name: Set Storage Sense configuration.
+- name: Set Storage Sense configuration
   ansible.windows.win_regedit:
     path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy
     name: "{{ item.name }}"
