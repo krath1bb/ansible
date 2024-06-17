@@ -19,8 +19,7 @@ choco_installed_packages:
   - hwinfo
   - lghub
   - microsoft-windows-terminal
-  - name: microsoft-office-deployment
-    choco_args: --params /64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher
+  - microsoft-office-deployment
   - obs-studio
   - revo-uninstaller
   - spotify
