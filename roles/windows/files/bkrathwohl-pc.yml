@@ -19,7 +19,6 @@ choco_installed_packages:
   - hwinfo
   - lghub
   - microsoft-windows-terminal
-  - microsoft-office-deployment
   - obs-studio
   - revo-uninstaller
   - spotify
