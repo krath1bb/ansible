@@ -91,6 +91,8 @@ Write-Output "The administrators_authorized_keys file has been created and confi
 ### HOW TO RUN ###
 ##################
 
+### IF THE USER IS A DOMAIN USER, THE MACHINE MUST BE GRANTED "READ" ON THE USER OBEJECT IN ad
+
 # # Set execution policy
 # Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
