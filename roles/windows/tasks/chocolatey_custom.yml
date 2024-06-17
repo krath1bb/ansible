@@ -3,7 +3,7 @@
   ansible.windows.win_powershell:
     script: |
       # Choco install command
-      C:\ProgramData\chocolatey\bin\choco.exe install "{{ item }}" --fail-on-unfound --yes --no-progress --limit-output --timeout 2700 --ignore-checksum
+      C:\ProgramData\chocolatey\bin\choco.exe install {{ item }} --fail-on-unfound --yes --no-progress --limit-output --timeout 2700 --ignore-checksum
   loop: "{{ choco_custom_installed_packages }}"
 
 - name: Clean chocolatey and nuget cache
