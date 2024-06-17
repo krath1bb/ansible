@@ -19,6 +19,8 @@ choco_installed_packages:
   - hwinfo
   - lghub
   - microsoft-windows-terminal
+  - name: microsoft-office-deployment
+    choco_args: --params /64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher
   - obs-studio
   - revo-uninstaller
   - spotify
@@ -28,6 +30,12 @@ choco_installed_packages:
   - winscp
   - wiztree
   - winrar
+
+install_chocolatey_custom_packages: true
+choco_custom_installed_packages:
+  - '"$env:PROGRAMDATA\chocolatey\bin\choco.exe" install git --params /NoShellIntegration --fail-on-unfound --yes --no-progress --limit-output --timeout 2700 --ignore-checksum' 
+  - '"$env:PROGRAMDATA\chocolatey\bin\choco.exe" install microsoft-office-deployment --params /64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher --fail-on-unfound --yes --no-progress --limit-output --timeout 2700 --ignore-checksum'
+  - '"$env:PROGRAMDATA\chocolatey\bin\choco.exe" install tightvnc --installArguments ADDLOCAL=Viewer --fail-on-unfound --yes --no-progress --limit-output --timeout 2700 --ignore-checksum' 
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false

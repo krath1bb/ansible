@@ -37,6 +37,12 @@
         file: tasks/chocolatey.yml
       when: install_chocolatey_packages
       tags: ["choco"]
+    
+    - name: Include chocolatey custom configuration
+      ansible.builtin.import_tasks:
+        file: tasks/chocolatey_custom.yml
+      when: install_chocolatey_custom_packages
+      tags: ["choco_custom"]
 
     - name: Include winget configuration
       ansible.builtin.import_tasks:
@@ -142,6 +148,6 @@
 
     - name: Customize Taskbar Pins
       ansible.builtin.import_tasks:
-        file: tasks/custom_taskbar.yml
-      when: custom_taskbar
-      tags: ["custom_taskbar"]
+        file: tasks/taskbar_custom.yml
+      when: taskbar_custom
+      tags: ["taskbar_custom"]

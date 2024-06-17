@@ -7,7 +7,7 @@ remove_desktop_icons: true
 install_cygwin: true
 
 install_rsat: false
-custom_taskbar: false
+taskbar_custom: false
 configure_hostname: false
 disable_mouse_acceleration: false
 remote_desktop_enabled: false
