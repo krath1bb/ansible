@@ -22,7 +22,6 @@ choco_installed_packages:
   - obs-studio
   - revo-uninstaller
   - spotify
-  - vnc-viewer
   - vscode
   - vlc
   - winscp
