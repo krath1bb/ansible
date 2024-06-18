@@ -137,8 +137,8 @@
     - name: Install RSAT
       ansible.builtin.import_tasks:
         file: tasks/rsat.yml
-      when: rsat
-      tags: ["install_rsat"]
+      when: install_rsat
+      tags: ["rsat"]
     
     - name: Install Cygwin
       ansible.builtin.import_tasks:
