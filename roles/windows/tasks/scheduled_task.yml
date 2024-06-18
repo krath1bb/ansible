@@ -9,7 +9,7 @@
         "C:\\ProgramData\\chocolatey\\bin\\choco.exe upgrade all -y"
     triggers:
     - type: daily
-      start_boundry: '2024-01-01T21:00:00'
+      start_boundry: '2024-06-18T21:00:00'
       repetition:
         interval: PT24H
     username: SYSTEM
