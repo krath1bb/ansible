@@ -1,7 +1,18 @@
 ---
-- name: Set 'Eastern Standard Time' timezone
+
+- name: Get current timezone
+  community.windows.win_timezone:
+    state: get
+  register: current_timezone
+
+- name: Set timezone to 'Eastern Standard Time' if not already set
   community.windows.win_timezone:
     timezone: Eastern Standard Time
+  when: current_timezone.timezone != "Eastern Standard Time"
+
+# - name: Set 'Eastern Standard Time' timezone
+#   community.windows.win_timezone:
+#     timezone: Eastern Standard Time
 
 - name: Set Time Format
   ansible.windows.win_regedit:
