@@ -6,6 +6,7 @@ configure_region: true
 remove_desktop_icons: true
 install_cygwin: true
 scheduled_task: true
+postinstall: true
 
 install_rsat: false
 taskbar_custom: false
