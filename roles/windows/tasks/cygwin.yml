@@ -28,7 +28,7 @@
 
 - name: Set Cygwin theme
   win_copy:
-    dest: C:\\cygwin64\\home\\{{ ansible_user }}\\.mintty
+    dest: "C:\\cygwin64\\home\\{{ ansible_user }}\\.mintty"
     content:
       ThemeFile=dracula
       Font=Consolas
