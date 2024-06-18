@@ -36,4 +36,4 @@
       Columns=115
       Rows=30
   vars:
-    ansible_become_user: {{ ansible_user }}
+    ansible_become_user: "{{ ansible_user }}"
