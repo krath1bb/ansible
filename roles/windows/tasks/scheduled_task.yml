@@ -2,13 +2,17 @@
 - name: Create Scheduled Tasks
   win_scheduled_task:
     name: Update Chocolatey Packages
-    username: SYSTEM
+    description: Upgrade all Chocolatey packages daily at 9pm
     actions:
-    - path: Powershell.exe
+    - path: powershell.exe
       arguments: |
-        C:\ProgramData\chocolatey\bin\choco.exe upgrade all -y
+        "C:\\ProgramData\\chocolatey\\bin\\choco.exe upgrade all -y"
     triggers:
     - type: daily
       start_boundry: '2024-01-01T21:00:00'
+      repetition:
+        interval: PT24H
+    username: SYSTEM
+    run_level: highest
     state: present
     enabled: yes
