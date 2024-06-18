@@ -2,7 +2,7 @@
 configure_explorer: true
 configure_taskbar: true
 configure_start_menu: true
-configure_region: true
+configure_region: false
 remove_desktop_icons: true
 install_cygwin: true
 
