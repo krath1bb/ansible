@@ -1,6 +1,6 @@
 ---
 - name: Postinstall TODO
-  win_powershell:
+  ansible.windows.win_powershell:
     script: |
       $desktopPath = [System.Environment]::GetFolderPath('Desktop')
       $filePath = Join-Path - Path $desktopPath - ChildPath 'TODO.txt'
