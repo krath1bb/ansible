@@ -1,17 +1,33 @@
 ---
-- name: Create Scheduled Tasks
+# - name: Create Scheduled Tasks
+#   community.windows.win_scheduled_task:
+#     name: Update Chocolatey Packages
+#     description: Upgrade all Chocolatey packages daily at 9pm
+#     actions:
+#     - path: powershell.exe
+#       arguments: "C:\\ProgramData\\chocolatey\\bin\\choco.exe upgrade all -y"
+#     triggers:
+#     - type: daily
+#       start_boundry: '2024-01-01T21:00:00'
+#       repetition:
+#         interval: PT24H
+#     username: SYSTEM
+#     run_level: highest
+#     state: present
+#     enabled: yes
+
+- name: Create a task to open 2 command prompts as SYSTEM
   community.windows.win_scheduled_task:
-    name: Update Chocolatey Packages
-    description: Upgrade all Chocolatey packages daily at 9pm
+    name: TaskName
+    description: open command prompt
     actions:
-    - path: powershell.exe
-      arguments: "C:\\ProgramData\\chocolatey\\bin\\choco.exe upgrade all -y"
+    - path: cmd.exe
+      arguments: /c hostname
+    - path: cmd.exe
+      arguments: /c whoami
     triggers:
     - type: daily
-      start_boundry: '2024-01-01T21:00:00'
-      repetition:
-        interval: PT24H
+      start_boundary: '2017-10-09T09:00:00'
     username: SYSTEM
-    run_level: highest
     state: present
     enabled: yes
