@@ -24,10 +24,6 @@
     path: "{{ lookup('env', 'USERPROFILE') }}\\Desktop\\TODO.txt"
     line: "{{ item }}"
   loop:
-    - Line 1: This is the first line of content.
-    - Line 2: This is the second line of content.
-    - Line 3: This is the third line of content.
-
     - Line 1: "Pin Icons: Chrome, Explorer, Outlook, AD, Everything, GPO, Cygwin, RDP"
     - Line 2: "Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/"
     - Line 3: "Validate Cygwin Theme"
