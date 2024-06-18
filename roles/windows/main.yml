@@ -50,6 +50,18 @@
       when: install_winget_packages
       tags: ["winget"]
 
+    - name: Install Cygwin
+      ansible.builtin.import_tasks:
+        file: tasks/cygwin.yml
+      when: install_cygwin
+      tags: ["cygwin"]
+
+    - name: Install RSAT
+      ansible.builtin.import_tasks:
+        file: tasks/rsat.yml
+      when: install_rsat
+      tags: ["rsat"]
+
     - name: Include windows features configuration
       ansible.builtin.import_tasks:
         file: tasks/windows_features.yml
@@ -61,6 +73,12 @@
         file: tasks/wsl2.yml
       when: install_wsl2
       tags: ["wsl"]
+    
+    - name: Include region configuration
+      ansible.builtin.import_tasks:
+        file: tasks/region.yml
+      when: configure_region
+      tags: ["region"]
 
     - name: Include fonts configuration
       ansible.builtin.import_tasks:
@@ -74,6 +92,12 @@
       when: configure_explorer
       tags: ["explorer"]
 
+    - name: Include desktop configuration
+      ansible.builtin.import_tasks:
+        file: tasks/desktop.yml
+      when: remove_desktop_icons
+      tags: ["desktop"]
+
     - name: Include taskbar configuration
       ansible.builtin.import_tasks:
         file: tasks/taskbar.yml
@@ -86,11 +110,17 @@
       when: configure_start_menu
       tags: ["start_menu"]
 
-    - name: Include region configuration
+    - name: Customize Taskbar Pins
       ansible.builtin.import_tasks:
-        file: tasks/region.yml
-      when: configure_region
-      tags: ["region"]
+        file: tasks/taskbar_custom.yml
+      when: taskbar_custom
+      tags: ["taskbar_custom"]
+
+    - name: Include power plan configuration
+      ansible.builtin.import_tasks:
+        file: tasks/power_plan.yml
+      when: change_power_plan
+      tags: ["power"]
 
     - name: Include sounds configuration
       ansible.builtin.import_tasks:
@@ -104,23 +134,11 @@
       when: disable_mouse_acceleration
       tags: ["mouse"]
 
-    - name: Include power plan configuration
-      ansible.builtin.import_tasks:
-        file: tasks/power_plan.yml
-      when: change_power_plan
-      tags: ["power"]
-
     - name: Include remote desktop configuration
       ansible.builtin.import_tasks:
         file: tasks/remote_desktop.yml
       when: remote_desktop_enabled
       tags: ["remote_desktop"]
-
-    - name: Include desktop configuration
-      ansible.builtin.import_tasks:
-        file: tasks/desktop.yml
-      when: remove_desktop_icons
-      tags: ["desktop"]
 
     - name: Include storage sense configuration
       ansible.builtin.import_tasks:
@@ -134,24 +152,6 @@
       when: defrag_volumes
       tags: ["defrag"]
 
-    - name: Install RSAT
-      ansible.builtin.import_tasks:
-        file: tasks/rsat.yml
-      when: install_rsat
-      tags: ["rsat"]
-    
-    - name: Install Cygwin
-      ansible.builtin.import_tasks:
-        file: tasks/cygwin.yml
-      when: install_cygwin
-      tags: ["cygwin"]
-
-    - name: Customize Taskbar Pins
-      ansible.builtin.import_tasks:
-        file: tasks/taskbar_custom.yml
-      when: taskbar_custom
-      tags: ["taskbar_custom"]
-    
     - name: Create scheduled tasks
       ansible.builtin.import_tasks:
         file: tasks/scheduled_task.yml
