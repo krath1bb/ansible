@@ -8,7 +8,7 @@
       arguments: |
         C:\ProgramData\chocolatey\bin\choco.exe upgrade all -y
     triggers:
-    - type: -time
+    - type: time
       start_boundry: T21:00:00
     state: present
     enabled: yes
