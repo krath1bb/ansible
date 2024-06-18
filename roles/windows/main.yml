@@ -152,8 +152,8 @@
       when: defrag_volumes
       tags: ["defrag"]
 
-    - name: Create scheduled tasks
+    - name: Create scheduled task
       ansible.builtin.import_tasks:
         file: tasks/scheduled_task.yml
-      when: scheduled_tasks
-      tags: ["scheduledtasks"]
+      when: scheduled_task
+      tags: ["scheduledtask"]
