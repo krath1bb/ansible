@@ -28,12 +28,17 @@
 
 - name: Set Cygwin theme
   win_copy:
-    dest: C:\cygwin64\home\{{ ansible_user }}\.mintty
+    dest: C:\\cygwin64\\home\\{{ ansible_user }}\\.mintty
     content:
       ThemeFile=dracula
       Font=Consolas
       FontHeight=11
       Columns=115
       Rows=30
-  vars:
-    ansible_become_user: "{{ ansible_user }}"
+
+- name: Set permissions on the Cygwin theme file
+  win_acl:
+    path: "C:\\cygwin64\\home\\{{ ansible_user }}\\.mintty"
+    user: "{{ ansible_user }}"
+    rights: ReadAndExecute
+    state: present
