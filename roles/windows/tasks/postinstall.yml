@@ -5,5 +5,11 @@
       $desktopPath = [System.Environment]::GetFolderPath('Desktop')
       $filePath = Join-Path - Path $desktopPath - ChildPath 'TODO.txt'
       $content = @(
-      'Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/ '
+      ' Pin Icons: Chrome, Explorer, Outlook, AD, Everything, GPO, Cygwin, RDP'
+      ' Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/ '
+      ' Validate Cygwin Theme'
+      ' Install and configure Sophos VPN'
+      ' Outlook: Remove Favorites Bar, Use Tighter Spacing, Expand Ribbon, Conditional Formatting Blue, File Options Advanced Show Apps In outlook Off, Signature'
+      ' Power Options, Disable Fast Startup'
+      'adobe acrobat, adobe creative cloud, automox, crowdstrike, dell command update, ducky rgb, gamadv-xtd3, veeam, lsagent, rdm'
       )
