@@ -16,18 +16,16 @@
 #     state: present
 #     enabled: yes
 
-- name: Create a task to open 2 command prompts as SYSTEM
+- name: Create Scheduled Tasks
   community.windows.win_scheduled_task:
-    name: TaskName
-    description: open command prompt
+    name: Update Chocolatey Packages
+    description: Upgrade all Chocolatey packages daily at 9pm
     actions:
-    - path: cmd.exe
-      arguments: /c hostname
-    - path: cmd.exe
-      arguments: /c whoami
+    - path: powershell.exe
+      arguments: "C:\\ProgramData\\chocolatey\\bin\\choco.exe upgrade all -y"
     triggers:
     - type: daily
-      start_boundary: '2017-10-09T09:00:00'
+      start_boundary: '2024-01-01T21:00:00'
     username: SYSTEM
     state: present
     enabled: yes
