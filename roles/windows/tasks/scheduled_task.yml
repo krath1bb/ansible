@@ -1,0 +1,14 @@
+---
+- name: Create Scheduled Tasks
+  win_scheduled_task:
+    name: Update Chocolatey Packages
+    username: SYSTEM
+    actions:
+    - path: Powershell.exe
+      arguments: |
+        C:\ProgramData\chocolatey\bin\choco.exe upgrade all -y
+    triggers:
+    - type: -time
+      start_boundry: T21:00:00
+    state: present
+    enabled: yes

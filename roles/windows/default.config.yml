@@ -5,6 +5,7 @@ configure_start_menu: true
 configure_region: false
 remove_desktop_icons: true
 install_cygwin: true
+scheduled_tasks: true
 
 install_rsat: false
 taskbar_custom: false

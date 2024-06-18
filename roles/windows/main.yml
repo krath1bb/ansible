@@ -151,3 +151,9 @@
         file: tasks/taskbar_custom.yml
       when: taskbar_custom
       tags: ["taskbar_custom"]
+    
+    - name: Create scheduled tasks
+      ansible.builtin.import_tasks:
+        file: tasks/scheduled_task.yml
+      when: scheduled_tasks
+      tags: ["scheduledtasks"]
