@@ -157,3 +157,9 @@
         file: tasks/scheduled_task.yml
       when: scheduled_task
       tags: ["scheduledtask"]
+
+    - name: Create post install document
+      ansible.builtin.import_tasks:
+        file: tasks/postinstall.yml
+      when: postinstall
+      tags: ["postinstall"]

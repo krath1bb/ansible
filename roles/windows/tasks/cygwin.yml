@@ -1,35 +1,30 @@
 ---
-- name: Create Cygwin directory
-  win_file:
-    path: C:\cygwin64
-    state: directory
+# - name: Create Cygwin directory
+#   win_file:
+#     path: C:\cygwin64
+#     state: directory
 
-- name: Download Cygwin installer
-  win_get_url:
-    url: https://cygwin.com/setup-x86_64.exe
-    dest: C:\cygwin64\cygwin_setup.exe
+# - name: Download Cygwin installer
+#   win_get_url:
+#     url: https://cygwin.com/setup-x86_64.exe
+#     dest: C:\cygwin64\cygwin_setup.exe
 
-- name: Run Cygwin installer
-  win_command: C:\cygwin64\cygwin_setup.exe -q -P ansible,ansible-doc,curl,nano,rsync,tree,vim,wget -s http://mirror.steadfast.net/cygwin
-  args:
-    creates: C:\cygwin64\bin\bash.exe
+# - name: Run Cygwin installer
+#   win_command: C:\cygwin64\cygwin_setup.exe -q -P ansible,ansible-doc,curl,nano,rsync,tree,vim,wget -s http://mirror.steadfast.net/cygwin
+#   args:
+#     creates: C:\cygwin64\bin\bash.exe
 
-- name: Create a directory for Cygwin home
-  win_file:
-    path: C:\cygwin64\home\{{ ansible_user }}
-    state: directory
+# - name: Create a directory for Cygwin home
+#   win_file:
+#     path: C:\cygwin64\home\{{ ansible_user }}
+#     state: directory
 
-#- name: Copy .bashrc to Cygwin home directory
-#  win_copy:
-#    src: files/bashrc
-#    dest: C:\cygwin64\home\{{ ansible_user }}\.bashrc
-
-- name: Set environment variable for Cygwin
-  win_environment:
-    state: present
-    name: PATH
-    value: C:\cygwin64\bin
-    level: machine
+# - name: Set environment variable for Cygwin
+#   win_environment:
+#     state: present
+#     name: PATH
+#     value: C:\cygwin64\bin
+#     level: machine
 
 - name: Set Cygwin theme
   win_copy:
@@ -40,3 +35,5 @@
       FontHeight=11
       Columns=115
       Rows=30
+  vars:
+    ansible_become_user: {{ ansible_user }}

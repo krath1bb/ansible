@@ -1,0 +1,9 @@
+---
+- name: Postinstall TODO
+  win_powershell:
+    script: |
+      $desktopPath = [System.Environment]::GetFolderPath('Desktop')
+      $filePath = Join-Path - Path $desktopPath - ChildPath 'TODO.txt'
+      $content = @(
+      'Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/ '
+      )
