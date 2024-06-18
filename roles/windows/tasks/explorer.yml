@@ -57,6 +57,12 @@
     data: 1
     type: dword
 
+- name: Remove Spotify from startup
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Run
+    name: Spotify
+    state: absent
+
 # - name: Remove Git shell keys
 #   ansible.windows.win_regedit:
 #     path: "{{ item }}"
