@@ -57,15 +57,15 @@
     data: 1
     type: dword
 
-- name: Remove Git shell keys
-  ansible.windows.win_regedit:
-    path: "{{ item }}"
-    state: absent
-    delete_key: true
-  loop:
-    - HKCR:\Directory\shell\git_gui
-    - HKCR:\Directory\shell\git_shell
-    - HKCR:\LibraryFolder\background\shell\git_gui
-    - HKCR:\LibraryFolder\background\shell\git_shell
-    - HKLM:\SOFTWARE\Classes\Directory\background\shell\git_gui
-    - HKLM:\SOFTWARE\Classes\Directory\background\shell\git_shell
+# - name: Remove Git shell keys
+#   ansible.windows.win_regedit:
+#     path: "{{ item }}"
+#     state: absent
+#     delete_key: true
+#   loop:
+#     - HKCR:\Directory\shell\git_gui
+#     - HKCR:\Directory\shell\git_shell
+#     - HKCR:\LibraryFolder\background\shell\git_gui
+#     - HKCR:\LibraryFolder\background\shell\git_shell
+#     - HKLM:\SOFTWARE\Classes\Directory\background\shell\git_gui
+#     - HKLM:\SOFTWARE\Classes\Directory\background\shell\git_shell
