@@ -16,7 +16,7 @@
 
 - name: Create a directory for Cygwin home
   win_file:
-    path: C:\cygwin64\home\{{ ansible_user }}
+    path: "C:\\cygwin64\\home\\{{ ansible_user }}"
     state: directory
 
 - name: Set environment variable for Cygwin
