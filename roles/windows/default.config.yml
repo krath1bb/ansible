@@ -59,7 +59,7 @@ choco_installed_packages:
   - wiztree
   - winrar
 
-install_winget_packages: true
+install_winget_packages: false
 winget_packages:
   - name: Elgato.CameraHub
     source: winget

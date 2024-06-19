@@ -3,6 +3,7 @@
 # BATTLENET
 # AMD ADRENALIN
 # ASETEK RACEHUB
+# gamadv-xtd3
 
 install_chocolately_packages: true
 choco_installed_packages:
@@ -13,6 +14,7 @@ choco_installed_packages:
   - discord
   - epicgameslauncher
   - gpu-z
+  - icue
   - imgburn
   - lghub
   - msiafterburner
@@ -46,6 +48,11 @@ choco_custom_installed_packages:
   - microsoft-office-deployment --params"/64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher"
   - tightvnc --installArguments ADDLOCAL=Viewer
 
+install_winget_packages: true
+winget_packages:
+  - name: Elgato.CameraHub
+    source: winget
+
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
 windows_features:
@@ -73,12 +80,7 @@ power_plan: "high_performance"
 
 postinstall_notes: true
 postinstall_items:
-  - "Pin Icons: Chrome, Explorer, Outlook, AD, Everything, GPO, Cygwin, RDP"
-  - "Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/"
+  - "Manual Install: AMD Adrenalin, Asetek Racehub, Battle.NET, GAMADV-XTD3"
   - "Validate Cygwin Theme"
-  - "Install and configure Sophos VPN"
-  - "Outlook: Remove Favorites Bar, Use Tighter Spacing, Expand Ribbon, Conditional Formatting Blue, File Options Advanced Show Apps In outlook Off, Signature"
-  - "Power Options, Disable Fast Startup"
-  - "Manual Install: adobe acrobat, adobe creative cloud, automox, crowdstrike, dell command update, ducky rgb, gamadv-xtd3, veeam, lsagent, rdm"
-  - "Google Drive Folders"
-  - "Displaycal calibrations"
+  - "Google Drive Folders: Gam, OrcaSlicer"
+  - "Displaycal calibrations"s

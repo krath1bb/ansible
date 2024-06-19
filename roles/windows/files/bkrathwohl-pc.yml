@@ -33,6 +33,11 @@ choco_custom_installed_packages:
   - microsoft-office-deployment --params"/64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher"
   - tightvnc --installArguments ADDLOCAL=Viewer
 
+install_winget_packages: true
+winget_packages:
+  - name: Elgato.CameraHub
+    source: winget
+
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
 windows_features:
