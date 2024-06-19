@@ -45,7 +45,6 @@ choco_installed_packages:
 install_chocolatey_custom_packages: true
 choco_custom_installed_packages:
   - git --params /NoShellIntegration
-  - microsoft-office-deployment --params"/64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher"
   - tightvnc --installArguments ADDLOCAL=Viewer
 
 install_winget_packages: true
