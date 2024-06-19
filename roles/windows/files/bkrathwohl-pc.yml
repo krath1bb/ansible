@@ -74,3 +74,4 @@ postinstall_items:
   - "Manual Install: adobe acrobat, adobe creative cloud, automox, crowdstrike, dell command update, ducky rgb, gamadv-xtd3, veeam, lsagent, rdm"
   - "Google Drive Folders"
   - "Displaycal calibrations"
+  - "Everything network folder scanning"
