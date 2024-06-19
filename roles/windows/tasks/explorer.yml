@@ -2,9 +2,12 @@
 - name: Enable the file extension in file names
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
-    name: HideFileExt
+    name: "{{ item }}"
     data: 0
     type: dword
+  loop:
+    - AutoCheckSelect
+    - HideFileExt
 
 - name: Set Explorer to the Computer view, use Compact mode
   ansible.windows.win_regedit:
