@@ -160,6 +160,6 @@
 
     - name: Create post install document
       ansible.builtin.import_tasks:
-        file: tasks/postinstall.yml
-      when: postinstall
+        file: tasks/postinstall_notes.yml
+      when: postinstall_notes
       tags: ["postinstall"]

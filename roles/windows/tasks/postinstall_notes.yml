@@ -1,0 +1,23 @@
+---
+- name: Postinstall TODO
+  ansible.windows.win_powershell:
+    script: |
+      # Define the values to be written to the text file
+      $values = @(
+          "{{ item }}"
+      )
+
+      # Get the path to the user's desktop
+      $desktopPath = [System.Environment]::GetFolderPath('Desktop')
+
+      # Define the path to the text file
+      $textFilePath = Join-Path -Path $desktopPath -ChildPath "output.txt"
+
+      # Write the values to the text file, each on a new line
+      foreach ($value in $values) {
+          $value | Out-File -FilePath $textFilePath -Append
+      }
+
+      # Optional: Output a message to the console
+      Write-Host "Text file updated at $textFilePath"
+  loop: "{{ postinstall_items }}"

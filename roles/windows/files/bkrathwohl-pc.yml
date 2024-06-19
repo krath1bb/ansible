@@ -1,6 +1,5 @@
 ---
 install_rsat: true
-mx_configuration: true
 install_chocolately_packages: true
 choco_installed_packages:
   #- powertoys    
@@ -58,3 +57,15 @@ change_power_plan: false
 # balanced
 # power_saver
 power_plan: "high_performance"
+
+postinstall_notes: true
+postinstall_items:
+  - "Pin Icons: Chrome, Explorer, Outlook, AD, Everything, GPO, Cygwin, RDP"
+  - "Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/"
+  - "Validate Cygwin Theme"
+  - "Install and configure Sophos VPN"
+  - "Outlook: Remove Favorites Bar, Use Tighter Spacing, Expand Ribbon, Conditional Formatting Blue, File Options Advanced Show Apps In outlook Off, Signature"
+  - "Power Options, Disable Fast Startup"
+  - "Manual Install: adobe acrobat, adobe creative cloud, automox, crowdstrike, dell command update, ducky rgb, gamadv-xtd3, veeam, lsagent, rdm"
+  - "Google Drive Folders"
+  - "Displaycal calibrations"

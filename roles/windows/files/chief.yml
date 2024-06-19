@@ -4,7 +4,8 @@
 # AMD ADRENALIN
 # ASETEK RACEHUB
 
-choco_additional_packages:
+install_chocolately_packages: true
+choco_installed_packages:
   - adobereader
   - aida64-extreme
   - autodesk-fusion360
@@ -21,6 +22,7 @@ choco_additional_packages:
   - tailscale
   ### Default Apps
   - cpu-z
+  - displaycal
   - everything
   - firefox
   - git
@@ -29,17 +31,20 @@ choco_additional_packages:
   - hwinfo
   - lghub
   - microsoft-windows-terminal
-  - name: microsoft-office-deployment
-    choco_args: --params /64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher
   - obs-studio
   - revo-uninstaller
   - spotify
-  - vnc-viewer
   - vscode
   - vlc
   - winscp
   - wiztree
   - winrar
+
+install_chocolatey_custom_packages: true
+choco_custom_installed_packages:
+  - git --params /NoShellIntegration
+  - microsoft-office-deployment --params"/64bit /Product:O365ProPlusRetail,VisioProRetail /Exclude:Groove,Lync,Publisher"
+  - tightvnc --installArguments ADDLOCAL=Viewer
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
@@ -65,3 +70,15 @@ change_power_plan: false
 # balanced
 # power_saver
 power_plan: "high_performance"
+
+postinstall_notes: true
+postinstall_items:
+  - "Pin Icons: Chrome, Explorer, Outlook, AD, Everything, GPO, Cygwin, RDP"
+  - "Install Google Workspace Sync https://tools.google.com/dlpage/gssmo/"
+  - "Validate Cygwin Theme"
+  - "Install and configure Sophos VPN"
+  - "Outlook: Remove Favorites Bar, Use Tighter Spacing, Expand Ribbon, Conditional Formatting Blue, File Options Advanced Show Apps In outlook Off, Signature"
+  - "Power Options, Disable Fast Startup"
+  - "Manual Install: adobe acrobat, adobe creative cloud, automox, crowdstrike, dell command update, ducky rgb, gamadv-xtd3, veeam, lsagent, rdm"
+  - "Google Drive Folders"
+  - "Displaycal calibrations"
