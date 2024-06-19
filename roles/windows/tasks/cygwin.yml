@@ -28,7 +28,7 @@
 
 - name: Set Cygwin theme
   win_copy:
-    dest: "C:\\cygwin64\\home\\{{ ansible_user }}\\.mintty"
+    dest: "C:\\cygwin64\\home\\{{ ansible_user }}\\.minttyrc"
     content:
       ThemeFile=dracula
       Font=Consolas
@@ -36,12 +36,12 @@
       Columns=115
       Rows=30
 
-# - name: Set permissions on the Cygwin theme file
-#   win_acl:
-#     path: "C:\\cygwin64\\home\\{{ ansible_user }}\\.mintty"
-#     user: "{{ ansible_user }}"
-#     rights: ReadAndExecute
-#     state: present
+- name: Set permissions on the Cygwin theme file
+  win_acl:
+    path: C:\cygwin64
+    user: Everyone
+    rights: FullControl
+    state: present
 
 - name: Enable inheritence on cygwin64 structure
   ansible.windows.win_acl_inheritance:
