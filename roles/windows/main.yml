@@ -110,12 +110,6 @@
       when: configure_start_menu
       tags: ["start_menu"]
 
-    - name: Customize Taskbar Pins
-      ansible.builtin.import_tasks:
-        file: tasks/taskbar_custom.yml
-      when: taskbar_custom
-      tags: ["taskbar_custom"]
-
     - name: Include power plan configuration
       ansible.builtin.import_tasks:
         file: tasks/power_plan.yml

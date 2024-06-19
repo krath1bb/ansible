@@ -3,3 +3,5 @@ https://github.com/AlexNabokikh/windows-playbook/blob/master/tasks/taskbar.yml
 custom poewr plan settings
 
 default browser
+
+pull orcaslicer config from github.com/krath1bb/printer

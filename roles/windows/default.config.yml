@@ -9,7 +9,6 @@ scheduled_task: true
 postinstall: true
 
 install_rsat: false
-taskbar_custom: false
 configure_hostname: false
 disable_mouse_acceleration: false
 remote_desktop_enabled: false
