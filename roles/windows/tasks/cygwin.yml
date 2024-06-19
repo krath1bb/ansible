@@ -14,35 +14,35 @@
   args:
     creates: C:\cygwin64\bin\bash.exe
 
-- name: Create a directory for Cygwin home
-  win_file:
-    path: "C:\\cygwin64\\home\\{{ ansible_user }}"
-    state: directory
+# - name: Create a directory for Cygwin home
+#   win_file:
+#     path: "C:\\cygwin64\\home\\{{ ansible_user }}"
+#     state: directory
 
-- name: Set environment variable for Cygwin
-  win_environment:
-    state: present
-    name: PATH
-    value: C:\cygwin64\bin
-    level: machine
+# - name: Set environment variable for Cygwin
+#   win_environment:
+#     state: present
+#     name: PATH
+#     value: C:\cygwin64\bin
+#     level: machine
 
-- name: Set Cygwin theme
-  win_copy:
-    dest: "C:\\cygwin64\\home\\{{ ansible_user }}\\.minttyrc"
-    content:
-      ThemeFile=dracula
-      Font=Consolas
-      FontHeight=11
-      Columns=115
-      Rows=30
+# - name: Set Cygwin theme
+#   win_copy:
+#     dest: "C:\\cygwin64\\home\\{{ ansible_user }}\\.minttyrc"
+#     content:
+#       ThemeFile=dracula
+#       Font=Consolas
+#       FontHeight=11
+#       Columns=115
+#       Rows=30
 
-- name: Set permissions on the Cygwin folder
-  win_acl:
-    path: C:\cygwin64
-    user: Everyone
-    rights: FullControl
-    type: allow
-    state: present
-    inherit: ContainerInherit, ObjectInherit
-    propagation: 'InheritOnly'
+# - name: Set permissions on the Cygwin folder
+#   win_acl:
+#     path: C:\cygwin64
+#     user: Everyone
+#     rights: FullControl
+#     type: allow
+#     state: present
+#     inherit: ContainerInherit, ObjectInherit
+#     propagation: 'InheritOnly'
 
