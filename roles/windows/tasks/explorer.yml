@@ -76,7 +76,5 @@
 - name: Remove from startup
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Run
-    name: "{{ item }}"
+    name: Spotify
     state: absent
-  loop:
-    Spotify
