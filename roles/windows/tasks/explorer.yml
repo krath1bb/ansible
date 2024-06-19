@@ -1,5 +1,5 @@
 ---
-- name: Enable the file extension in file names
+- name: Enable the file extension in file names, disable folder checkboxes
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
     name: "{{ item }}"
@@ -9,15 +9,24 @@
     - AutoCheckSelect
     - HideFileExt
 
-- name: Set Explorer to the Computer view, use Compact mode
+- name: Set full path in toolbar
   ansible.windows.win_regedit:
-    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState
     name: "{{ item }}"
     data: 1
     type: dword
   loop:
-    - LaunchTo
-    - UseCompactMode
+    - FullPath
+
+- name: Default Control Panel view
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel
+    name: "{{ item }}"
+    data: 1
+    type: dword
+  loop:
+    - AllItemsIconView
+    - StartupPage
 
 - name: Default Control Panel view
   ansible.windows.win_regedit:
@@ -32,9 +41,11 @@
 - name: Enable expanded stats for file transfers
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager
-    name: EnthusiastMode
+    name: "{{ item }}"
     data: 1
     type: dword
+  loop:
+    - EnthusiastMode
 
 - name: Disable recently accessed file history
   ansible.windows.win_regedit:
@@ -56,12 +67,16 @@
 - name: Disable Edge first run experience
   ansible.windows.win_regedit:
     path: HKLM:\SOFTWARE\Microsoft\Edge
-    name: HideFirstRunExperience
+    name: "{{ item }}"
     data: 1
     type: dword
+  loop:
+    - HideFirstRunExperience
 
-- name: Remove Spotify from startup
+- name: Remove from startup
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Run
-    name: Spotify
+    name: "{{ item }}"
     state: absent
+  loop:
+    Spotify
