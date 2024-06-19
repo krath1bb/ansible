@@ -11,7 +11,7 @@ choco_installed_packages:
   - aida64-extreme
   - autodesk-fusion360
   - brave
-  - discord
+  - discord.install
   - epicgameslauncher
   - gpu-z
   - icue
