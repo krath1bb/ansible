@@ -12,7 +12,6 @@ install_rsat: false
 configure_hostname: false
 disable_mouse_acceleration: false
 remote_desktop_enabled: false
-set_sound_scheme: false
 
 install_windows_updates: false
 windows_updates_reboot: false

@@ -11,7 +11,7 @@
       $desktopPath = [System.Environment]::GetFolderPath('Desktop')
 
       # Define the path to the text file
-      $textFilePath = Join-Path -Path $desktopPath -ChildPath "output.txt"
+      $textFilePath = Join-Path -Path $desktopPath -ChildPath "TODO.txt"
 
       # Write the values to the text file, each on a new line
       foreach ($value in $values) {

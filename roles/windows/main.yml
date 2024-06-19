@@ -116,12 +116,6 @@
       when: change_power_plan
       tags: ["power"]
 
-    - name: Include sounds configuration
-      ansible.builtin.import_tasks:
-        file: tasks/sounds.yml
-      when: set_sound_scheme
-      tags: ["sounds"]
-
     - name: Include mouse configuration
       ansible.builtin.import_tasks:
         file: tasks/mouse.yml
