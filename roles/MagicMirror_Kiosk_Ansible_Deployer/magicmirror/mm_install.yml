@@ -28,13 +28,13 @@
     npm:
       path: "{{ mm_root }}/install-mm"
 
-  - name: update npm
+  - name: Update NPM
     become: true
     command:
       chdir: "{{ mm_root }}"
-      cmd: npm install "pm2 -g && pm2 update"
+      cmd: 'npm install pm2 -g; pm2 update'
 
-  - name: install npm auto-complete
+  - name: Install NPM auto-complete
     become: true
     command:
       chdir: "{{ mm_root }}"
