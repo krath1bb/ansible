@@ -1,5 +1,5 @@
 ---
-  - name: uninstall unnecessary stuff
+  - name: Uninstall Unncessary Packages
     become: true
     apt:
       pkg:
@@ -17,23 +17,23 @@
       autoclean: true
       autoremove: true
 
-  - name: apt Update
+  - name: Update Packages
     become: true
     ansible.builtin.apt:
       update_cache: yes
 
-  - name: Upgrade the OS (apt-get dist-upgrade)
+  - name: Upgrade the OS Distribution
     become: true
     ansible.builtin.apt:
       upgrade: dist
 
-  - name: apt upgrade
+  - name: Upgrade the OS
     become: true
     ansible.builtin.apt:
       name: "*"
       state: latest
 
-  - name: install packages
+  - name: Install MM Packages
     become: true
     ansible.builtin.apt:
       pkg:
@@ -45,25 +45,25 @@
         - mpg321
         - alsa-utils
 
-  - name: disable Bluetooth HW
+  - name: Disable Bluetooth Hardware
     become: true
     lineinfile:
       dest: /boot/config.txt
       line: "dtoverlay=pi3-disable-bt"
 
-  - name: disable Bluetooth SERVICE
+  - name: Disable Bluetooth Service
     become: true
     ansible.builtin.systemd:
       name: hciuart
       enabled: no
       state: stopped
 
-  - name: be sure ntp is installed
+  - name: Install NTP
     apt:
       name: ntp
       state: present
 
-  - name: be sure ntpd is running and enabled
+  - name: Start NTP
     service:
       name: ntpd
       state: started

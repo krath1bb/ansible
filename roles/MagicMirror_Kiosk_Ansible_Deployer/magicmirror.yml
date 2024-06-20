@@ -1,5 +1,5 @@
 ---
-- name: install magicmirror on Rpi
+- name: MagicMirror2
   hosts: "{{ hosts }}"
   # become_user: "{{ becomeuser }}"
   gather_facts: no
