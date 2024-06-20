@@ -1,0 +1,55 @@
+---
+- name: install magicmirror on Rpi
+  hosts: "{{ hosts }}"
+  become_user: "{{ becomeuser }}"
+  gather_facts: no
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+  - name: Include playbook user configuration
+    ansible.builtin.include_vars: "{{ item }}"
+    with_fileglob:
+      - "{{ playbook_dir }}/files/{{hosts}}.yml"
+    tags: ["always"]
+    
+  tasks:
+    - name: Run Prerequisites
+      ansible.builtin.import_tasks:
+        file: magicmirror/prerequisites.yml
+      tags: ["always"]
+
+    - name: Install MagicMirror
+      ansible.builtin.import_tasks:
+        file: magicmirror/mm_install.yml
+      tags: ["mm_install"]
+
+    - name: Upgrade MagicMirror
+      ansible.builtin.import_tasks:
+        file: magicmirror/mm_upgrade.yml
+      tags: ["mm_upgrade"]
+
+ 
+
+
+
+    - name: run when not MM_delete
+      when: (run_option != "MM_delete")
+      tags: always
+      block:
+        - name: 005_copy_files.yml
+          import_tasks: 005_copy_files.yml
+
+        - name: 006_install_modules.yml
+          import_tasks: 006_install_modules.yml
+
+        - name: 007_add_crontabs.yml
+          import_tasks: 007_add_crontabs.yml
+
+    - name: Reboot message
+      debug:
+        msg: "You should propably manually Reboot now!"
+      tags:
+      - always
+
+

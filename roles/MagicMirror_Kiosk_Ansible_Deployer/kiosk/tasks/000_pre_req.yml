@@ -1,0 +1,85 @@
+---
+  - name: uninstall unnecessary stuff
+    become: true
+    apt:
+      pkg:
+        - wolfram-engine
+        - scratch
+        - scratch2
+        - nuscratch
+        - sonic-pi
+        - idle3
+        - smartsim
+        - ava-common
+        - minecraft-pi
+        - libreoffice*
+      state: "absent"
+      autoclean: true
+      autoremove: true
+
+  - name: apt Update
+    become: true
+    ansible.builtin.apt:
+      update_cache: yes
+
+  - name: Upgrade the OS (apt-get dist-upgrade)
+    become: true
+    ansible.builtin.apt:
+      upgrade: dist
+
+  - name: apt upgrade
+    become: true
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+
+  - name: install packages
+    become: true
+    ansible.builtin.apt:
+      pkg:
+        - python3
+        - python3-pip
+        - git
+        - python3-dev
+        - sshpass
+        - mpg321
+        - alsa-utils
+
+  - name: add aliases in .profile
+    lineinfile:
+      dest: /home/pi/.profile
+      line: '{{ item }}'
+    with_items:
+      - 'alias ll="ls -ltr"'
+
+  - name: disable Bluetooth HW
+    become: true
+    lineinfile:
+      dest: /boot/config.txt
+      line: "dtoverlay=pi3-disable-bt"
+
+  - name: disable Bluetooth SERVICE
+    become: true
+    ansible.builtin.systemd:
+      name: hciuart
+      enabled: no
+      state: stopped
+
+  - name: be sure ntp is installed
+    apt:
+      name: ntp
+      state: present
+
+  - name: be sure ntp is configured
+    template:
+      src: ntp.conf.j2
+      dest: /etc/ntp.conf
+    notify:
+      - restart ntpd
+      # see the handlers folder
+
+  - name: be sure ntpd is running and enabled
+    service:
+      name: ntpd
+      state: started
+      enabled: yes
