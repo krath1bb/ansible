@@ -36,6 +36,7 @@ choco_installed_packages:
   - obs-studio
   - revo-uninstaller
   - spotify
+  - streamdeck
   - vscode
   - vlc
   - winscp
@@ -51,6 +52,7 @@ install_winget_packages: true
 winget_packages:
   - name: Elgato.CameraHub
     source: winget
+
 
 # List of features: "Get-WindowsOptionalFeature -Online"
 install_windows_features: false
