@@ -14,10 +14,10 @@
     tags: ["always"]
     
   tasks:
-    - name: Run Prerequisites
-      ansible.builtin.import_tasks:
-        file: magicmirror/prerequisites.yml
-      tags: ["always"]
+    # - name: Run Prerequisites
+    #   ansible.builtin.import_tasks:
+    #     file: magicmirror/prerequisites.yml
+    #   tags: ["always"]
 
     - name: Install MagicMirror
       ansible.builtin.import_tasks:
