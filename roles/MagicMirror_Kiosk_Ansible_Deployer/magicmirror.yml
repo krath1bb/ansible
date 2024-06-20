@@ -1,7 +1,7 @@
 ---
 - name: install magicmirror on Rpi
   hosts: "{{ hosts }}"
-  become_user: "{{ becomeuser }}"
+  # become_user: "{{ becomeuser }}"
   gather_facts: no
   vars_files:
     - default.config.yml
