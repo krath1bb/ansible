@@ -1,0 +1,28 @@
+---
+- name: Install MagicMirror on Raspberry Pi
+  hosts: "{{ hosts }}"
+  become: yes
+  become_user: pi
+  gather_facts: no
+  # vars_files:
+  #   - "{{ playbook_dir }}/files/{{hosts}}.yml"
+
+  tasks:
+    - name: Install Magic Mirror
+      ansible.builtin.import_tasks:
+        file: tasks/install_mm.yml
+      when: install_magicmirror
+      tags: ["magicmirror"]   
+
+    # - name: Install Modules
+    #   ansible.builtin.import_tasks:
+    #     file: tasks/install_modules.yml
+    #   when: install_modules
+    #   tags: ["modules"]   
+
+    # - name: Start MM2
+    #   ansible.builtin.import_tasks:
+    #     file: tasks/start_mm.yml
+    #   when: start_mm
+    #   tags: ["start_mm"]   
+# We're ready! Run pm2 start MagicMirror from the ~/MagicMirror directory to start your MagicMirror.
