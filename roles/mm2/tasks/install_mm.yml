@@ -1,5 +1,6 @@
 ---
 - name: Download and run MagicMirror installation script
-  command: 'yes | bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh)"'
+  shell: |
+    yes | curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh | bash
   args:
     chdir: /home/pi
