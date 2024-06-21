@@ -10,7 +10,6 @@ custom_css: 'files/mm-bk.custom.css'
 
 mm_modules:
   - name: alert
-    position: top_bar
 
   - name: updatenotification
     position: top_bar 
