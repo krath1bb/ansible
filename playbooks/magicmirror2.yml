@@ -1,4 +1,0 @@
----
-- hosts: "{{ hosts }}"
-  roles:
-    - role: roles/magicmirror2

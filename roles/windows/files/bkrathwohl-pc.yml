@@ -5,6 +5,7 @@ choco_installed_packages:
   #- powertoys    
   - duck
   - filezilla
+  - gitkraken
   - vmrc
   - zoom
   ### Default Apps
