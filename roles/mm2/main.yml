@@ -20,32 +20,25 @@
       when: install_modules
       tags: ["modules"]   
 
+    - name: Install custom CSS
+      ansible.builtin.import_tasks:
+        file: tasks/install_css.yml
+      when: install_css
+      tags: ["css"]      
+
+    - name: Generate MagicMirror Configuration
+      ansible.builtin.import_tasks:
+        file: tasks/generate_config.yml
+      when: generate_config
+      tags: ["configure"]      
+
     - name: Upgrade MagicMirror
       ansible.builtin.import_tasks:
         file: tasks/upgrade_mm.yml
       when: upgrade_mm
       tags: ["upgrade"]   
 
-    - name: Generate MagicMirror Configuration
-      ansible.builtin.import_tasks:
-        file: tasks/config_replace.yml
-      when: config_replace
-      tags: ["configure"]      
-
   handlers:
     - name: Restart Magic Mirror
       shell: "cd {{ mm_root }} && pm2 restart MagicMirror"
       ignore_errors: true
-
-    # - name: Install Modules
-    #   ansible.builtin.import_tasks:
-    #     file: tasks/install_modules.yml
-    #   when: install_modules
-    #   tags: ["modules"]   
-
-    # - name: Start MM2
-    #   ansible.builtin.import_tasks:
-    #     file: tasks/start_mm.yml
-    #   when: start_mm
-    #   tags: ["start_mm"]   
-# We're ready! Run pm2 start MagicMirror from the ~/MagicMirror directory to start your MagicMirror.

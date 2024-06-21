@@ -1,7 +1,8 @@
 ---
 install_magicmirror: true
 install_modules: true
-config_replace: true
+install_css: true
+generate_config: true
 
 mm_root: '/home/pi/MagicMirror' # Root install directory for MagicMirrorOS.
 
