@@ -1,12 +1,5 @@
 ---
-- name: Change to Pi home directory
-  command: cd /home/pi
-  args:
-    chdir: /home/pi
-
 - name: Download and run MagicMirror installation script
-  command: bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh)"
-  environment:
-    HOME: /home/pi
+  command: yes | bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh)"
   args:
     chdir: /home/pi
