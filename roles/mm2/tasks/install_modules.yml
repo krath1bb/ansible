@@ -71,14 +71,19 @@
 
   when: mm_modules | length > 0
 
-- name: Copy custom.css
+- name: copy HOST.custom.css
   ansible.builtin.copy:
-    src: "{{ custom_css_file }}"
+    src: "files/{{ hosts }}.custom.css"
     dest: "{{ mm_root }}/css/custom.css"
+
+# - name: Copy custom.css
+#   ansible.builtin.copy:
+#     src: "{{ custom_css_file }}"
+#     dest: "{{ mm_root }}/css/custom.css"
 
 - name: Copy Magic Mirror config.js
   ansible.builtin.template:
-    src: './files/config.js.j2'
+    src: 'files/config.js.j2'
     dest: "{{ mm_root }}/config/config.js"
 
 - name: Check Magic Mirror config.js file
