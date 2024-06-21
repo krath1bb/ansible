@@ -74,25 +74,29 @@
 
 #   when: mm_modules | length > 0
 
-- name: Check if custom CSS file exists
-  stat:
-    path: "files/{{ hosts }}.custom.css"
-  register: custom_css_file
+#
+#
+#
 
-- name: Copy custom.css if exists
-  ansible.builtin.copy:
-    src: "files/{{ hosts }}.custom.css"
-    dest: "{{ mm_root }}/css/custom.css"
-  when: custom_css_file.stat.exists
+# - name: Check if custom CSS file exists
+#   stat:
+#     path: "files/{{ hosts }}.custom.css"
+#   register: custom_css_file
 
-- name: Copy Magic Mirror config.js
-  ansible.builtin.template:
-    src: 'files/config.js.j2'
-    dest: "{{ mm_root }}/config/config.js"
+# - name: Copy custom.css if exists
+#   ansible.builtin.copy:
+#     src: "files/{{ hosts }}.custom.css"
+#     dest: "{{ mm_root }}/css/custom.css"
+#   when: custom_css_file.stat.exists
 
-- name: Check Magic Mirror config.js file
-  command: npm run config:check
-  args:
-    chdir: "{{ mm_root }}/config"
-  notify:
-    - Restart Magic Mirror
+# - name: Copy Magic Mirror config.js
+#   ansible.builtin.template:
+#     src: 'files/config.js.j2'
+#     dest: "{{ mm_root }}/config/config.js"
+
+# - name: Check Magic Mirror config.js file
+#   command: npm run config:check
+#   args:
+#     chdir: "{{ mm_root }}/config"
+#   notify:
+#     - Restart Magic Mirror
