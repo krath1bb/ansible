@@ -6,8 +6,7 @@ generate_config: true
 
 mm_root: '/home/pi/MagicMirror'
 
-custom_css:
-- custompath: files/mm-bk.custom.css
+custom_css: 'files/mm-bk.yml'
 
 mm_modules:
   - name: alert
