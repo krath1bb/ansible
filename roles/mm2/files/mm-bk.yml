@@ -30,23 +30,21 @@ mm_modules:
     github: https://github.com/alberttwong/MMM-iFrame.git
     position: bottom_right
     config:
-      url:
-        https://www.youtube.com/embed/Nq4Ge6foW4Y?autoplay=1
+      url: ["https://www.youtube.com/embed/Nq4Ge6foW4Y?autoplay=1"]
       updateInterval: 86400000
-      width: 1920
-      height: 1275
-      frameWidth: 510
+      width: "1920"
+      height: "1275"
+      frameWidth: "510"
 
   - name: MMM-iFrame
     github: https://github.com/alberttwong/MMM-iFrame.git
     position: bottom_left
     config:
-      url:
-        https://api.wetmet.net/client-content/PlayerFrame.php?CAMERA=210-02-01&amp;CFVER=WM&amp;WIDTH=640&amp;HEIGHT=360
+      url: ["https://api.wetmet.net/client-content/PlayerFrame.php?CAMERA=210-02-01&amp;CFVER=WM&amp;WIDTH=640&amp;HEIGHT=360"]
       updateInterval: 86400000
-      width: 1920
-      height: 1275
-      frameWidth: 510
+      width: "1920"
+      height: "1275"
+      frameWidth: "510"
 
   - name: MMM-RAIN-MAP
     github: https://github.com/jalibu/MMM-RAIN-MAP.git
@@ -64,20 +62,20 @@ mm_modules:
       extraDelayCurrentFrameMs: 10000
       invertColors: false
       markers:
-        lat: 42.479840
-        lng: -83.893636
-        color: red
+        - lat: 42.479840
+          lng: -83.893636
+          color: red
       mapPositions:
-        lat: 42.479840
-        lng: -83.893636
-        zoom: 6
-        loops: 5
+        - lat: 42.479840
+          lng: -83.893636
+          zoom: 6
+          loops: 5
       mapUrl: https://a.tile.openstreetmap.de/{z}/{x}/{y}.png
-      mapHeight: 250px
-      mapWidth: 350px
+      mapHeight: "250px"
+      mapWidth: "350px"
       maxHistoryFrames: 7
       maxForecastFrames: 0
-      substitudeModules:
+      substitudeModules: []
       timeFormat: 24
       updateIntervalInSeconds: 300
 
