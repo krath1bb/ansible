@@ -96,3 +96,8 @@
         enabled: yes
         state: started
       become: yes
+
+### For whatever reason PM2 commands need to be manuall ran for it to actually work
+# pm2 startup systemd -u pi --hp /home/pi
+# pm2 start /home/pi/MagicMirror/installers/mm.sh
+# pm2 save
