@@ -7,19 +7,19 @@
     - "{{ playbook_dir }}/files/{{hosts}}.yml"
 
   tasks:
-     - name: Include prerequisites
+    - name: Include prerequisites
       ansible.builtin.import_tasks:
         file: tasks/prerequisites.yml
       when: configure_prerequisites
       tags: ["prerequisites"]   
 
-     - name: Install Magic Mirror
+    - name: Install Magic Mirror
       ansible.builtin.import_tasks:
         file: tasks/install_mm.yml
       when: install_magicmirror
       tags: ["magicmirror"]   
 
-     - name: Install Modules
+    - name: Install Modules
       ansible.builtin.import_tasks:
         file: tasks/install_modules.yml
       when: install_modules
