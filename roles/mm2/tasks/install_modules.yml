@@ -50,7 +50,7 @@
       loop_control:
         label: "{{ item.name }}"
 
-    - name: "NPM Install Module {{ item.name }}"
+    - name: NPM Install Module "{{ item.name }}"
       ansible.builtin.npm:
         path: "{{ mm_root }}/modules/{{ item.name }}"
       loop: "{{ mm_modules }}"
