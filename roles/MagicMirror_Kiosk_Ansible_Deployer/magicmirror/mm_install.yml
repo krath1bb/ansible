@@ -1,24 +1,24 @@
 ---
-  # - name: add node repo
-  #   shell:
-  #     cmd: curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  - name: add node repo
+    shell:
+      cmd: curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-  # - name: install node
-  #   become: true
-  #   apt:
-  #     pkg: nodejs
+  - name: install node
+    become: true
+    apt:
+      pkg: nodejs
 
-  # - name: Create Install Directory
-  #   file:
-  #     path: "{{ mm_root }}"
-  #     state: directory
+  - name: Create Install Directory
+    file:
+      path: "{{ mm_root }}"
+      state: directory
 
-  # - name: Clone Magic Mirror
-  #   git:
-  #     repo: https://github.com/MichMich/MagicMirror
-  #     dest: "{{ mm_root }}"
-  #     version: master
-  #     force: yes
+  - name: Clone MagicMirror repository
+    git:
+      repo: https://github.com/MichMich/MagicMirror
+      dest: "{{ mm_root }}"
+      version: master
+      force: yes
 
   - name: NPM Install
     npm:

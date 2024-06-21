@@ -2,149 +2,28 @@
 - name: Install MagicMirror on Raspberry Pi
   hosts: "{{ hosts }}"
   become: yes
-  handlers:
-  - name: reboot raspberry pi
-    reboot:
-      msg: "Reboot initiated by Ansible to apply changes"
-      pre_reboot_delay: 0
-      post_reboot_delay: 30
+  gather_facts: no
+  vars_files:
+    - "{{ playbook_dir }}/files/{{hosts}}.yml"
+
   tasks:
-    - name: Update and upgrade apt packages
-      apt:
-        update_cache: yes
-        upgrade: dist
+     - name: Include prerequisites
+      ansible.builtin.import_tasks:
+        file: tasks/prerequisites.yml
+      when: configure_prerequisites
+      tags: ["prerequisites"]   
 
-    - name: Uninstall unncessary Packages
-      apt:
-        name:
-          - wolfram-engine
-          - scratch
-          - scratch2
-          - nuscratch
-          - sonic-pi
-          - idle3
-          - smartsim
-          - ava-common
-          - minecraft-pi
-          - libreoffice*
-        state: absent
-        autoclean: true
-        autoremove: true
+     - name: Install Magic Mirror
+      ansible.builtin.import_tasks:
+        file: tasks/install_mm.yml
+      when: install_magicmirror
+      tags: ["magicmirror"]   
 
-    - name: Install necessary packages
-      apt:
-        name:
-          - git
-          - curl
-          - build-essential
-          - npm
-        state: present
-
-    - name: Ensure the rainbow screen is disabled
-      lineinfile:
-        path: /boot/config.txt
-        regexp: '^disable_splash='
-        line: 'disable_splash=1'
-        state: present
-
-    - name: Install x11-xserver-utils if not present
-      apt:
-        name: x11-xserver-utils
-        state: present
-
-    - name: Ensure screensaver is disabled in LXDE
-      blockinfile:
-        path: /etc/xdg/lxsession/LXDE/autostart
-        block: |
-          @xset s off          # don't activate screensaver
-          @xset -dpms          # disable DPMS (Energy Star) features
-          @xset s noblank      # don't blank the video device
-      create: yes
-
-    - name: Ensure screensaver is disabled in LXDE-pi
-      blockinfile:
-        path: /etc/xdg/lxsession/LXDE-pi/autostart
-        block: |
-          @xset s off          # don't activate screensaver
-          @xset -dpms          # disable DPMS (Energy Star) features
-          @xset s noblank      # don't blank the video device
-      create: yes
-
-    - name: Ensure the low voltage warning is disabled
-      lineinfile:
-        path: /boot/config.txt
-        regexp: '^avoid_warnings='
-        line: 'avoid_warnings=1'
-        state: present
-
-    - name: Remove SSH password warning flag
-      file:
-        path: /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
-        state: absent
-
-    - name: Disable Bluetooth Hardware
-      lineinfile:
-        dest: /boot/config.txt
-        line: "dtoverlay=pi3-disable-bt"
-
-    - name: Disable Bluetooth Service
-      ansible.builtin.systemd:
-        name: hciuart
-        enabled: no
-        state: stopped
-
-    - name: Clone MagicMirror repository
-      git:
-        repo: 'https://github.com/MichMich/MagicMirror'
-        dest: /home/pi/MagicMirror
-        version: master
-        update: yes
-      become: no
-
-    - name: Change directory owner to pi
-      file:
-        path: /home/pi/MagicMirror
-        owner: pi
-        group: pi
-        state: directory
-
-    - name: Install MagicMirror dependencies
-      command: npm install
-      args:
-        chdir: /home/pi/MagicMirror
-      become: no
-
-    - name: Create configuration file from sample
-      copy:
-        src: /home/pi/MagicMirror/config/config.js.sample
-        dest: /home/pi/MagicMirror/config/config.js
-        remote_src: yes
-      become: no
-
-    - name: Install PM2 globally
-      npm:
-        name: pm2
-        global: yes
-
-    - name: Configure PM2 to start MagicMirror on boot
-      command: pm2 startup systemd -u pi --hp /home/pi
-      become: yes
-
-    - name: Start MagicMirror with PM2
-      command: pm2 start /home/pi/MagicMirror/installers/mm.sh
-      become: no
-
-    - name: Save PM2 process list
-      command: pm2 save
-      become: no
-
-    - name: Ensure PM2 restarts MagicMirror on reboot
-      systemd:
-        name: pm2-pi
-        enabled: yes
-        state: started
-      become: yes
-      notify: reboot raspberry pi
+     - name: Install Modules
+      ansible.builtin.import_tasks:
+        file: tasks/install_modules.yml
+      when: install_modules
+      tags: ["modules"]   
 
 
 
