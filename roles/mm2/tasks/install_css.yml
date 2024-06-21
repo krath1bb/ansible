@@ -10,21 +10,8 @@
 #     dest: "{{ mm_root }}/css/custom.css"
 #   when: custom_css_file.stat.exists
 
-
-
-- name: Check if custom CSS file exists on local machine
-  command: test -f "/tmp/semaphore/repository_1_24/roles/mm2/files/{{ hosts }}.custom.css"
-  register: custom_css_file_check
-  ignore_errors: true
-  changed_when: false
-  delegate_to: localhost
-
-- name: Debug custom_css_file_check
-  debug:
-    var: custom_css_file_check
-
 - name: Copy custom.css if exists
   ansible.builtin.copy:
-    src: "/tmp/semaphore/repository_1_24/roles/mm2/files/{{ hosts }}.custom.css"
+    src: "{{ {{ playbook_dir }}/files/{{ hosts }}.custom.css | default({{ playbook_dir }}/files/custom.css) }}"
     dest: "{{ mm_root }}/css/custom.css"
-  when: custom_css_file_check.rc == 0
+
