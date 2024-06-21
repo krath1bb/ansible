@@ -1,4 +1,8 @@
 ---
+- name: Debug playbook_dir variable
+  debug:
+    msg: "playbook_dir: {{ playbook_dir }}"
+
 - name: Debug hosts variable
   debug:
     msg: "hosts variable: {{ hosts }}"
