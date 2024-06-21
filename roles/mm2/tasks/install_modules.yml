@@ -65,7 +65,7 @@
       loop: "{{ mm_modules }}"
       loop_control:
         label: "{{ item.name }}"
-      when: item.github is defined and custom_module_dir.stat.exists == false
+      when: item.github is defined and (item not in default_module_dir.results | map(attribute='item.name') | list) and (item not in custom_module_dir.results | map(attribute='item.name') | list)
 
     - name: NPM Install Module
       ansible.builtin.npm:
@@ -73,7 +73,7 @@
       loop: "{{ mm_modules }}"
       loop_control:
         label: "{{ item.name }}"
-      when: item.github is not defined and custom_module_dir.stat.exists == false
+      when: item.github is not defined and (item not in default_module_dir.results | map(attribute='item.name') | list) and (item not in custom_module_dir.results | map(attribute='item.name') | list)
 
   when: mm_modules | length > 0
 
