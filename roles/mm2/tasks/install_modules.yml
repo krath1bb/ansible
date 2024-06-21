@@ -37,8 +37,18 @@
 
 
 
-- name: Install and configure Magic Mirror modules with GitHub repositories
+- name: Install and configure Magic Mirror modules
   block:
+    - name: Check if default module directory exists
+      stat:
+        path: "{{ mm_root }}/modules/default/{{ item.name }}"
+      register: default_module_dir
+
+    - name: Check if custom module directory exists
+      stat:
+        path: "{{ mm_root }}/modules/{{ item.name }}"
+      register: custom_module_dir
+
     - name: Download Module with GitHub repo
       ansible.builtin.git:
         repo: "{{ item.github }}"
@@ -49,7 +59,7 @@
       loop: "{{ mm_modules }}"
       loop_control:
         label: "{{ item.name }}"
-      when: item.github is defined
+      when: item.github is defined and custom_module_dir.stat.exists == false
 
     - name: NPM Install Module
       ansible.builtin.npm:
@@ -57,7 +67,7 @@
       loop: "{{ mm_modules }}"
       loop_control:
         label: "{{ item.name }}"
-      when: item.github is not defined
+      when: item.github is not defined and custom_module_dir.stat.exists == false
 
   when: mm_modules | length > 0
 
