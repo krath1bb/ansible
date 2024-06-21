@@ -1,4 +1,16 @@
 ---
+- name: "List of default modules"
+  set_fact:
+    default_modules:
+      - alert
+      - calendar
+      - clock
+      - compliments
+      - helloworld
+      - newsfeed
+      - updatenotification
+      - weather
+
 - name: "Download Modules"
   ansible.builtin.git:
     repo: "{{ item.github }}"
@@ -7,13 +19,14 @@
     force: yes
     update: yes
   loop: "{{ mm_modules }}"
-  when: item.github is defined
+  when: item.github is defined and item.name not in default_modules
 
 - name: "NPM Install Modules"
   ansible.builtin.npm:
     path: "{{ mm_root }}/modules/{{ item.name }}"
   ignore_errors: yes
   loop: "{{ mm_modules }}"
+  when: item.name not in default_modules
 
 # - name: Magic Mirror Config.js
 #   copy:
