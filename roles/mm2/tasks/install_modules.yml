@@ -43,11 +43,17 @@
       stat:
         path: "{{ mm_root }}/modules/default/{{ item.name }}"
       register: default_module_dir
+      loop: "{{ mm_modules }}"
+      loop_control:
+        label: "{{ item.name }}"
 
     - name: Check if custom module directory exists
       stat:
         path: "{{ mm_root }}/modules/{{ item.name }}"
       register: custom_module_dir
+      loop: "{{ mm_modules }}"
+      loop_control:
+        label: "{{ item.name }}"
 
     - name: Download Module with GitHub repo
       ansible.builtin.git:
