@@ -14,14 +14,14 @@ mm_modules:
     position: top_left
 
   - name: currentweather
-    position: top_right
+    position: top_center
     config:
       location: Pinckney
       locationID: 5005703
       appid: "{{ openweather_api_key }}"
 
   - name: weatherforecast
-    position: top_right
+    position: top_center
     header: Weather Forecast
     config:
       location: Pinckney
