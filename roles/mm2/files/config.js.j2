@@ -37,7 +37,22 @@ var config = {
 	// false, default for all NON-armv6l devices
 	// true, force serveronly mode, because you want to.. no UI on this device
 
-	modules: {{ mm_modules | to_nice_json }}
+	modules: [
+{% for module in mm_modules %}
+		{
+			module: "{{ module.name }}",
+{% if 'position' in module %}
+			position: "{{ module.position }}",
+{% endif %}
+{% if 'header' in module %}
+			header: "{{ module.header }}",
+{% endif %}
+{% if 'config' in module %}
+			config: {{ module.config | to_json }}
+{% endif %}
+		},
+{% endfor %}
+	]
 };
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/
