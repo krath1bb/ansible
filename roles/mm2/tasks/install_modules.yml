@@ -1,8 +1,8 @@
 ---
 - name: "Download Modules"
   ansible.builtin.git:
-    repo: "{{ mm_modules.github }}"
-    dest: "{{ mm_root }}/modules/{{ mm_modules.name }}"
+    repo: "{{ item.github }}"
+    dest: "{{ mm_root }}/modules/{{ item.name }}"
     clone: yes
     force: yes
     update: yes
@@ -10,7 +10,7 @@
 
 - name: "NPM Install Modules"
   ansible.builtin.npm:
-    path: "{{ mm_root }}/modules/{{ mm_modules.name }}"
+    path: "{{ mm_root }}/modules/{{ item.name }}"
   ignore_errors: yes
   loop: "{{ mm_modules }}"
 
