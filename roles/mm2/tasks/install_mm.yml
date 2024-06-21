@@ -5,8 +5,9 @@
   args:
     chdir: /home/pi
 
-- name: Turn off screen saver
+- name: Remove Low Voltage notification
   become: true
+  become_user: ansible
   apt:
     name:
       - lxplug-ptbatt
