@@ -1,0 +1,8 @@
+install_magicmirror: true
+install_modules: true
+install_css: true
+generate_config: true
+
+mm_root: '/home/pi/MagicMirror'
+
+custom_css: 'files/mm-bk.yml'
