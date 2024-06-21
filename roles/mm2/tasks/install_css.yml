@@ -1,8 +1,20 @@
 ---
+- name: Debug hosts variable
+  debug:
+    msg: "hosts variable: {{ hosts }}"
+
+- name: Debug mm_root variable
+  debug:
+    msg: "mm_root variable: {{ mm_root }}"
+
 - name: Check if custom CSS file exists
   stat:
     path: "files/{{ hosts }}.custom.css"
   register: custom_css_file
+
+- name: Debug custom_css_file stat
+  debug:
+    var: custom_css_file
 
 - name: Copy custom.css if exists
   ansible.builtin.copy:
