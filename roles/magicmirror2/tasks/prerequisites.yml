@@ -32,7 +32,7 @@
 
 - name: Ensure the rainbow screen is disabled
   lineinfile:
-    path: /boot/config.txt
+    path: /boot/firmware/config.txt
     regexp: '^disable_splash='
     line: 'disable_splash=1'
     state: present
@@ -60,7 +60,7 @@
 
 - name: Ensure the low voltage warning is disabled
   lineinfile:
-    path: /boot/config.txt
+    path: /boot/firmware/config.txt
     regexp: '^avoid_warnings='
     line: 'avoid_warnings=1'
     state: present
@@ -72,7 +72,7 @@
 
 - name: Disable Bluetooth Hardware
   lineinfile:
-    dest: /boot/config.txt
+    dest: /boot/firmware/config.txt
     line: "dtoverlay=pi3-disable-bt"
 
 - name: Disable Bluetooth Service
