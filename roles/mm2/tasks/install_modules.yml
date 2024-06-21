@@ -58,7 +58,7 @@
         label: "{{ item.name }}"
       ignore_errors: yes
 
-  when: modules | length > 0
+  when: mm_modules | length > 0
 
 - name: Copy custom.css
   ansible.builtin.copy:
