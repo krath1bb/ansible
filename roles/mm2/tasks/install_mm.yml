@@ -5,6 +5,14 @@
   args:
     chdir: /home/pi
 
+- name: Turn off screen saver
+  apt:
+    name:
+      - lxplug-ptbatt
+    state: absent
+    autoclean: true
+    autoremove: true
+
 - name: Download and run MagicMirror installation script
   shell: |
     yes | curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh | bash

@@ -14,13 +14,23 @@ mm_modules:
     position: top_left
 
   - name: currentweather
+    disabled: true
     position: top_center
+    config:
+      location: Pinckney
+      locationID: 5005703
+      appid: "{{ openweather_api_key }}"
+  
+  - name: weather
+    position: top_left
+    header: Weather Forecast
     config:
       location: Pinckney
       locationID: 5005703
       appid: "{{ openweather_api_key }}"
 
   - name: weatherforecast
+    disabled: true
     position: top_center
     header: Weather Forecast
     config:
@@ -33,7 +43,18 @@ mm_modules:
     position: bottom_right
     config:
       url:
-        http://192.168.3.20:5000/api/cam-printer
+        https://www.youtube.com/embed/Nq4Ge6foW4Y?autoplay=1
+      updateInterval: 86400000
+      width: 1920
+      height: 1275
+      frameWidth: 510
+
+  - name: MMM-iFrame
+    github: https://github.com/alberttwong/MMM-iFrame.git
+    position: bottom_left
+    config:
+      url:
+        https://api.wetmet.net/client-content/PlayerFrame.php?CAMERA=210-02-01&amp;CFVER=WM&amp;WIDTH=640&amp;HEIGHT=360
       updateInterval: 86400000
       width: 1920
       height: 1275
@@ -70,7 +91,7 @@ mm_modules:
         zoom: 6
         loops: 5
       mapUrl: https://a.tile.openstreetmap.de/{z}/{x}/{y}.png
-      mapHeight: 225px
+      mapHeight: 250px
       mapWidth: 350px
       maxHistoryFrames: 7
       maxForecastFrames: 0

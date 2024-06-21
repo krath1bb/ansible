@@ -1,5 +1,4 @@
 ---
-configure_prerequisites: true
 install_magicmirror: true
 install_modules: true
 
