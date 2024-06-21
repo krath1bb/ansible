@@ -4,11 +4,6 @@ install_modules: true
 
 mm_root: '/home/pi/MagicMirror' # Root install directory for MagicMirrorOS.
 
-# mm_copy:
-#   - name: Custom css file
-#     src: mm-bk.custom.css
-#     dest: "{{ mm_root }}/css/custom.css"
-
 mm_modules:
   - name: alert
 
