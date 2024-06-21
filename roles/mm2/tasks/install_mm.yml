@@ -1,6 +1,24 @@
 ---
+- name: Turn off screen saver
+  shell: |
+    curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/screensaveroff.sh | bash
+  args:
+    chdir: /home/pi
+
 - name: Download and run MagicMirror installation script
   shell: |
     yes | curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh | bash
   args:
     chdir: /home/pi
+
+- name: Add using pm2 to autostart MagicMirror at bootup
+  shell: |
+    curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/fixuppm2.sh | bash
+  args:
+    chdir: /home/pi
+
+- name: Start MagicMirror
+  shell: |
+    pm2 start MagicMirror
+  args:
+    chdir: /home/pi/MagicMirror

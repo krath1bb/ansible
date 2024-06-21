@@ -8,11 +8,17 @@
     - "{{ playbook_dir }}/files/{{hosts}}.yml"
 
   tasks:
-    - name: Install Magic Mirror
+    - name: Install MagicMirror
       ansible.builtin.import_tasks:
         file: tasks/install_mm.yml
       when: install_magicmirror
       tags: ["magicmirror"]   
+
+    - name: Upgrade MagicMirror
+      ansible.builtin.import_tasks:
+        file: tasks/upgrade_mm.yml
+      when: upgrade_mm
+      tags: ["upgrade"]   
 
     # - name: Install Modules
     #   ansible.builtin.import_tasks:
