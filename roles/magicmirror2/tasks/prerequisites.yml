@@ -73,7 +73,7 @@
 - name: Disable Bluetooth Hardware
   lineinfile:
     dest: /boot/firmware/config.txt
-    line: "dtoverlay=pi3-disable-bt"
+    line: "dtoverlay=disable-bt"
 
 - name: Disable Bluetooth Service
   ansible.builtin.systemd:
