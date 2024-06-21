@@ -6,6 +6,7 @@
     chdir: /home/pi
 
 - name: Turn off screen saver
+  become: true
   apt:
     name:
       - lxplug-ptbatt
