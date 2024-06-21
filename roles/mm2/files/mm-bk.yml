@@ -39,11 +39,11 @@ mm_modules:
       height: 1275
       frameWidth: 510
 
-  - name: MMM-RTSPStream
-    github: https://github.com/shbatm/MMM-RTSPStream.git
-    position: middle_center
-    config:
-      initialSetup: true
+  # - name: MMM-RTSPStream
+  #   github: https://github.com/shbatm/MMM-RTSPStream.git
+  #   position: middle_center
+  #   config:
+  #     initialSetup: true
 
   - name: MMM-RAIN-MAP
     github: https://github.com/jalibu/MMM-RAIN-MAP.git
