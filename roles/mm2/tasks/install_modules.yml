@@ -39,7 +39,7 @@
 
 - name: Install and configure Magic Mirror modules
   block:
-    - name: "Download Module {{ item.name }}"
+    - name: Download Module "{{ item.name }}"
       ansible.builtin.git:
         repo: "{{ item.github }}"
         dest: "{{ mm_root }}/modules/{{ item.name }}"
