@@ -21,4 +21,4 @@
   shell: |
     pm2 start MagicMirror
   args:
-    chdir: /home/pi/MagicMirror
+    chdir: "{{ mm_root }}"

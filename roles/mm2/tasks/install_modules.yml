@@ -1,0 +1,78 @@
+---
+# - name: "Download Module {{ item.name }}"
+#   ansible.builtin.git:
+#     repo: "{{ item.github }}"
+#     dest: "{{ mm_root }}/modules/{{ item.name }}"
+#     clone: yes
+#     force: yes
+#     update: yes
+
+# - name: "NPM Install Module {{ item.name }}"
+#   ansible.builtin.npm:
+#     path: "{{ mm_root }}/modules/{{ item.name }}"
+#   ignore_errors: yes
+
+# - name: copy HOST.custom.css
+#   copy:
+#     src: "./files/{{ hosts }}.custom.css"
+#     dest: "{{ mm_root }}/css/custom.css"
+
+# - name: Magic Mirror Config.js
+#   copy:
+#     src: './files/config.js.j2'
+#     dest: "{{ mm_root }}/config/config.js"
+
+# - name: check config.js file
+#   command:
+#     chdir: "{{ mm_root }}/config"
+#     cmd: npm run config:check
+#   notify:
+#     - restart MM
+
+# - name: restart MM
+#   shell: "cd {{ mm_root }} && pm2 restart MagicMirror"
+#   ignore_errors: true
+
+
+
+
+
+- name: Install and configure Magic Mirror modules
+  block:
+    - name: "Download Module {{ item.name }}"
+      ansible.builtin.git:
+        repo: "{{ item.github }}"
+        dest: "{{ mm_root }}/modules/{{ item.name }}"
+        clone: yes
+        force: yes
+        update: yes
+      loop: "{{ mm_modules }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: "NPM Install Module {{ item.name }}"
+      ansible.builtin.npm:
+        path: "{{ mm_root }}/modules/{{ item.name }}"
+      loop: "{{ mm_modules }}"
+      loop_control:
+        label: "{{ item.name }}"
+      ignore_errors: yes
+
+  when: modules | length > 0
+
+- name: Copy custom.css
+  ansible.builtin.copy:
+    src: "{{ custom_css_file }}"
+    dest: "{{ mm_root }}/css/custom.css"
+
+- name: Copy Magic Mirror config.js
+  ansible.builtin.template:
+    src: './files/config.js.j2'
+    dest: "{{ mm_root }}/config/config.js"
+
+- name: Check Magic Mirror config.js file
+  command: npm run config:check
+  args:
+    chdir: "{{ mm_root }}/config"
+  notify:
+    - Restart Magic Mirror

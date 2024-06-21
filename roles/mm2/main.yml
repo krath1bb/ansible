@@ -14,11 +14,22 @@
       when: install_magicmirror
       tags: ["magicmirror"]   
 
+    - name: Install MagicMirror Modules
+      ansible.builtin.import_tasks:
+        file: tasks/install_modules.yml
+      when: install_modules
+      tags: ["modules"]   
+
     - name: Upgrade MagicMirror
       ansible.builtin.import_tasks:
         file: tasks/upgrade_mm.yml
       when: upgrade_mm
       tags: ["upgrade"]   
+
+  handlers:
+    - name: Restart Magic Mirror
+      shell: "cd {{ mm_root }} && pm2 restart MagicMirror"
+      ignore_errors: true
 
     # - name: Install Modules
     #   ansible.builtin.import_tasks:
