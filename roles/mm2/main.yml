@@ -5,7 +5,7 @@
   become_user: pi
   gather_facts: no
   vars_files:
-    - "{{ playbook_dir }}/files/{{hosts}}.yml"
+    - files/{{hosts}}.yml"
 
   tasks:
     - name: Install MagicMirror
