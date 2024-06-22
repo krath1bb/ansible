@@ -53,7 +53,7 @@ let config = {
 				weatherEndpoint: "",
 				type: "current",
 				locationID: "5005703",
-				apiKey: "499a9bf338339a9d94ad8757aa5c0743"
+				apiKey: "APIKEY"
 			}
 		},
 		{
