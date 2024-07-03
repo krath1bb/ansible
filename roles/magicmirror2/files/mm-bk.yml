@@ -3,6 +3,7 @@ install_magicmirror: true
 install_modules: true
 install_css: true
 generate_config: true
+upgrade_mm: false
 
 mm_root: '/home/pi/MagicMirror'
 
