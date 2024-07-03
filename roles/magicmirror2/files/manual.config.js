@@ -53,20 +53,32 @@ let config = {
 				weatherEndpoint: "",
 				type: "current",
 				locationID: "5005703",
-				apiKey: "APIKEY"
+				apiKey: "68f08c0f8201b16a577914d19be899b7"
 			}
 		},
 		{
-			module: 'MMM-iFrame',
-			position: 'bottom_right',
+			module: "MMM-RTSPStream",
+			position: "bottom_right",
 			config: {
-					url: ["https://www.youtube.com/embed/Nq4Ge6foW4Y?autoplay=1"],
-					updateInterval: 86400000,
-					width: "1920",
-					height: "1275",
-					frameWidth: "510"
-				}
-		},
+			  autoStart: true,
+			  rotateStreams: false,
+			  moduleWidth: 354,
+			  moduleHeight: 240,
+			  localPlayer: 'vlc',
+			  remotePlayer: 'none',
+			  showSnapWhenPaused: false,
+			  remoteSnaps: false,
+			  shutdownDelay: 12,
+			  stream1: {
+				name: 'MTU Camera Stream',
+				url: 'https://streamingwebcams.mtu.edu:1935/rtplive/camera011.stream/playlist.m3u8',
+				frameRate: '30',
+				width: 354, // Set the width to match the moduleWidth
+				height: 240, // Set the height to match the moduleHeight
+				muted: true,
+			  }
+			}
+		  },
 		{
 			module: 'MMM-iFrame',
 			position: 'bottom_left',

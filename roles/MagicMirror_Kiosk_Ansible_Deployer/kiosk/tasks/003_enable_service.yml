@@ -1,8 +1,0 @@
----
-
-  - name: restart the kiosk service
-    become: true
-    service:
-      name: kiosk.service
-      enabled: true
-      state: restarted

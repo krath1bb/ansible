@@ -1,53 +1,34 @@
 ---
-- name: Clone MagicMirror repository
-  git:
-    repo: 'https://github.com/MichMich/MagicMirror'
-    dest: "{{ mm_root }}"
-    version: master
-    update: yes
-  become: no
+- name: Turn off screen saver
+  shell: |
+    curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/screensaveroff.sh | bash
+  args:
+    chdir: /home/pi
 
-- name: Change directory owner to pi
-  file:
-    path: "{{ mm_root }}"
-    owner: pi
-    group: pi
-    state: directory
+- name: Remove Low Voltage notification
+  become: true
+  become_user: root
+  apt:
+    name:
+      - lxplug-ptbatt
+    state: absent
+    autoclean: true
+    autoremove: true
 
-# - name: Install MagicMirror dependencies
-#   command: npm install
-#   args:
-#     chdir: "{{ mm_root }}"
-#   become: no
-- name: NPM Install
-  npm:
-    path: "{{ mm_root }}"
-  become: no
+- name: Download and run MagicMirror installation script
+  shell: |
+    yes | curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/raspberry.sh | bash
+  args:
+    chdir: /home/pi
 
-- name: Install PM2 globally
-  npm:
-    name: pm2
-    global: yes
+- name: Add using pm2 to autostart MagicMirror at bootup
+  shell: |
+    curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/fixuppm2.sh | bash
+  args:
+    chdir: /home/pi
 
-- name: add using pm2 to autostart MagicMirror at bootup
-  shell:
-    cmd: bash -c "$(curl -sL https://raw.githubusercontent.com/sdetweil/MagicMirror_scripts/master/fixuppm2.sh)"
-# - name: Configure PM2 to start MagicMirror on boot
-#   command: pm2 startup systemd -u pi --hp /home/pi
-#   become: yes
-
-# - name: Start MagicMirror with PM2
-#   command: pm2 start "{{ mm_root }}/installers/mm.sh"
-#   become: no
-
-# - name: Save PM2 process list
-#   command: pm2 save
-#   become: no
-
-# - name: Ensure PM2 restarts MagicMirror on reboot
-#   systemd:
-#     name: pm2-pi
-#     enabled: yes
-#     state: started
-#   become: yes
-#   notify: reboot raspberry pi
+- name: Start MagicMirror
+  shell: |
+    pm2 start MagicMirror
+  args:
+    chdir: "{{ mm_root }}"

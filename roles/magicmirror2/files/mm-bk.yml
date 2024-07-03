@@ -1,55 +1,49 @@
 ---
-configure_prerequisites: true
 install_magicmirror: true
 install_modules: true
+install_css: true
+generate_config: true
 
-mm_root: '/home/pi/MagicMirror' # Root install directory for MagicMirrorOS.
+mm_root: '/home/pi/MagicMirror'
 
-# mm_copy:
-#   - name: Custom css file
-#     src: mm-bk.custom.css
-#     dest: "{{ mm_root }}/css/custom.css"
+custom_css: 'files/mm-bk.custom.css'
 
 mm_modules:
   - name: alert
 
   - name: updatenotification
-    position: top_bar
+    position: top_bar 
 
   - name: clock
     position: top_left
 
-  - name: currentweather
-    position: top_right
+  - name: weather
+    position: top_left
     config:
-      location: Pinckney
+      weatherProvider: openweathermap
+      type: current
       locationID: 5005703
-      appid: "{{ openweather_api_key }}"
+      apiKey: "{{ openweather_api_key }}"
 
-  - name: weatherforecast
-    position: top_right
-    header: Weather Forecast
+  - name: MMM-iFrame
+    github: https://github.com/alberttwong/MMM-iFrame.git
+    position: bottom_left
     config:
-      location: Pinckney
-      locationID: 5005703
-      appid: "{{ openweather_api_key }}"
+      url: ["http://172.16.0.12:1984/stream.html?src=2FL-FrontFacing"]
+      updateInterval: 86400000
+      width: "1920"
+      height: "1275"
+      frameWidth: "510"
 
   - name: MMM-iFrame
     github: https://github.com/alberttwong/MMM-iFrame.git
     position: bottom_right
     config:
-      url:
-        http://192.168.3.20:5000/api/cam-printer
+      url: ["http://172.16.0.12:1984/stream.html?src=Voron"]
       updateInterval: 86400000
-      width: 1920
-      height: 1275
-      frameWidth: 510
-
-  - name: MMM-RTSPStream
-    github: https://github.com/shbatm/MMM-RTSPStream.git
-    position: middle_center
-    config:
-      initialSetup: true
+      width: "1920"
+      height: "1275"
+      frameWidth: "510"
 
   - name: MMM-RAIN-MAP
     github: https://github.com/jalibu/MMM-RAIN-MAP.git
@@ -67,19 +61,19 @@ mm_modules:
       extraDelayCurrentFrameMs: 10000
       invertColors: false
       markers:
-        lat: 42.479840
-        lng: -83.893636
-        color: red
+        - lat: 42.479840
+          lng: -83.893636
+          color: red
       mapPositions:
-        lat: 42.479840
-        lng: -83.893636
-        zoom: 6
-        loops: 5
+        - lat: 42.479840
+          lng: -83.893636
+          zoom: 6
+          loops: 5
       mapUrl: https://a.tile.openstreetmap.de/{z}/{x}/{y}.png
-      mapHeight: 225px
-      mapWidth: 350px
+      mapHeight: "250px"
+      mapWidth: "350px"
       maxHistoryFrames: 7
       maxForecastFrames: 0
-      substitudeModules:
+      substitudeModules: []
       timeFormat: 24
       updateIntervalInSeconds: 300

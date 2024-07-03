@@ -1,41 +1,29 @@
 ---
-- name: "Download Module {{ item.name }}"
+- name: "List of default modules"
+  set_fact:
+    default_modules:
+      - alert
+      - calendar
+      - clock
+      - compliments
+      - helloworld
+      - newsfeed
+      - updatenotification
+      - weather
+
+- name: "Download Modules"
   ansible.builtin.git:
     repo: "{{ item.github }}"
     dest: "{{ mm_root }}/modules/{{ item.name }}"
     clone: yes
     force: yes
     update: yes
+  loop: "{{ mm_modules }}"
+  when: item.github is defined and item.name not in default_modules
 
-- name: "NPM Install Module {{ item.name }}"
+- name: "NPM Install Modules"
   ansible.builtin.npm:
     path: "{{ mm_root }}/modules/{{ item.name }}"
   ignore_errors: yes
-
-- name: copy HOST.custom.css
-  copy:
-    src: "./files/{{ hosts }}.custom.css"
-    dest: "{{ mm_root }}/css/custom.css"
-
-
-# - name: Create configuration file from sample
-#   copy:
-#     src: "{{ mm_root }}/config/config.js.sample"
-#     dest: "{{ mm_root }}/config/config.js"
-#     remote_src: yes
-#   become: no
-- name: Magic Mirror Config.js
-  template:
-    src: './files/config.js.j2'
-    dest: "{{ mm_root }}/config/config.js"
-
-- name: check config.js file
-  command:
-    chdir: "{{ mm_root }}/config"
-    cmd: npm run config:check
-  notify:
-    - restart MM
-
-- name: restart MM
-  shell: "cd {{ mm_root }} && pm2 restart MagicMirror"
-  ignore_errors: true
+  loop: "{{ mm_modules }}"
+  when: item.name not in default_modules

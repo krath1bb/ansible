@@ -1,85 +1,82 @@
 ---
-configure_prerequisites: true
 install_magicmirror: true
 install_modules: true
 
 mm_root: '/home/pi/MagicMirror'
 
-# mm_copy:
-#   - name: Custom css file
-#     src: mm-lr.custom.css
-#     dest: "{{ mm_root }}/css/custom.css"
-
 mm_modules:
-  - name: alert
+  # - name: alert
 
-  - name: updatenotification
-    position: top_bar
+  # - name: updatenotification
+  #   position: top_bar
 
-  - name: clock
-    position: top_left
+  # - name: clock
+  #   position: top_left
 
-  - name: currentweather
-    position: top_right
-    config:
-      location: Pinckney
-      locationID: 5005703
-      appid: "{{ openweather_api_key }}"
+  # - name: weather
+  #   position: top_left
+  #   config:
+  #     weatherProvider: openweathermap
+  #     type: current
+  #     locationID: 5005703
+  #     apiKey: "{{ openweather_api_key }}"
 
-  - name: weatherforecast
-    position: top_right
-    header: Weather Forecast
-    config:
-      location: Pinckney
-      locationID: 5005703
-      appid: "{{ openweather_api_key }}"
+  # - name: MMM-iFrame
+  #   github: https://github.com/alberttwong/MMM-iFrame.git
+  #   position: bottom_right
+  #   config:
+  #     url:
+  #       http://192.168.3.20:5000/api/cam-printer
+  #     updateInterval: 86400000
+  #     width: 1920
+  #     height: 1275
+  #     frameWidth: 510
+
+  # - name: MMM-RTSPStream
+  #   github: https://github.com/shbatm/MMM-RTSPStream.git
+  #   position: middle_center
+  #   config:
+  #     initialSetup: true
+
+  # - name: MMM-RAIN-MAP
+  #   github: https://github.com/jalibu/MMM-RAIN-MAP.git
+  #   position: center
+  #   config:
+  #     animationSpeedMs: 1000
+  #     colorScheme: 8
+  #     colorizeTime: true
+  #     defaultZoomLevel: 8
+  #     displayTime: true
+  #     displayTimeline: true
+  #     displayClockSymbol: true
+  #     displayHoursBeforeRain: -1
+  #     extraDelayLastFrameMs: 1000
+  #     extraDelayCurrentFrameMs: 10000
+  #     invertColors: false
+  #     markers:
+  #       lat: 42.479840
+  #       lng: -83.893636
+  #       color: red
+  #     mapPositions:
+  #       lat: 42.479840
+  #       lng: -83.893636
+  #       zoom: 9
+  #       loops: 5
+  #     mapUrl: https://a.tile.openstreetmap.de/{z}/{x}/{y}.png
+  #     mapHeight: 225px
+  #     mapWidth: 350px
+  #     maxHistoryFrames: 7
+  #     maxForecastFrames: 0
+  #     substitudeModules:
+  #     timeFormat: 24
+  #     updateIntervalInSeconds: 300
 
   - name: MMM-iFrame
     github: https://github.com/alberttwong/MMM-iFrame.git
-    position: bottom_right
+    position: center
     config:
-      url:
-        http://192.168.3.20:5000/api/cam-printer
+      url: ["http://172.16.0.12:1984/stream.html?src=2FL-FrontFacing"]
       updateInterval: 86400000
-      width: 1920
-      height: 1275
-      frameWidth: 510
-
-  - name: MMM-RTSPStream
-    github: https://github.com/shbatm/MMM-RTSPStream.git
-    position: middle_center
-    config:
-      initialSetup: true
-
-  - name: MMM-RAIN-MAP
-    github: https://github.com/jalibu/MMM-RAIN-MAP.git
-    position: top_right
-    config:
-      animationSpeedMs: 1000
-      colorScheme: 8
-      colorizeTime: true
-      defaultZoomLevel: 8
-      displayTime: true
-      displayTimeline: true
-      displayClockSymbol: true
-      displayHoursBeforeRain: -1
-      extraDelayLastFrameMs: 1000
-      extraDelayCurrentFrameMs: 10000
-      invertColors: false
-      markers:
-        lat: 42.479840
-        lng: -83.893636
-        color: red
-      mapPositions:
-        lat: 42.479840
-        lng: -83.893636
-        zoom: 6
-        loops: 5
-      mapUrl: https://a.tile.openstreetmap.de/{z}/{x}/{y}.png
-      mapHeight: 225px
-      mapWidth: 350px
-      maxHistoryFrames: 7
-      maxForecastFrames: 0
-      substitudeModules:
-      timeFormat: 24
-      updateIntervalInSeconds: 300
+      width: "1920"
+      height: "1275"
+      frameWidth: "510"

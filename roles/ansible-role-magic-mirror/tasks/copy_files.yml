@@ -1,6 +1,0 @@
----
-
-- name: "Copy files for {{ item.name }}"
-  ansible.builtin.copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
