@@ -30,7 +30,7 @@ mm_modules:
     github: https://github.com/alberttwong/MMM-iFrame.git
     position: bottom_left
     config:
-      url: ["http://172.16.0.12:1984/stream.html?src=2FL-FrontFacing"]
+      url: ["http://172.16.0.12:1984/stream.html?src=2FL-FrontFacing-MQ"]
       updateInterval: 86400000
       width: "1920"
       height: "1275"
