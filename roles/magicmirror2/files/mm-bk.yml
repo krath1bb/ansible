@@ -40,7 +40,7 @@ mm_modules:
     github: https://github.com/alberttwong/MMM-iFrame.git
     position: bottom_right
     config:
-      url: ["http://172.16.0.12:1984/stream.html?src=Voron"]
+      url: ["http://172.16.0.12:1984/stream.html?src=Driveway-MQ"]
       updateInterval: 86400000
       width: "1920"
       height: "1275"
