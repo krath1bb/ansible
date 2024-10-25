@@ -49,7 +49,7 @@ let config = {
 			module: "weather",
 			position: "top_left",
 			config: {
-				weatherProvider: "openweathermap",
+				weatherProvider: "pirateweather",
 				weatherEndpoint: "",
 				type: "current",
 				locationID: "5005703",

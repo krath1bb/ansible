@@ -21,10 +21,10 @@ mm_modules:
   - name: weather
     position: top_left
     config:
-      weatherProvider: openweathermap
+      weatherProvider: pirateweather
       type: current
       locationID: 5005703
-      apiKey: "{{ openweather_api_key }}"
+      apiKey: "{{ weather_api_key }}"
 
   - name: MMM-iFrame
     github: https://github.com/alberttwong/MMM-iFrame.git
