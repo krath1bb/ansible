@@ -2,7 +2,7 @@
 - name: Configure docker host
   hosts: "{{ hosts }}"
   become: yes
-  become_user: root
+  become_user: "{{ becomeuser }}"
   gather_facts: no
 
   tasks:
