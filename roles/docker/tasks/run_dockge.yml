@@ -33,7 +33,8 @@
             # Tell Dockge where is your stacks directory
             - DOCKGE_STACKS_DIR=/srv/docker
 
-- name: Start Docker Compose stack
-  community.docker.docker_compose:
-    project_src: /srv/docker-compose
-    state: present
+- name: Start Docker Compose stack using docker compose CLI
+  ansible.builtin.command:
+    cmd: docker compose up -d
+    chdir: /srv/docker/dockge
+
