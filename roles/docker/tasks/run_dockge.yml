@@ -28,7 +28,7 @@
       - /var/run/docker.sock:/var/run/docker.sock:ro  # Mount the Docker socket
     ports:
       - "5001:5001"  # Replace 8080 with the desired host port
-    environment:
+    env:
       DATA_PATH: /srv/docker  # Point to the actual data directory on the host
     log_driver: "json-file"
     log_options:
