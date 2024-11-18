@@ -25,6 +25,7 @@
     restart_policy: always
     volumes:
       - /srv/docker/dockge:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # Mount the Docker socket
     ports:
       - "5001:5001"  # Replace 8080 with the desired host port
     log_driver: "json-file"
