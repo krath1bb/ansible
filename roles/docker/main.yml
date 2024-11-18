@@ -4,26 +4,21 @@
   become: yes
   become_user: ansible
   gather_facts: no
-  vars_files:
-    - "{{ playbook_dir }}/files/{{hosts}}.yml"
 
   tasks:
     - name: Install VM Tools
       ansible.builtin.import_tasks:
         file: tasks/install_vmtools.yml
-      when: install_vmtools
       tags: ["vmtools"]   
 
     - name: Install Docker
       ansible.builtin.import_tasks:
         file: tasks/install_docker.yml
-      when: install_docker
       tags: ["docker"]   
 
     - name: Run container dockge
       ansible.builtin.import_tasks:
         file: tasks/run_dockge.yml
-      when: run_dockge
       tags: ["dockge"]      
 
   handlers:
