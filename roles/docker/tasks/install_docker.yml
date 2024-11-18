@@ -104,3 +104,9 @@
     enabled: yes
   tags:
     - docker
+
+# Configure Docker networks
+- name: Create Docker network "vm-network"
+  community.docker.docker_network:
+    name: vm-network
+    state: present
