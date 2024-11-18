@@ -71,17 +71,6 @@
   tags:
     - docker
 
-# - name: Install pip for Python3
-#   ansible.builtin.apt:
-#     name: python3-pip
-#     state: present
-#     update_cache: yes
-
-# - name: Install Docker SDK for Python
-#   ansible.builtin.pip:
-#     name: docker
-#     state: present
-
 # Configure Docker default path
 - name: Create Docker container path
   ansible.builtin.file:
