@@ -1,0 +1,22 @@
+---
+# Install the QEMU Guest Agent for Proxmox
+- name: Ensure the package list is updated
+  ansible.builtin.apt:
+    update_cache: yes
+  tags:
+    - vmtools
+
+- name: Install QEMU Guest Agent
+  ansible.builtin.apt:
+    name: qemu-guest-agent
+    state: present
+  tags:
+    - vmtools
+
+- name: Ensure QEMU Guest Agent service is enabled and started
+  ansible.builtin.service:
+    name: qemu-guest-agent
+    state: started
+    enabled: yes
+  tags:
+    - vmtools

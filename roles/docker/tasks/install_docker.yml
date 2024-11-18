@@ -1,0 +1,106 @@
+---
+# Install Docker on Ubuntu
+- name: Install prerequisites for Docker
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+    update_cache: yes
+  tags:
+    - docker
+
+- name: Add Docker's official GPG key
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/docker-archive-keyring.gpg
+  tags:
+    - docker
+
+- name: Add Docker APT repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+    state: present
+  tags:
+    - docker
+
+- name: Install Docker
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+  tags:
+    - docker
+
+# Configure Docker default path
+- name: Create Docker container path
+  ansible.builtin.file:
+    path: /srv/docker
+    state: directory
+    owner: docker
+    group: docker
+    mode: '0755'
+  tags:
+    - docker
+
+- name: Configure Docker daemon
+  ansible.builtin.copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "data-root": "/srv/docker"
+      }
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart Docker
+  tags:
+    - docker
+
+# Create Docker user and set permissions
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+  tags:
+    - docker
+
+- name: Create docker user
+  ansible.builtin.user:
+    name: docker
+    group: docker
+    home: /home/docker
+    shell: /bin/bash
+    state: present
+  tags:
+    - docker
+
+- name: Add ansible user to docker group
+  ansible.builtin.user:
+    name: ansible
+    groups: docker
+    append: yes
+  tags:
+    - docker
+
+- name: Add bkrathwohl user to docker group
+  ansible.builtin.user:
+    name: bkrathwohl
+    groups: docker
+    append: yes
+  tags:
+    - docker
+
+- name: Ensure Docker service is started and enabled
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
+  tags:
+    - docker

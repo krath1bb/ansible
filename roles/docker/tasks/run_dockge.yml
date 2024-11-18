@@ -1,0 +1,40 @@
+---
+# Pull the dockge image
+- name: Pull the dockge image
+  ansible.builtin.docker_image:
+    name: dockge
+    source: pull
+  tags:
+    - dockge
+
+# Ensure /srv/docker exists
+- name: Create a directory for dockge container data
+  ansible.builtin.file:
+    path: /srv/docker/dockge
+    state: directory
+    owner: docker
+    group: docker
+    mode: '0755'
+  tags:
+    - dockge
+
+# Run the dockge container
+- name: Run the dockge container
+  ansible.builtin.docker_container:
+    name: dockge
+    image: dockge:latest
+    state: started
+    restart_policy: always
+    volumes:
+      - /srv/docker/dockge:/data
+    ports:
+      - "8080:80"  # Replace 8080 with the desired host port
+    #env:
+    #  - ENV_VAR_NAME=value  # Replace with any environment variables the container might require
+    log_driver: "json-file"
+    log_options:
+      max-size: "10m"
+      max-file: "3"
+    detach: yes
+  tags:
+    - dockge
