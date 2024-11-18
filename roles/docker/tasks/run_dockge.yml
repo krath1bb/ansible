@@ -1,40 +1,39 @@
 ---
-# Pull the dockge image
-- name: Pull the dockge image from Docker Hub
-  ansible.builtin.docker_image:
-    name: louislam/dockge:latest
-    source: pull
-  tags:
-    - dockge
-
-- name: Create a directory for dockge container data
+- name: Create directory for docker-compose file
   ansible.builtin.file:
     path: /srv/docker/dockge
     state: directory
-    owner: docker
-    group: docker
-    mode: '0755'
-  tags:
-    - dockge
 
-- name: Run the dockge container
-  ansible.builtin.docker_container:
-    name: dockge
-    image: louislam/dockge:latest
-    state: started
-    restart_policy: always
-    volumes:
-      - /opt/data:/opt/data  # Keep the container's internal mapping as expected
-      - /var/run/docker.sock:/var/run/docker.sock:ro  # Mount the Docker socket
-    ports:
-      - "5001:5001"  # Replace 8080 with the desired host port
-    env:
-      DATA_PATH: /srv/docker  # Point to the actual data directory on the host
-    log_driver: "json-file"
-    log_options:
-      max-size: "10m"
-      max-file: "3"
-    detach: yes
-  tags:
-    - dockge
+- name: Deploy docker-compose.yml for dockge
+  ansible.builtin.copy:
+    dest: /srv/docker/dockge/docker-compose.yml
+    content: |
+      version: '3.3'
 
+      services:
+        dockge:
+          image: louislam/dockge:latest
+          restart: unless-stopped
+          ports:
+            # Host Port : Container Port
+            - 5001:5001
+          volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /srv/docker/dockge:/app/data
+              
+            # If you want to use private registries, you need to share the auth file with Dockge:
+            # - /root/.docker/:/root/.docker
+
+            # Stacks Directory
+            # READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
+            # 1. FULL path only. No relative path (MUST)
+            # 2. Left Stacks Path === Right Stacks Path (MUST)
+            - /srv/docker:/srv/docker
+          environment:
+            # Tell Dockge where is your stacks directory
+            - DOCKGE_STACKS_DIR=/srv/docker
+
+- name: Start Docker Compose stack
+  community.docker.docker_compose:
+    project_src: /srv/docker-compose
+    state: present
