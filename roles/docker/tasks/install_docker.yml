@@ -1,4 +1,38 @@
 ---
+# Create Docker user and set permissions
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+  tags:
+    - docker
+
+- name: Create docker user
+  ansible.builtin.user:
+    name: docker
+    group: docker
+    home: /home/docker
+    shell: /bin/bash
+    state: present
+  tags:
+    - docker
+
+- name: Add ansible user to docker group
+  ansible.builtin.user:
+    name: ansible
+    groups: docker
+    append: yes
+  tags:
+    - docker
+
+- name: Add bkrathwohl user to docker group
+  ansible.builtin.user:
+    name: bkrathwohl
+    groups: docker
+    append: yes
+  tags:
+    - docker
+
 # Install Docker on Ubuntu
 - name: Install prerequisites for Docker
   ansible.builtin.apt:
@@ -60,40 +94,6 @@
     mode: '0644'
   notify:
     - Restart Docker
-  tags:
-    - docker
-
-# Create Docker user and set permissions
-- name: Ensure docker group exists
-  ansible.builtin.group:
-    name: docker
-    state: present
-  tags:
-    - docker
-
-- name: Create docker user
-  ansible.builtin.user:
-    name: docker
-    group: docker
-    home: /home/docker
-    shell: /bin/bash
-    state: present
-  tags:
-    - docker
-
-- name: Add ansible user to docker group
-  ansible.builtin.user:
-    name: ansible
-    groups: docker
-    append: yes
-  tags:
-    - docker
-
-- name: Add bkrathwohl user to docker group
-  ansible.builtin.user:
-    name: bkrathwohl
-    groups: docker
-    append: yes
   tags:
     - docker
 
