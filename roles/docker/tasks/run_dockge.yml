@@ -26,7 +26,7 @@
     volumes:
       - /srv/docker/dockge:/data
     ports:
-      - "5001:80"  # Replace 8080 with the desired host port
+      - "5001:5001"  # Replace 8080 with the desired host port
     log_driver: "json-file"
     log_options:
       max-size: "10m"
