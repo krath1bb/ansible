@@ -3,6 +3,7 @@
 - name: Ensure the package list is updated
   ansible.builtin.apt:
     update_cache: yes
+    force_apt_get: true
   tags:
     - vmtools
 
