@@ -3,14 +3,17 @@
   hosts: "{{ hosts }}"
   become: yes
   become_user: root
-  gather_facts: yes
+  gather_facts: no
 
-  vars_prompt:
-    - name: "{{ vm_id }}"
-      prompt: Enter the VM ID to configure
-      private: no
+  vars:
+    vm_id: "{{ vm_id | default('') }}"  # Use passed variable if provided, or default to empty
 
   tasks:
+    - name: Ensure vm_id is provided
+      fail:
+        msg: "You must specify a VM ID (vm_id) either as an extra variable or default it in the playbook."
+      when: vm_id == ""
+
     - name: Configure QSV passthrough for hosts
       ansible.builtin.import_tasks:
         file: tasks/configure_qsv.yml
