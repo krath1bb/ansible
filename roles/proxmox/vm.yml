@@ -15,7 +15,7 @@
       when: vm_id == ""
 
     - name: Find Intel GPU PCI address
-      command: lspci | grep -i vga
+      shell: lspci | grep -i vga
       register: intel_gpu_pci
 
     - name: Add GPU passthrough to VM configuration
