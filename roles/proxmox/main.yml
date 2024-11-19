@@ -5,10 +5,10 @@
   become_user: root
   gather_facts: yes
 
-  # vars_prompt:
-  #   - name: "{{ vm_id }}"
-  #     prompt: Enter the VM ID to configure
-  #     private: no
+  vars_prompt:
+    - name: "{{ vm_id }}"
+      prompt: Enter the VM ID to configure
+      private: no
 
   tasks:
     - name: Configure QSV passthrough for hosts
@@ -16,10 +16,10 @@
         file: tasks/configure_qsv.yml
       tags: ["qsv"]
 
-    # - name: Configure VM settings
-    #   ansible.builtin.import_tasks:
-    #     file: tasks/configure_vm.yml
-    #   tags: ["vm"]
+    - name: Configure VM settings
+      ansible.builtin.import_tasks:
+        file: tasks/configure_vm.yml
+      tags: ["vm"]
 
   handlers:
     - name: update_grub
