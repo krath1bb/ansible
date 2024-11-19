@@ -4,25 +4,17 @@
   become: yes
   become_user: root
   gather_facts: no
-
-  vars:
-    vm_id: "{{ vm_id | default('') }}"  # Use passed variable if provided, or default to empty
-
+  
   tasks:
-    - name: Ensure vm_id is provided
-      fail:
-        msg: "You must specify a VM ID (vm_id) either as an extra variable or default it in the playbook."
-      when: vm_id == ""
-
     - name: Configure QSV passthrough for hosts
       ansible.builtin.import_tasks:
         file: tasks/configure_qsv.yml
       tags: ["qsv"]
 
-    - name: Configure VM settings
-      ansible.builtin.import_tasks:
-        file: tasks/configure_vm.yml
-      tags: ["vm"]
+    # - name: Configure VM settings
+    #   ansible.builtin.import_tasks:
+    #     file: tasks/configure_vm.yml
+    #   tags: ["vm"]
 
   handlers:
     - name: update_grub
