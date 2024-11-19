@@ -1,0 +1,48 @@
+---
+- name: Update GRUB configuration for Intel QSV
+  copy:
+    dest: /etc/default/grub
+    content: |
+      GRUB_DEFAULT=0
+      GRUB_TIMEOUT=5
+      GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+      GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt video=efifb:off"
+      GRUB_CMDLINE_LINUX=""
+  notify: update_grub
+
+- name: Create a file to load required kernel modules
+  copy:
+    dest: /etc/modules-load.d/intel.conf
+    content: |
+      vfio
+      vfio_iommu_type1
+      vfio_pci
+      vfio_virqfd
+      i915
+
+- name: Blacklist unnecessary drivers
+  copy:
+    dest: /etc/modprobe.d/blacklist.conf
+    content: |
+      blacklist snd_hda_intel
+      blacklist snd_hda_codec_hdmi
+      blacklist soundcore
+
+- name: Reboot the host to apply changes
+  reboot:
+
+- name: Find Intel GPU PCI address
+  command: lspci | grep -i vga
+  register: intel_gpu_pci
+
+- name: Add GPU to VM configuration
+  lineinfile:
+    path: "/etc/pve/qemu-server/{{ vm_id }}.conf"
+    line: "hostpci0: {{ pci_address }},pcie=1,x-vga=1"
+  vars:
+    pci_address: "{{ intel_gpu_pci.stdout.split()[0] }}"
+  when: intel_gpu_pci.stdout is not none
+  vars_prompt:
+    - name: vm_id
+      prompt: Enter the VM ID to modify
+      private: no

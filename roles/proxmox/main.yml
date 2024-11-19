@@ -1,0 +1,16 @@
+---
+- name: Configure Proxmox hosts
+  hosts: "{{ hosts }}"
+  become: yes
+  become_user: root
+  gather_facts: no
+
+  tasks:
+    - name: Configure QSV passthrough
+      ansible.builtin.import_tasks:
+        file: tasks/configure_qsv.yml
+      tags: ["qsv"]
+
+  handlers:
+    - name: update_grub
+      command: update-grub
