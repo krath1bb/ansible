@@ -30,19 +30,3 @@
 
 - name: Reboot the host to apply changes
   reboot:
-
-- name: Find Intel GPU PCI address
-  command: lspci | grep -i vga
-  register: intel_gpu_pci
-
-- name: Add GPU to VM configuration
-  lineinfile:
-    path: "/etc/pve/qemu-server/{{ vm_id }}.conf"
-    line: "hostpci0: {{ pci_address }},pcie=1,x-vga=1"
-  vars:
-    pci_address: "{{ intel_gpu_pci.stdout.split()[0] }}"
-  when: intel_gpu_pci.stdout is not none
-  vars_prompt:
-    - name: vm_id
-      prompt: Enter the VM ID to modify
-      private: no
