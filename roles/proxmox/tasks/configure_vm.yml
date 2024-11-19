@@ -10,7 +10,3 @@
   vars:
     pci_address: "{{ intel_gpu_pci.stdout.split()[0] }}"
   when: intel_gpu_pci.stdout is not none
-  vars_prompt:
-    - name: vm_id
-      prompt: Enter the VM ID to modify
-      private: no

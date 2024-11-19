@@ -3,7 +3,12 @@
   hosts: "{{ hosts }}"
   become: yes
   become_user: root
-  gather_facts: no
+  gather_facts: yes
+
+  vars_prompt:
+    - name: "{{ vm_id }}"
+      prompt: Enter the VM ID to configure
+      private: no
 
   tasks:
     - name: Configure QSV passthrough for hosts
