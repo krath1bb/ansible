@@ -1,0 +1,31 @@
+---
+- name: Configure GPU passthrough for a specific VM
+  hosts: "{{ hosts }}"
+  become: yes
+  become_user: root
+  gather_facts: no
+
+  vars:
+    vm_id: ""  # Ensure the vm_id is passed when running the playbook
+
+  tasks:
+    - name: Ensure vm_id is provided
+      fail:
+        msg: "You must specify a VM ID (vm_id) to configure GPU passthrough."
+      when: vm_id == ""
+
+    - name: Find Intel GPU PCI address
+      command: lspci | grep -i vga
+      register: intel_gpu_pci
+
+    - name: Add GPU passthrough to VM configuration
+      lineinfile:
+        path: "/etc/pve/qemu-server/{{ vm_id }}.conf"
+        line: "hostpci0: {{ pci_address }},pcie=1,x-vga=1"
+      vars:
+        pci_address: "{{ intel_gpu_pci.stdout.split()[0] }}"
+      when: intel_gpu_pci.stdout is not none
+
+    - name: Display completion message
+      debug:
+        msg: "GPU passthrough configuration applied to VM ID {{ vm_id }}."

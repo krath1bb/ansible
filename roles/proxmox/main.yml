@@ -11,11 +11,6 @@
         file: tasks/configure_qsv.yml
       tags: ["qsv"]
 
-    # - name: Configure VM settings
-    #   ansible.builtin.import_tasks:
-    #     file: tasks/configure_vm.yml
-    #   tags: ["vm"]
-
   handlers:
     - name: update_grub
       command: update-grub
