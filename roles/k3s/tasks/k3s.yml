@@ -1,0 +1,22 @@
+---
+- name: Download and execute K3s install script
+  shell: |
+    curl -sfL https://get.k3s.io | sh -s - --{{ k3s_server_args }}
+  args:
+    creates: /usr/local/bin/k3s
+  become: yes
+
+- name: Enable K3s service
+  systemd:
+    name: "{{ k3s_service_name }}"
+    enabled: yes
+    state: started
+
+- name: Verify K3s installation
+  command: kubectl version --client
+  register: kubectl_version
+  changed_when: false
+
+- name: Debug K3s installation status
+  debug:
+    msg: "K3s installed successfully. Kubectl version: {{ kubectl_version.stdout_lines }}"

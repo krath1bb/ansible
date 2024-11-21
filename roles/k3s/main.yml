@@ -1,0 +1,33 @@
+---
+- name: Configure k3s host
+  hosts: "{{ hosts }}"
+  become: yes
+  become_user: "{{ becomeuser }}"
+  gather_facts: yes
+
+  vars:
+    k3s_service_name: "k3s"
+    k3s_server_args: "--write-kubeconfig-mode=644"
+
+  tasks:
+    - name: Update Server
+      ansible.builtin.import_tasks:
+        file: tasks/update.yml
+      tags: ["update"]   
+
+    - name: Install required dependencies
+      ansible.builtin.import_tasks:
+        file: tasks/dependencies.yml
+      tags: ["dependencies"]   
+
+    - name: Install k3s
+      ansible.builtin.import_tasks:
+        file: tasks/k3s.yml
+      tags: ["k3s"]      
+
+  handlers:
+    - name: Restart K3s service
+      systemd:
+        name: "{{ k3s_service_name }}"
+        state: restarted
+      become: yes

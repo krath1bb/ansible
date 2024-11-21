@@ -1,0 +1,8 @@
+---
+- name: Install curl, ca-certificates, and other dependencies
+  apt:
+    name:
+      - curl
+      - ca-certificates
+      - software-properties-common
+    state: present
