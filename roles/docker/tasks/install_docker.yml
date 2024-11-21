@@ -107,6 +107,7 @@
 
 # Configure Docker networks
 - name: Create Docker network "vm-network"
-  community.docker.docker_network:
-    name: vm-network
-    state: present
+  ansible.builtin.command:
+    cmd: docker network create vm-network
+  register: result
+  failed_when: "'Error' in result.stderr"
