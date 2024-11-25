@@ -72,13 +72,22 @@
     - docker
 
 # Configure Docker default path
-- name: Create Docker container path
+- name: Ensure /srv/docker has correct ownership and permissions
   ansible.builtin.file:
     path: /srv/docker
     state: directory
     owner: docker
     group: docker
-    mode: '0755'
+    mode: '2775'  # 2 sets the setgid bit
+  tags:
+    - docker
+
+- name: Enforce default permissions for /srv/docker
+  ansible.builtin.command:
+    cmd: |
+      setfacl -dm u::rwx,g::rwx,o::rx /srv/docker
+  args:
+    warn: false
   tags:
     - docker
 
