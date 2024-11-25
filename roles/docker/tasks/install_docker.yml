@@ -1,5 +1,5 @@
 ---
-# Create Docker user and set permissions
+# Ensure Docker group and user exist
 - name: Ensure docker group exists
   ansible.builtin.group:
     name: docker
@@ -17,6 +17,7 @@
   tags:
     - docker
 
+# Add users to the Docker group
 - name: Add ansible user to docker group
   ansible.builtin.user:
     name: ansible
@@ -71,36 +72,66 @@
   tags:
     - docker
 
-# Configure Docker default path
-- name: Install ACL tools
+# Ensure /srv/docker directory is properly configured
+- name: Ensure ACL tools are installed
   ansible.builtin.package:
     name: acl
     state: present
   tags:
     - docker
 
-- name: Set ownership of /srv/docker
-  ansible.builtin.file:
-    path: /srv/docker
-    state: directory
-    owner: docker
-    group: docker
-    mode: '2775'  # Setgid bit ensures new files inherit group
+- name: Set ownership of /srv/docker recursively
+  ansible.builtin.command:
+    cmd: chown -R docker:docker /srv/docker
+  args:
+    warn: false
+  tags:
+    - docker
+
+- name: Set permissions for /srv/docker recursively
+  ansible.builtin.command:
+    cmd: chmod -R 2775 /srv/docker
+  args:
+    warn: false
   tags:
     - docker
 
 - name: Enforce default ACLs for /srv/docker
   ansible.builtin.command:
-    cmd: setfacl -R -m u:docker:rwx,g:docker:rwx /srv/docker
-  tags:
-    - docker
-
-- name: Set default ACLs for new files and directories
-  ansible.builtin.command:
     cmd: setfacl -R -dm u::rwx,g::rwx,o::rx /srv/docker
+  args:
+    warn: false
   tags:
     - docker
 
+# Configure Docker daemon to use /srv/docker/system as the data-root
+- name: Configure Docker daemon
+  ansible.builtin.copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "data-root": "/srv/docker/system"
+      }
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart Docker
+  tags:
+    - docker
+
+# Ensure the /srv/docker/system directory exists
+- name: Create Docker system directory
+  ansible.builtin.file:
+    path: /srv/docker/system
+    state: directory
+    owner: docker
+    group: docker
+    mode: '2775'
+  tags:
+    - docker
+
+# Configure Docker daemon to use /srv/docker
 - name: Configure Docker daemon
   ansible.builtin.copy:
     dest: /etc/docker/daemon.json
@@ -130,3 +161,5 @@
     cmd: docker network create vm-network
   register: result
   failed_when: "'Error' in result.stderr"
+  tags:
+    - docker
