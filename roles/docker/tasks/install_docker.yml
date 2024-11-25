@@ -83,8 +83,6 @@
 - name: Set ownership of /srv/docker recursively
   ansible.builtin.command:
     cmd: chown -R docker:docker /srv/docker
-  args:
-    warn: false
   tags:
     - docker
 
