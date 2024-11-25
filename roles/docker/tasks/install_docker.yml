@@ -122,6 +122,16 @@
   tags:
     - docker
 
+- name: Ensure Docker tmp directory exists
+  ansible.builtin.file:
+    path: /srv/docker/system/tmp
+    state: directory
+    owner: docker
+    group: docker
+    mode: '1777'  # World-writable with sticky bit
+  tags:
+    - docker
+
 - name: Ensure Docker service is started and enabled
   ansible.builtin.service:
     name: docker
