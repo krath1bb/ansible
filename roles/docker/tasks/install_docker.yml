@@ -72,6 +72,13 @@
     - docker
 
 # Configure Docker default path
+- name: Install ACL tools
+  ansible.builtin.package:
+    name: acl
+    state: present
+  tags:
+    - docker
+
 - name: Ensure /srv/docker has correct ownership and permissions
   ansible.builtin.file:
     path: /srv/docker
