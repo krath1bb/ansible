@@ -100,6 +100,28 @@
   tags:
     - docker
 
+- name: Ensure Docker tmp directory exists
+  ansible.builtin.file:
+    path: /srv/docker/system/tmp
+    state: directory
+    owner: docker
+    group: docker
+    mode: '1777'  # World-writable with sticky bit
+  tags:
+    - docker
+
+- name: Set ownership recursively for Docker data-root
+  ansible.builtin.command:
+    cmd: chown -R docker:docker /srv/docker/system
+  tags:
+    - docker
+
+- name: Set permissions recursively for Docker data-root
+  ansible.builtin.command:
+    cmd: chmod -R 2775 /srv/docker/system
+  tags:
+    - docker
+
 - name: Set default ACLs for /srv/docker
   ansible.builtin.command:
     cmd: setfacl -R -dm u::rwx,g::rwx,o::rx /srv/docker
@@ -119,16 +141,6 @@
     mode: '0644'
   notify:
     - Restart Docker
-  tags:
-    - docker
-
-- name: Ensure Docker tmp directory exists
-  ansible.builtin.file:
-    path: /srv/docker/system/tmp
-    state: directory
-    owner: docker
-    group: docker
-    mode: '1777'  # World-writable with sticky bit
   tags:
     - docker
 
