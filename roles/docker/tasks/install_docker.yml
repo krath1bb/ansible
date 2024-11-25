@@ -84,10 +84,7 @@
 
 - name: Enforce default permissions for /srv/docker
   ansible.builtin.command:
-    cmd: |
-      setfacl -dm u::rwx,g::rwx,o::rx /srv/docker
-  args:
-    warn: false
+    cmd: setfacl -dm u::rwx,g::rwx,o::rx /srv/docker
   tags:
     - docker
 

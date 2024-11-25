@@ -6,11 +6,6 @@
   gather_facts: yes
 
   tasks:
-    # - name: Install VM Tools
-    #   ansible.builtin.import_tasks:
-    #     file: tasks/install_vmtools.yml
-    #   tags: ["vmtools"]   
-
     - name: Install Docker
       ansible.builtin.import_tasks:
         file: tasks/install_docker.yml
