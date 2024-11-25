@@ -1,9 +1,14 @@
 ---
+# Ensure the directory for the docker-compose file exists
 - name: Create directory for docker-compose file
   ansible.builtin.file:
     path: /srv/docker/dockge
     state: directory
+    owner: docker
+    group: docker
+    mode: '2775'
 
+# Deploy the docker-compose.yml file for dockge
 - name: Deploy docker-compose.yml for dockge
   ansible.builtin.copy:
     dest: /srv/docker/dockge/docker-compose.yml
@@ -32,9 +37,14 @@
           environment:
             # Tell Dockge where is your stacks directory
             - DOCKGE_STACKS_DIR=/srv/docker
+    owner: docker
+    group: docker
+    mode: '0644'
 
+# Start Docker Compose stack using the docker compose CLI
 - name: Start Docker Compose stack using docker compose CLI
   ansible.builtin.command:
     cmd: docker compose up -d
     chdir: /srv/docker/dockge
-
+  become: yes
+  become_user: docker
