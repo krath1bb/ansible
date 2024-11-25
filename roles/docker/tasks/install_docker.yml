@@ -79,19 +79,25 @@
   tags:
     - docker
 
-- name: Ensure /srv/docker has correct ownership and permissions
+- name: Set ownership of /srv/docker
   ansible.builtin.file:
     path: /srv/docker
     state: directory
     owner: docker
     group: docker
-    mode: '2775'  # 2 sets the setgid bit
+    mode: '2775'  # Setgid bit ensures new files inherit group
   tags:
     - docker
 
-- name: Enforce default permissions for /srv/docker
+- name: Enforce default ACLs for /srv/docker
   ansible.builtin.command:
-    cmd: setfacl -dm u::rwx,g::rwx,o::rx /srv/docker
+    cmd: setfacl -R -m u:docker:rwx,g:docker:rwx /srv/docker
+  tags:
+    - docker
+
+- name: Set default ACLs for new files and directories
+  ansible.builtin.command:
+    cmd: setfacl -R -dm u::rwx,g::rwx,o::rx /srv/docker
   tags:
     - docker
 
