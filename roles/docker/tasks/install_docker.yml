@@ -80,42 +80,17 @@
   tags:
     - docker
 
-- name: Set ownership of /srv/docker recursively
-  ansible.builtin.command:
-    cmd: chown -R docker:docker /srv/docker
+- name: Ensure /srv/docker directory exists
+  ansible.builtin.file:
+    path: /srv/docker
+    state: directory
+    owner: docker
+    group: docker
+    mode: '2775'
   tags:
     - docker
 
-- name: Set permissions for /srv/docker recursively
-  ansible.builtin.command:
-    cmd: chmod -R 2775 /srv/docker
-  tags:
-    - docker
-
-- name: Enforce default ACLs for /srv/docker
-  ansible.builtin.command:
-    cmd: setfacl -R -dm u::rwx,g::rwx,o::rx /srv/docker
-  tags:
-    - docker
-
-# Configure Docker daemon to use /srv/docker/system as the data-root
-- name: Configure Docker daemon
-  ansible.builtin.copy:
-    dest: /etc/docker/daemon.json
-    content: |
-      {
-        "data-root": "/srv/docker/system"
-      }
-    owner: root
-    group: root
-    mode: '0644'
-  notify:
-    - Restart Docker
-  tags:
-    - docker
-
-# Ensure the /srv/docker/system directory exists
-- name: Create Docker system directory
+- name: Ensure Docker system directory exists
   ansible.builtin.file:
     path: /srv/docker/system
     state: directory
@@ -125,13 +100,19 @@
   tags:
     - docker
 
-# Configure Docker daemon to use /srv/docker
+- name: Set default ACLs for /srv/docker
+  ansible.builtin.command:
+    cmd: setfacl -R -dm u::rwx,g::rwx,o::rx /srv/docker
+  tags:
+    - docker
+
+# Configure Docker daemon to use /srv/docker/system as data-root
 - name: Configure Docker daemon
   ansible.builtin.copy:
     dest: /etc/docker/daemon.json
     content: |
       {
-        "data-root": "/srv/docker"
+        "data-root": "/srv/docker/system"
       }
     owner: root
     group: root
