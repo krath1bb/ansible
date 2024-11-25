@@ -89,16 +89,12 @@
 - name: Set permissions for /srv/docker recursively
   ansible.builtin.command:
     cmd: chmod -R 2775 /srv/docker
-  args:
-    warn: false
   tags:
     - docker
 
 - name: Enforce default ACLs for /srv/docker
   ansible.builtin.command:
     cmd: setfacl -R -dm u::rwx,g::rwx,o::rx /srv/docker
-  args:
-    warn: false
   tags:
     - docker
 
